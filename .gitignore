@@ -1,0 +1,76 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# logs
+logs/*.log
+logs/*.txt
+logs/*.bmp
+logs/*.png
+logs/genomes
+sandbox/
+config/tColl2/*-run*
+*.parallel
+roborobo
+Makefile
+
+#build and learn abstract function NEAT
+*.dat
+*.nn
+*.pyc
+learnFunction/build/
+learnFunction/datasets/*
+!learnFunction/datasets/*.dat
+!learnFunction/datasets/*.nn
+learnFunction/datasets/o1*
+learnFunction/datasets/o2*
+learnFunction/datasets/in*
+learnFunction/datasets/oAll*
+learnFunction/NEATbase/
+learnFunction/generateDataset
+learnFunction/NEAT/multi*
+learnFunction/NEAT/neatLearnFunction
+learnFunction/NEAT/exp*
+learnFunction/NEAT/test*
+learnFunction/NEAT/t1*
+learnFunction/NEAT/t2*
+learnFunction/NEAT/showAmine
+learnFunction/NEAT/heatmapData/*
+learnFunction/Makefile
+!learnFunction/NEAT/heatmapData/progressbar
+learnFunction/NEAT/heatmapData/progressbar/*.png
+learnFunction/NEAT/heatmapData/progressbar/*.mp4
+learnFunction/tmpDataFiles*
+*.allRunsTima
+*.paramFiles
+*.paramLists
+learnFunction/NEAT/paramFiles/
+
+learnFunction/NEAT/oldExp/
+learnFunction/NEAT/noEvoTopo/
+Roborobo3.*

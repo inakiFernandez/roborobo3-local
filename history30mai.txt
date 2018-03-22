@@ -1,0 +1,500 @@
+   28  [1;36m[12/05 15:34:17][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   29  [1;36m[12/05 15:35:11][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100000-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   30  [1;36m[12/05 15:55:43][m a./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError 1000 1 false true
+   31  [1;36m[12/05 15:55:44][m make
+   32  [1;36m[12/05 15:55:50][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError 1000 1 false true
+   33  [1;36m[12/05 15:55:57][m cat expRdmTopoInitNoEvoTopoStopOnError.allRunsKuku
+   34  [1;36m[12/05 15:56:13][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   35  [1;36m[12/05 16:12:41][m make
+   36  [1;36m[12/05 16:12:45][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   37  [1;36m[12/05 16:22:04][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError 1000 1 false true
+   38  [1;36m[12/05 16:22:13][m cat expRdmTopoInitNoEvoTopoStopOnError.allRunsKuku
+   39  [1;36m[12/05 16:22:18][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   40  [1;36m[12/05 16:23:16][m make
+   41  [1;36m[12/05 16:23:20][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 1000 1 false 1 false
+   42  [1;36m[12/05 16:24:01][m make
+   43  [1;36m[12/05 16:24:10][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError 200 1 false true
+   44  [1;36m[12/05 16:24:30][m cat expRdmTopoInitNoEvoTopoStopOnError.allRunsKuku
+   45  [1;36m[12/05 16:24:32][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+   46  [1;36m[12/05 16:31:19][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError 40 1 false true
+   47  [1;36m[12/05 16:31:24][m cat expRdmTopoInitNoEvoTopoStopOnError.allRunsKuku
+   48  [1;36m[12/05 16:31:40][m df
+   49  [1;36m[12/05 16:31:57][m make
+   50  [1;36m[12/05 16:31:26][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0 40 1 false 1 false
+   51  [1;36m[12/05 16:32:25][m make
+   52  [1;36m[12/05 16:32:28][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0 40 1 false 1 false
+   53  [1;36m[12/05 16:38:39][m emacs /usr/local/lib/python3.4/dist-packages/matplotlib/mpl-data/matplotlibrc&
+   54  [1;36m[12/05 16:39:08][m sudo emacs /usr/local/lib/python3.4/dist-packages/matplotlib/mpl-data/matplotlibrc&
+   55  [1;36m[12/05 16:39:17][m sudo emacs /usr/local/lib/python3.4/dist-packages/matplotlib/mpl-data/matplotlibrc
+   56  [1;36m[15/05 12:09:53][m emacs ../config/template-params&
+   57  [1;36m[15/05 12:07:33][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d10-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+   58  [1;36m[15/05 12:34:39][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError2 100 1 false true
+   59  [1;36m[15/05 12:34:46][m cat expRdmTopoInitNoEvoTopoStopOnError2.allRunsKuku
+   60  [1;36m[15/05 12:34:59][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError2-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError2-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError2-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   61  [1;36m[15/05 13:09:12][m ls expRdmTopoInitNoEvoTopoStopOnError2
+   62  [1;36m[15/05 13:10:25][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError2-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+   63  [1;36m[15/05 15:50:14][m make
+   64  [1;36m[15/05 15:50:32][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError3 100 1 false true
+   65  [1;36m[15/05 15:50:38][m cat expRdmTopoInitNoEvoTopoStopOnError3.allRunsKuku
+   66  [1;36m[15/05 15:50:41][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   67  [1;36m[15/05 15:55:21][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+   68  [1;36m[15/05 17:10:01][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError3 100 1 false true
+   69  [1;36m[15/05 17:10:09][m cat expRdmTopoInitNoEvoTopoStopOnError3.allRunsKuku
+   70  [1;36m[15/05 17:10:11][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   71  [1;36m[16/05 10:21:54][m cd git/roborobo3/learnFunction/NEAT
+   72  [1;36m[16/05 10:25:58][m make
+   73  [1;36m[16/05 10:32:12][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError3 100 1 false true
+   74  [1;36m[16/05 10:32:18][m cat expRdmTopoInitNoEvoTopoStopOnError3.allRunsKuku
+   75  [1;36m[16/05 10:32:30][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   76  [1;36m[16/05 10:56:35][m ls expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/
+   77  [1;36m[16/05 11:13:19][m ls expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/for i,fname in enumerate(filenames_sorted):
+   78  [1;36m[16/05 11:13:19][m     print(str(i))
+   79  [1;36m[16/05 11:13:19][m     plt.savefig(dirname + str(i)+'Lineage.png')
+   80  [1;36m[16/05 11:13:19][m     
+   81  [1;36m[16/05 11:15:15][m cat pop1.history
+   82  [1;36m[16/05 11:15:26][m cat expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop1.history
+   83  [1;36m[16/05 11:21:09][m emacs ../heatmapsRun.sh &
+   84  [1;36m[16/05 11:23:24][m avconv -loglevel quiet -y -r 4 -start_number 1 -i expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 expRdmTopoInitNoEvoTopoStopOnError3-w0.01-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+   85  [1;36m[16/05 11:24:33][m a./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError3 100 1 false true
+   86  [1;36m[16/05 11:24:41][m emacs generateParamFiles.sh &
+   87  [1;36m[16/05 11:25:19][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError3 100 1 false true
+   88  [1;36m[16/05 11:25:25][m cat expRdmTopoInitNoEvoTopoStopOnError3.allRunsKuku
+   89  [1;36m[16/05 11:25:27][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   90  [1;36m[16/05 11:26:48][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+   91  [1;36m[16/05 11:27:35][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+   92  [1;36m[16/05 11:31:27][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+   93  [1;36m[16/05 11:32:15][m emacs ../config/template-params&
+   94  [1;36m[16/05 11:32:43][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError4 100 1 false true
+   95  [1;36m[16/05 11:32:50][m cat expRdmTopoInitNoEvoTopoStopOnError4.allRunsKuku
+   96  [1;36m[16/05 11:34:28][m avconv -loglevel quiet -y ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+   97  [1;36m[16/05 11:34:43][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+   98  [1;36m[16/05 11:34:50][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError3-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+   99  [1;36m[16/05 11:32:54][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 100 1 false 1 false
+  100  [1;36m[16/05 11:37:14][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  101  [1;36m[16/05 11:37:55][m avconv -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  102  [1;36m[16/05 11:38:57][m avconv -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  103  [1;36m[16/05 11:39:08][m avconv -i ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError4-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  104  [1;36m[16/05 12:16:47][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError5 400 1 false true
+  105  [1;36m[16/05 12:16:53][m cat expRdmTopoInitNoEvoTopoStopOnError5.allRunsKuku
+  106  [1;36m[16/05 12:17:05][m cat ./launchMultiExpTima.sh 
+  107  [1;36m[16/05 12:32:08][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError5-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError5-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  108  [1;36m[16/05 13:34:24][m make
+  109  [1;36m[16/05 13:36:53][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 400 1 false true
+  110  [1;36m[16/05 13:36:59][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  111  [1;36m[16/05 13:37:07][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  112  [1;36m[16/05 13:38:28][m make
+  113  [1;36m[16/05 13:38:33][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  114  [1;36m[16/05 13:39:38][m emacs ./runSeveral.sh &
+  115  [1;36m[16/05 13:40:08][m cat expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/noMulti.parallel 
+  116  [1;36m[16/05 13:40:15][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 > expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/noMulti/run-1.log
+  117  [1;36m[16/05 13:40:25][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  118  [1;36m[16/05 13:41:05][m make
+  119  [1;36m[16/05 13:41:06][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  120  [1;36m[16/05 13:41:18][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 400 1 false true
+  121  [1;36m[16/05 13:41:24][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  122  [1;36m[16/05 13:41:41][m cat ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  123  [1;36m[16/05 13:41:44][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  124  [1;36m[16/05 13:42:04][m cat expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/noMulti.parallel 
+  125  [1;36m[16/05 13:42:13][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  126  [1;36m[16/05 13:44:27][m make
+  127  [1;36m[16/05 13:44:30][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  128  [1;36m[16/05 13:44:55][m make
+  129  [1;36m[16/05 13:44:57][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  130  [1;36m[16/05 13:45:06][m make
+  131  [1;36m[16/05 13:45:09][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  132  [1;36m[16/05 13:45:41][m make
+  133  [1;36m[16/05 13:45:44][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  134  [1;36m[16/05 13:46:53][m make
+  135  [1;36m[16/05 13:46:55][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  136  [1;36m[16/05 13:49:14][m make
+  137  [1;36m[16/05 13:49:19][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  138  [1;36m[16/05 13:49:35][m make
+  139  [1;36m[16/05 13:49:37][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  140  [1;36m[16/05 13:50:05][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 400 1 false true
+  141  [1;36m[16/05 13:50:12][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  142  [1;36m[16/05 13:50:15][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  143  [1;36m[16/05 14:44:49][m gedit ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  144  [1;36m[16/05 14:45:56][m awk -F'|' '{print NF; exit}' ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  145  [1;36m[16/05 14:46:19][m awk -F' ' '{print NF; exit}' ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  146  [1;36m[16/05 15:22:42][m while read in; do awk -F' ' '{print NF; exit}'; done < ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  147  [1;36m[16/05 15:22:54][m wc ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  148  [1;36m[16/05 15:23:03][m wc -l ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/pop150.history
+  149  [1;36m[16/05 15:24:17][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  150  [1;36m[16/05 15:24:24][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  151  [1;36m[16/05 15:24:40][m df
+  152  [1;36m[16/05 15:24:27][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  153  [1;36m[16/05 15:29:58][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  154  [1;36m[16/05 15:30:00][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  155  [1;36m[16/05 15:30:58][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  156  [1;36m[16/05 15:31:03][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  157  [1;36m[16/05 15:31:10][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  158  [1;36m[16/05 15:32:39][m dirname = "./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/"
+  159  [1;36m[16/05 15:32:39][m #read all pop.i files in current folder
+  160  [1;36m[16/05 15:32:39][m filenames =  glob.glob(dirname + "pop*.history")
+  161  [1;36m[16/05 15:32:39][m def numKey(s):
+  162  [1;36m[16/05 15:32:39][m     regex = re.compile(r'\d+')
+  163  [1;36m[16/05 15:32:39][m     return int(regex.findall(s)[-1]) 
+  164  [1;36m[16/05 15:32:39][m filenames_sorted = sorted(filenames,key=numKey)
+  165  [1;36m[16/05 15:32:39][m for i,fname in enumerate(filenames_sorted):
+  166  [1;36m[16/05 15:32:39][m     lineage = np.genfromtxt(fname)
+  167  [1;36m[16/05 15:32:39][m     for j in range(len(lineage)):        
+  168  [1;36m[16/05 15:32:39][m         plt.plot(lineage[j])
+  169  [1;36m[16/05 15:32:39][m         plt.ylim([-0.05,1.05])
+  170  [1;36m[16/05 15:32:39][m         plt.xlim([0,len(filenames)])
+  171  [1;36m[16/05 15:32:39][m     print(str(i+1))
+  172  [1;36m[16/05 15:32:39][m     plt.savefig(dirname + str(i+1)+'Lineage.png')
+  173  [1;36m[16/05 15:32:39][m     plt.clf()      print("avconv -loglevel quiet -y -r 4 -start_number 1 -i " + dirname + "%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 " + dirname + "lineage.mp4")
+  174  [1;36m[16/05 15:32:39][m print("avconv -loglevel quiet -y -i " + dirname + "lineage.mp4 " + dirname + "lineage.flv")
+  175  [1;36m[16/05 15:33:00][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  176  [1;36m[16/05 15:33:01][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  177  [1;36m[16/05 15:34:14][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  178  [1;36m[16/05 15:34:18][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  179  [1;36m[16/05 15:34:20][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  180  [1;36m[16/05 15:39:31][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  181  [1;36m[16/05 15:39:33][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d100-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  182  [1;36m[16/05 15:40:26][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  183  [1;36m[16/05 15:40:34][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  184  [1;36m[16/05 15:40:38][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  185  [1;36m[16/05 15:51:57][m dirname = "./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/"
+  186  [1;36m[16/05 15:51:57][m #read all pop.i files in current folder
+  187  [1;36m[16/05 15:51:57][m filenames =  glob.glob(dirname + "pop*.history")
+  188  [1;36m[16/05 15:51:57][m def numKey(s):
+  189  [1;36m[16/05 15:51:57][m     regex = re.compile(r'\d+')
+  190  [1;36m[16/05 15:51:57][m     return int(regex.findall(s)[-1]) 
+  191  [1;36m[16/05 15:51:57][m filenames_sorted = sorted(filenames,key=numKey)
+  192  [1;36m[16/05 15:51:57][m for i,fname in enumerate(filenames_sorted):
+  193  [1;36m[16/05 15:51:57][m     lineage = np.genfromtxt(fname)
+  194  [1;36m[16/05 15:51:57][m     for j in range(len(lineage)):        
+  195  [1;36m[16/05 15:51:57][m         plt.plot(lineage[j])
+  196  [1;36m[16/05 15:51:57][m         plt.ylim([-0.05,1.05])
+  197  [1;36m[16/05 15:51:57][m         plt.xlim([0,len(filenames)])
+  198  [1;36m[16/05 15:51:57][m     print(str(i+1))
+  199  [1;36m[16/05 15:51:57][m     plt.savefig(dirname + str(i+1)+'Lineage.png')
+  200  [1;36m[16/05 15:51:57][m     plt.clf()      print("avconv -loglevel quiet -y -r 4 -start_number 1 -i " + dirname + "%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 " + dirname + "lineage.mp4")
+  201  [1;36m[16/05 15:51:57][m print("avconv -loglevel quiet -y -i " + dirname + "lineage.mp4 " + dirname + "lineage.flv")
+  202  [1;36m[16/05 15:53:44][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  203  [1;36m[16/05 15:53:45][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d50-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  204  [1;36m[16/05 15:55:01][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  205  [1;36m[16/05 15:55:10][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  206  [1;36m[16/05 15:55:13][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  207  [1;36m[16/05 16:02:43][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  208  [1;36m[16/05 16:02:46][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  209  [1;36m[16/05 16:04:52][m make
+  210  [1;36m[16/05 16:05:25][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  211  [1;36m[16/05 16:05:35][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  212  [1;36m[16/05 16:05:38][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  213  [1;36m[16/05 16:16:25][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  214  [1;36m[16/05 16:16:27][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  215  [1;36m[16/05 16:59:11][m make
+  216  [1;36m[16/05 17:00:03][m make clean
+  217  [1;36m[16/05 17:00:03][m make
+  218  [1;36m[16/05 17:03:32][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  219  [1;36m[16/05 17:03:37][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  220  [1;36m[16/05 17:03:41][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  221  [1;36m[16/05 17:05:23][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d100-lfalse-rtrue-ifalse-i50-i150-p0.0
+  222  [1;36m[16/05 17:06:03][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  223  [1;36m[16/05 17:07:10][m make
+  224  [1;36m[16/05 17:07:12][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  225  [1;36m[16/05 17:08:15][m make
+  226  [1;36m[16/05 17:08:18][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  227  [1;36m[16/05 17:19:38][m make
+  228  [1;36m[16/05 17:19:41][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  229  [1;36m[16/05 17:20:04][m make
+  230  [1;36m[16/05 17:20:07][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  231  [1;36m[16/05 17:20:23][m make
+  232  [1;36m[16/05 17:20:26][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  233  [1;36m[16/05 17:20:42][m make
+  234  [1;36m[16/05 17:20:57][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  235  [1;36m[16/05 17:21:13][m make
+  236  [1;36m[16/05 17:21:16][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  237  [1;36m[16/05 17:21:35][m make
+  238  [1;36m[16/05 17:21:38][m ./neatLearnFunction  paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 400 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p5-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  239  [1;36m[16/05 17:22:18][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  240  [1;36m[16/05 17:22:38][m ./neatLearnFunction paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 200 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  241  [1;36m[16/05 17:22:58][m make
+  242  [1;36m[16/05 17:23:01][m ./neatLearnFunction paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 200 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  243  [1;36m[16/05 17:23:31][m make
+  244  [1;36m[16/05 17:23:35][m ./neatLearnFunction paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 200 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  245  [1;36m[16/05 17:24:18][m make
+  246  [1;36m[16/05 17:24:19][m ./neatLearnFunction paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 200 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  247  [1;36m[16/05 17:26:15][m make
+  248  [1;36m[16/05 17:26:17][m ./neatLearnFunction paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params 200 1-runFolder expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0
+  249  [1;36m[16/05 17:27:20][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  250  [1;36m[16/05 17:27:25][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  251  [1;36m[16/05 17:28:42][m htop
+  252  [1;36m[16/05 17:28:26][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  253  [1;36m[16/05 17:31:14][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  254  [1;36m[16/05 17:31:15][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  255  [1;36m[16/05 17:31:54][m cat paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params
+  256  [1;36m[16/05 17:33:33][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  257  [1;36m[16/05 17:35:06][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  258  [1;36m[16/05 17:35:06][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  259  [1;36m[16/05 17:35:44][m make
+  260  [1;36m[16/05 17:35:48][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  261  [1;36m[16/05 17:44:09][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  262  [1;36m[16/05 17:44:11][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  263  [1;36m[16/05 18:26:03][m make
+  264  [1;36m[17/05 11:00:10][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError6 200 1 false true
+  265  [1;36m[17/05 11:00:15][m cat expRdmTopoInitNoEvoTopoStopOnError6.allRunsKuku
+  266  [1;36m[17/05 11:00:18][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  267  [1;36m[17/05 11:23:43][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  268  [1;36m[17/05 11:23:44][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  269  [1;36m[17/05 11:24:57][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  270  [1;36m[17/05 11:34:12][m dirname = "./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/"
+  271  [1;36m[17/05 11:34:12][m #read all pop.i files in current folder
+  272  [1;36m[17/05 11:34:12][m filenames =  glob.glob(dirname + "pop*.history")
+  273  [1;36m[17/05 11:34:12][m def numKey(s):
+  274  [1;36m[17/05 11:34:12][m     regex = re.compile(r'\d+')
+  275  [1;36m[17/05 11:34:12][m     return int(regex.findall(s)[-1]) 
+  276  [1;36m[17/05 11:34:12][m filenames_sorted = sorted(filenames,key=numKey)
+  277  [1;36m[17/05 11:34:12][m for i,fname in enumerate(filenames_sorted):
+  278  [1;36m[17/05 11:34:12][m     lineage = np.genfromtxt(fname)
+  279  [1;36m[17/05 11:34:12][m     for j in range(len(lineage)):        
+  280  [1;36m[17/05 11:34:12][m         plt.plot(lineage[j])
+  281  [1;36m[17/05 11:34:13][m         plt.ylim([-0.05,1.05])
+  282  [1;36m[17/05 11:34:13][m         plt.xlim([0,len(filenames)])
+  283  [1;36m[17/05 11:34:13][m     print(str(i+1))
+  284  [1;36m[17/05 11:34:13][m     plt.savefig(dirname + str(i+1)+'Lineage.png')
+  285  [1;36m[17/05 11:34:13][m     plt.clf()      print("avconv -loglevel quiet -y -r 4 -start_number 1 -i " + dirname + "%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 " + dirname + "lineage.mp4")
+  286  [1;36m[17/05 11:34:13][m print("avconv -loglevel quiet -y -i " + dirname + "lineage.mp4 " + dirname + "lineage.flv")
+  287  [1;36m[17/05 11:35:45][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  288  [1;36m[17/05 11:35:47][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  289  [1;36m[17/05 11:53:18][m make
+  290  [1;36m[17/05 11:53:32][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 200 1 false 1 false
+  291  [1;36m[17/05 12:38:16][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  292  [1;36m[17/05 12:38:17][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  293  [1;36m[17/05 16:09:59][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError7 400 1 false true
+  294  [1;36m[17/05 16:10:05][m cat expRdmTopoInitNoEvoTopoStopOnError7.allRunsKuku
+  295  [1;36m[17/05 16:10:07][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  296  [1;36m[17/05 16:30:18][m dirname = "./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/"
+  297  [1;36m[17/05 16:30:18][m #read all pop.i files in current folder
+  298  [1;36m[17/05 16:30:18][m filenames =  glob.glob(dirname + "pop*.history")
+  299  [1;36m[17/05 16:30:18][m def numKey(s):
+  300  [1;36m[17/05 16:30:18][m     regex = re.compile(r'\d+')
+  301  [1;36m[17/05 16:30:18][m     return int(regex.findall(s)[-1]) 
+  302  [1;36m[17/05 16:30:18][m filenames_sorted = sorted(filenames,key=numKey)
+  303  [1;36m[17/05 16:30:18][m for i,fname in enumerate(filenames_sorted):
+  304  [1;36m[17/05 16:30:18][m     lineage = np.genfromtxt(fname)
+  305  [1;36m[17/05 16:30:18][m     for j in range(len(lineage)):        
+  306  [1;36m[17/05 16:30:18][m         plt.plot(lineage[j])
+  307  [1;36m[17/05 16:30:18][m         plt.ylim([-0.05,1.05])
+  308  [1;36m[17/05 16:30:18][m         plt.xlim([0,len(filenames)])
+  309  [1;36m[17/05 16:30:18][m     print(str(i+1))
+  310  [1;36m[17/05 16:30:18][m     plt.savefig(dirname + str(i+1)+'Lineage.png')
+  311  [1;36m[17/05 16:30:18][m     plt.clf()      print("avconv -loglevel quiet -y -r 4 -start_number 1 -i " + dirname + "%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 " + dirname + "lineage.mp4")
+  312  [1;36m[17/05 16:30:18][m print("avconv -loglevel quiet -y -i " + dirname + "lineage.mp4 " + dirname + "lineage.flv")
+  313  [1;36m[17/05 16:46:17][m  avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  314  [1;36m[17/05 16:46:21][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  315  [1;36m[18/05 11:01:57][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  316  [1;36m[18/05 11:02:01][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError7-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  317  [1;36m[18/05 11:03:39][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  318  [1;36m[18/05 11:03:41][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  319  [1;36m[18/05 11:17:29][m make
+  320  [1;36m[18/05 11:18:49][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError8 400 1 false true
+  321  [1;36m[18/05 11:18:54][m cat expRdmTopoInitNoEvoTopoStopOnError8.allRunsKuku
+  322  [1;36m[18/05 11:18:57][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  323  [1;36m[18/05 11:46:26][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  324  [1;36m[18/05 11:46:29][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  325  [1;36m[18/05 11:46:50][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  326  [1;36m[18/05 11:53:54][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  327  [1;36m[18/05 12:32:28][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  328  [1;36m[18/05 12:32:30][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  329  [1;36m[18/05 12:32:42][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  330  [1;36m[18/05 13:14:11][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  331  [1;36m[18/05 13:42:26][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  332  [1;36m[18/05 13:42:30][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  333  [1;36m[18/05 13:51:11][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError8 400 1 false true
+  334  [1;36m[18/05 13:51:17][m cat 
+  335  [1;36m[18/05 13:51:25][m cat expRdmTopoInitNoEvoTopoStopOnError8.allRunsKuku
+  336  [1;36m[18/05 13:51:28][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  337  [1;36m[18/05 14:24:44][m make
+  338  [1;36m[18/05 14:24:50][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  339  [1;36m[18/05 14:54:48][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  340  [1;36m[18/05 14:54:52][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  341  [1;36m[18/05 14:56:54][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError8-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  342  [1;36m[18/05 15:17:57][m ./launchMultiExpTima.sh ../config/template-params testALaCon 40 1 false true
+  343  [1;36m[18/05 15:18:02][m cat testALaCon.allRunsKuku
+  344  [1;36m[18/05 15:18:04][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 40 1 false 1 false
+  345  [1;36m[18/05 15:20:32][m  parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  346  [1;36m[18/05 15:24:44][m ./launchMultiExpTima.sh ../config/template-params testALaCon 10 1 false true
+  347  [1;36m[18/05 15:24:49][m cat testALaCon.allRunsKuku
+  348  [1;36m[18/05 15:24:57][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  349  [1;36m[18/05 15:25:48][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  350  [1;36m[18/05 15:27:12][m emacs ./runSeveral.sh &
+  351  [1;36m[18/05 15:28:09][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  352  [1;36m[18/05 15:29:23][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  353  [1;36m[18/05 16:22:23][m avscpython3 ../heatmap.py heatmapData/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/1-runFolder
+  354  [1;36m[18/05 16:22:30][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  355  [1;36m[18/05 16:25:46][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  356  [1;36m[19/05 11:30:05][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  357  [1;36m[19/05 11:30:49][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  358  [1;36m[19/05 11:31:22][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  359  [1;36m[19/05 11:32:14][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  360  [1;36m[19/05 11:37:23][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  361  [1;36m[19/05 11:38:09][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  362  [1;36m[19/05 11:39:34][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  363  [1;36m[19/05 11:44:08][m  parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  364  [1;36m[19/05 11:58:39][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  365  [1;36m[19/05 11:59:35][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  366  [1;36m[19/05 12:01:04][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  367  [1;36m[19/05 12:01:52][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  368  [1;36m[19/05 12:02:51][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  369  [1;36m[19/05 12:03:35][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  370  [1;36m[19/05 12:06:19][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  371  [1;36m[19/05 12:07:04][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  372  [1;36m[19/05 12:09:01][m ./runSeveral.sh paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 10 1 false 1 false
+  373  [1;36m[19/05 12:10:02][m parallel -j 1 -a testALaCon-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  374  [1;36m[19/05 12:12:25][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError9 400 1 false true
+  375  [1;36m[19/05 12:12:31][m cat expRdmTopoInitNoEvoTopoStopOnError9.allRunsKuku
+  376  [1;36m[19/05 12:12:34][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 400 1 false 1 false
+  377  [1;36m[19/05 13:06:27][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  378  [1;36m[19/05 13:06:33][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  379  [1;36m[19/05 13:06:37][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  380  [1;36m[19/05 13:20:46][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError9 120 1 false true
+  381  [1;36m[19/05 13:20:52][m cat expRdmTopoInitNoEvoTopoStopOnError9.allRunsKuku
+  382  [1;36m[19/05 13:20:55][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 120 1 false 1 false
+  383  [1;36m[19/05 13:56:09][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  384  [1;36m[19/05 13:56:10][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  385  [1;36m[19/05 13:52:58][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  386  [1;36m[19/05 13:57:15][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 120 1 false 1 false
+  387  [1;36m[19/05 14:05:39][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  388  [1;36m[19/05 14:05:40][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  389  [1;36m[19/05 14:06:34][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  390  [1;36m[19/05 14:13:02][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError9 240 1 false true
+  391  [1;36m[19/05 14:13:08][m cat expRdmTopoInitNoEvoTopoStopOnError9.allRunsKuku
+  392  [1;36m[19/05 14:13:11][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 240 1 false 1 false
+  393  [1;36m[19/05 14:30:25][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.svg -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  394  [1;36m[19/05 14:30:27][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  395  [1;36m[19/05 14:30:52][m avconv -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.svg -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  396  [1;36m[19/05 14:33:31][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  397  [1;36m[19/05 14:33:33][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  398  [1;36m[19/05 14:34:02][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  399  [1;36m[19/05 14:41:07][m make
+  400  [1;36m[19/05 14:41:16][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError9 240 1 false true
+  401  [1;36m[19/05 14:41:21][m cat expRdmTopoInitNoEvoTopoStopOnError9.allRunsKuku
+  402  [1;36m[19/05 14:41:25][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 240 1 false 1 false
+  403  [1;36m[19/05 14:56:21][m make
+  404  [1;36m[19/05 14:57:53][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  405  [1;36m[19/05 14:57:57][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  406  [1;36m[19/05 14:56:17][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  407  [1;36m[19/05 15:04:35][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError9 240 1 false true
+  408  [1;36m[19/05 15:04:41][m cat expRdmTopoInitNoEvoTopoStopOnError9.allRunsKuku
+  409  [1;36m[19/05 15:04:45][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 240 1 false 1 false
+  410  [1;36m[19/05 15:22:06][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  411  [1;36m[19/05 15:22:08][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  412  [1;36m[19/05 15:22:12][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError9-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  413  [1;36m[19/05 15:29:48][m ./launchMultiExpTima.sh ../config/template-params expRdmTopoInitNoEvoTopoStopOnError10 240 1 false true
+  414  [1;36m[19/05 15:29:55][m cat expRdmTopoInitNoEvoTopoStopOnError10.allRunsKuku
+  415  [1;36m[19/05 15:29:59][m ./runSeveral.sh paramFiles/expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params paramFiles/expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0.params-multi expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0 240 1 false 1 false
+  416  [1;36m[19/05 15:59:58][m avconv -loglevel quiet -y -r 4 -start_number 1 -i ./expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/%dLineage.png -b:v 1000k -vcodec mpeg4 -t 100 ./expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4
+  417  [1;36m[19/05 16:00:01][m avconv -loglevel quiet -y -i ./expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.mp4 ./expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/lineage.flv
+  418  [1;36m[19/05 15:58:40][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError10-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  419  [1;36m[19/05 16:32:49][m parallel -j 1 -a expRdmTopoInitNoEvoTopoStopOnError6-w0.1-c0.75-m0.6-m0.0-m0.0-m0.0-p100-d20-lfalse-rtrue-ifalse-i50-i150-p0.0/dataplots.parallel
+  420  [1;36m[20/05 23:12:30][m gnome-subtitles
+  421  [1;36m[20/05 23:12:34][m sudo apt-get install gnome-subtitles
+  422  [1;36m[20/05 23:13:07][m gnome-subtitles
+  423  [1;36m[22/05 11:24:32][m cd svn/docs/ecal2017/
+  424  [1;36m[22/05 11:24:34][m ls
+  425  [1;36m[22/05 11:32:38][m emacs intro-related.tex &
+  426  [1;36m[22/05 11:34:41][m emacs methods.tex &
+  427  [1;36m[22/05 11:35:11][m emacs exp.tex &
+  428  [1;36m[22/05 11:36:17][m emacs results-concl.tex &
+  429  [1;36m[22/05 11:47:07][m emacs refs.bib &
+  430  [1;36m[22/05 11:47:10][m make
+  431  [1;36m[22/05 11:47:25][m evince contents.pdf&
+  432  [1;36m[22/05 11:48:21][m make
+  433  [1;36m[23/05 15:34:30][m sudo apt-get install kazam
+  434  [1;36m[23/05 15:35:27][m cd
+  435  [1;36m[23/05 15:35:30][m cd git/roborobo3/
+  436  [1;36m[23/05 15:35:31][m ls
+  437  [1;36m[23/05 15:36:05][m ll config/
+  438  [1;36m[23/05 15:36:29][m ll logs/
+  439  [1;36m[23/05 15:36:47][m ll logs/*.properties
+  440  [1;36m[23/05 15:36:52][m ll logs/*.params
+  441  [1;36m[23/05 15:36:59][m ls logs/*.params
+  442  [1;36m[23/05 15:37:01][m ls logs/*
+  443  [1;36m[23/05 15:37:18][m ll logs/properties_201704*
+  444  [1;36m[23/05 15:37:29][m cat logs/properties_20170415-02h09m09s175950us.txt
+  445  [1;36m[23/05 15:38:03][m ll config/tColl2/C2-8colors-*
+  446  [1;36m[23/05 15:38:32][m ll config/tColl2/C2-8colors-NoBatch.properties 
+  447  [1;36m[23/05 15:38:44][m ./roborobo -l config/tColl2/C2-8colors-NoBatch.properties 
+  448  [1;36m[23/05 15:39:51][m cp config/tColl2/C2-8colors-NoBatch.properties config/tColl2/C2-8colors-NoBatch-video.properties 
+  449  [1;36m[23/05 15:39:58][m emacs config/tColl2/C2-8colors-NoBatch-video.properties&
+  450  [1;36m[23/05 15:40:23][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties
+  451  [1;36m[23/05 16:19:28][m df
+  452  [1;36m[23/05 16:22:57][m ls ~
+  453  [1;36m[23/05 16:23:06][m rm ~/kazam_*
+  454  [1;36m[23/05 16:23:08][m df
+  455  [1;36m[23/05 16:23:15][m ls ~
+  456  [1;36m[23/05 16:23:23][m ls -al ~
+  457  [1;36m[23/05 16:24:28][m baobab 
+  458  [1;36m[23/05 16:26:24][m df
+  459  [1;36m[23/05 16:26:27][m ls
+  460  [1;36m[23/05 16:26:49][m ll /tmp/
+  461  [1;36m[23/05 16:27:08][m sudo rm  /tmp/*
+  462  [1;36m[23/05 16:27:19][m ls
+  463  [1;36m[23/05 16:27:23][m df
+  464  [1;36m[23/05 15:35:03][m kazam
+  465  [1;36m[23/05 16:37:07][m rm logs *.bmp
+  466  [1;36m[23/05 16:37:13][m rm logs/*.bmp
+  467  [1;36m[23/05 16:37:37][m df
+  468  [1;36m[23/05 16:47:10][m baobab &
+  469  [1;36m[23/05 16:47:23][m df
+  470  [1;36m[24/05 11:09:21][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties
+  471  [1;36m[24/05 11:09:39][m emacs config/tColl2/C2-8colors-NoBatch-video.properties&
+  472  [1;36m[24/05 11:10:44][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties
+  473  [1;36m[24/05 11:12:33][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  474  [1;36m[24/05 11:14:04][m df
+  475  [1;36m[24/05 11:18:39][m kazam&
+  476  [1;36m[24/05 11:19:13][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  477  [1;36m[24/05 11:28:09][m rm logs/screenshot_20170524-11h19m13s613483us_00*
+  478  [1;36m[24/05 11:28:32][m rm logs/screenshot_20170524-11h19m13s613483us_00*; rm logs/robotsId_20170524-11h19m13s613483us_000*
+  479  [1;36m[24/05 11:32:55][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  480  [1;36m[24/05 11:35:15][m ls /tmp/
+  481  [1;36m[24/05 11:35:24][m kazam&
+  482  [1;36m[24/05 11:37:46][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  483  [1;36m[24/05 11:39:18][m rm logs/screenshot_20170524-11h37m46s541646us_00*; rm logs/robotsId_20170524-11h37m46s541646us_000*
+  484  [1;36m[24/05 11:39:37][m rm logs/screenshot*; rm logs/robotsId*
+  485  [1;36m[24/05 11:39:59][m ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  486  [1;36m[24/05 11:41:00][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdOutInfo.log
+  487  [1;36m[24/05 11:41:29][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdOutInfo.log; ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  488  [1;36m[24/05 11:41:37][m kazam&
+  489  [1;36m[24/05 11:42:03][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdOutInfo.log; ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  490  [1;36m[24/05 11:42:21][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdoutInfo.log; ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  491  [1;36m[24/05 11:44:52][m kazam&
+  492  [1;36m[24/05 11:45:35][m rm logs/screenshot*; rm logs/ro#1495619414
+  493  [1;36m[24/05 11:53:20][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdoutInfo.log
+  494  [1;36m[24/05 11:50:36][m baobab&
+  495  [1;36m[24/05 11:52:18][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdoutInfo.log; ./roborobo -l config/tColl2/C2-8colors-NoBatch-video.properties > logs/stdoutInfo.log
+  496  [1;36m[24/05 11:53:23][m kazam&
+  497  [1;36m[24/05 11:55:03][m rm logs/screenshot*; rm logs/robotsId*; rm logs/stdoutInfo.log
+  498  [1;36m[24/05 14:23:02][m cat logs/stdoutInfo.log 
+  499  [1;36m[24/05 14:23:07][m wc -l logs/stdoutInfo.log 
+  500  [1;36m[25/05 12:50:14][m sudo add-apt-repository ppa:brousselle/slowmovideo
+  501  [1;36m[25/05 12:50:39][m sudo apt-get update
+  502  [1;36m[25/05 12:51:01][m sudo apt-get install slowmovideo
+  503  [1;36m[25/05 12:53:14][m sudo apt-get install kdenlive
+  504  [1;36m[25/05 14:31:22][m df
+  505  [1;36m[30/05 13:19:24][m man history
+  506  [1;36m[30/05 13:19:52][m history
+  507  [1;36m[30/05 13:20:14][m history -h
+  508  [1;36m[30/05 13:20:24][m history -d 1
+  509  [1;36m[30/05 13:20:27][m history -d 0
+  510  [1;36m[30/05 13:20:29][m history -d 12
+  511  [1;36m[30/05 13:20:30][m history -d 13
+  512  [1;36m[30/05 13:20:34][m history -d 112
+  513  [1;36m[30/05 13:20:36][m history -d 11
+  514  [1;36m[30/05 13:20:38][m history -d 110
+  515  [1;36m[30/05 13:20:42][m history -d 80
+  516  [1;36m[30/05 13:20:45][m history -d 30
+  517  [1;36m[30/05 13:20:48][m history -d 20
+  518  [1;36m[30/05 13:20:53][m history -d 15
+  519  [1;36m[30/05 13:20:55][m history -d 17
+  520  [1;36m[30/05 13:20:57][m history -d 19
+  521  [1;36m[30/05 13:20:59][m history -d 20
+  522  [1;36m[30/05 13:21:07][m history -d offset 20
+  523  [1;36m[30/05 13:21:14][m history 1
+  524  [1;36m[30/05 13:21:17][m history 100
+  525  [1;36m[30/05 13:21:24][m history 1000
+  526  [1;36m[30/05 13:21:38][m history 10000
+  527  [1;36m[30/05 13:22:13][m history 10000 >history30mai.txt
