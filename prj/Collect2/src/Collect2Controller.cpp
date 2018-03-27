@@ -20,6 +20,7 @@ using namespace Neural;
 Collect2Controller::Collect2Controller( RobotWorldModel *wm )
 {
     _wm = wm; nn = NULL;
+    _countDoorPassages = 0;
 
     // neural weights limits
     _minValue = -Collect2SharedData::gNeuronWeightRange/2;
@@ -408,7 +409,7 @@ void Collect2Controller::stepEvolution()
     if(_lifetime == Collect2SharedData::gEvaluationTime - 1)
     {
         if(Collect2SharedData::gFitness == 3)
-            _currentFitness += 1000 - getDistanceToNextDoor();
+            _currentFitness = getDoorPassages() * 1000.0 + (1000 - getDistanceToNextDoor());
     }
     //agent's lifetime ended: replace genome (if possible)
     if(_lifetime >= Collect2SharedData::gEvaluationTime)
@@ -421,6 +422,7 @@ void Collect2Controller::stepEvolution()
         //for(auto it = _fitnessList.begin(); it != _fitnessList.end(); it++)
         //    std::cout << it->second << std::endl;
         _currentFitness = 0.0;
+        _countDoorPassages = 0;
         _lifetime = 0;
 
        if (Collect2SharedData::gClearPopulation)
@@ -581,7 +583,7 @@ void Collect2Controller::broadcastGenome()
                 double fitness = _currentFitness;
                 if(Collect2SharedData::gFitness==3)
                 {
-                    fitness += 1000 - getDistanceToNextDoor();
+                    fitness = getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
                 }
                 targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
             }
@@ -616,7 +618,7 @@ void Collect2Controller::broadcastGenome()
                     double fitness = _currentFitness;
                     if(Collect2SharedData::gFitness==3)
                     {
-                        fitness += 1000 - getDistanceToNextDoor();
+                        fitness =getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
                     }
                     targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
                 }

@@ -76,6 +76,7 @@ Collect2WorldObserver::Collect2WorldObserver( World* world ) : WorldObserver( wo
 	_lifeIterationCount = -1;
 	_generationCount = -1;
 
+
 }
 
 Collect2WorldObserver::~Collect2WorldObserver()

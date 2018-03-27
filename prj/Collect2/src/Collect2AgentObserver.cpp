@@ -82,7 +82,8 @@ void Collect2AgentObserver::step()
            }
            else if(c->_lastZone == 1)
            {
-               c->updateFitness(1000);
+               //c->updateFitness(1000);
+               c->passDoor();
                c->_lastZone = 0;
            }
                _wm->setRobotLED_colorValues(255, 102, 204);
@@ -95,7 +96,8 @@ void Collect2AgentObserver::step()
             }
             else if(c->_lastZone == 0)
             {
-                c->updateFitness(1000);
+                //c->updateFitness(1000);
+                c->passDoor();
                 c->_lastZone = 1;
 
             }

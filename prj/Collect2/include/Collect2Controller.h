@@ -91,6 +91,7 @@ private:
     void storeGenome(std::vector<double> genome, GC senderId, double fitness);
     void storeOwnGenome();
     void resetRobot();
+    int _countDoorPassages;
     
 public:
 
@@ -103,7 +104,14 @@ public:
     void step();
     void updateFitness(double delta);
     int getBirthdate() { return _birthdate; }
-    double getFitness(){ return _currentFitness;}
+    double getFitness()
+    {
+        if(Collect2SharedData::gFitness==3)
+        {
+            return getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
+        }
+        return _currentFitness;
+    }
     std::vector<double> getCurrentGenome()
     {
         return _currentGenome;
@@ -116,6 +124,15 @@ public:
     void storeGenomeHelper(std::vector<double> genome, GC senderId, double fitness)
     {
         storeGenome(genome,senderId,fitness);
+    }
+
+    int getDoorPassages()
+    {
+        return _countDoorPassages;
+    }
+    int passDoor()
+    {
+        _countDoorPassages++;
     }
 
     double getAvgPopFitness()

@@ -28,7 +28,7 @@ class Collect2WorldObserver : public WorldObserver
 	protected:
 		int _generationCount;
 		int _lifeIterationCount;
-
+        int _countDoorPassages;
 	public:
 		Collect2WorldObserver(World *world);
 		~Collect2WorldObserver();
@@ -41,6 +41,7 @@ class Collect2WorldObserver : public WorldObserver
 		int getLifeIterationCount() { return _lifeIterationCount; }
         double computeGlobalDiversity();
         std::vector<double> computeInterRobotDiversity();
+
 
 };
 
