@@ -132,7 +132,7 @@ public:
     }
     int passDoor()
     {
-        _countDoorPassages++;
+        return _countDoorPassages++;
     }
 
     double getAvgPopFitness()
