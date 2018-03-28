@@ -151,8 +151,16 @@ void Collect2WorldObserver::updateMonitoring()
         std::cout << sumFitness/(double) gNumberOfRobots << //" " << sumAvgLocalPopFitness <<
                    " " << fullLaps <<
                      " " << towardDoor0 <<
-                     " " << towardDoor1 <<
-                     std::endl;
+                     " " << towardDoor1
+                  << "       ";
+        for ( int i = 0 ; i != gNumberOfRobots ; i++ )
+        {
+
+            Collect2Controller* c =(dynamic_cast<Collect2Controller*>(gWorld->getRobot(i)->getController()));
+             std::cout << c-> getDoorPassages() << " ";
+        }
+        std::cout<< "       ";
+        std::cout<< std::endl;
         //<< gatheredGenomes
 	}
 
