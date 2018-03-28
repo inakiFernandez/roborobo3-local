@@ -21,6 +21,7 @@ Collect2Controller::Collect2Controller( RobotWorldModel *wm )
 {
     _wm = wm; nn = NULL;
     _countDoorPassages = 0;
+    _minDistNextDoor =  std::numeric_limits<double>::max();
 
     // neural weights limits
     _minValue = -Collect2SharedData::gNeuronWeightRange/2;
@@ -79,13 +80,14 @@ void Collect2Controller::resetRobot()
         // gathering object distance
         _nbInputs +=  _wm->_cameraSensorsNb;
     }
-
-    //Add sensors for door angle and distance
-    _nbInputs +=2;
-    _nbInputs +=2;
-
-    //Current goal (two-zones)
-    _nbInputs +=1;
+    if (Collect2SharedData::gFitness == 3)
+    {
+        //Add sensors for door angle and distance
+        _nbInputs +=2;
+        //_nbInputs +=2;
+        //Current goal (two-zones)
+        //_nbInputs +=1;
+    }
     //if(gInitialNumberOfRobots > 1)
     //    _nbInputs += 2; //closest agent relative orientation and is it collecting?
 
@@ -219,12 +221,12 @@ void Collect2Controller::stepBehaviour()
         else
         {
             /*if(Agent::isInstanceOf(objId))
-            {
-                std::cout << "Agent detected: "
+            {*/
+                /*std::cout //<< "Agent detected: "
                           << 1.0 - _wm->getDistanceValueFromCameraSensor(i) /
                              _wm->getCameraSensorMaximumDistanceValue(i)
-                          << std::endl;
-            }*/
+                          << std::endl;*/
+           /* }*/
             //(*inputs)[inputToUse] = _wm->getDistanceValueFromCameraSensor(i) /
             //_wm->getCameraSensorMaximumDistanceValue(i);
             (*inputs)[inputToUse] = 1.0 - _wm->getDistanceValueFromCameraSensor(i) /
@@ -321,6 +323,37 @@ void Collect2Controller::stepBehaviour()
         inputToUse++;
     }*/
 
+    //Nextdoor distance and angle
+    double x = _wm->getXReal();
+    double y = _wm->getYReal();
+
+    double xDoor = 240;
+    double yDoor = 100;
+
+
+    if(_lastZone == 0)
+    {
+        xDoor = 760;
+        yDoor = 880;
+    }
+    else if(_lastZone == -1)
+    {
+        double distD1 = ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
+        double distD2 = ((sqrt((x-760)*(x-760)+((y-880)*(y-880)))/1.414) - 0.5) * 2.0;
+        if(distD2<distD1)
+        {
+            xDoor = 760;
+            yDoor = 880;
+        }
+    }
+    (*inputs)[inputToUse]=  ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
+    inputToUse++;
+    double angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x)) / 2.0 * 3.1416);
+    (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
+    inputToUse++;
+
+
+    /*
     //Door1 distance and angle (normalized)
     double x = _wm->getXReal();
     double y = _wm->getYReal();
@@ -343,8 +376,9 @@ void Collect2Controller::stepBehaviour()
     angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x) - 3.1416/2.0 - _agentAbsoluteOrientation) / 2.0 * 3.1416);
     (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
     inputToUse++;
+    */
 
-    if(_lastZone == -1)
+    /*if(_lastZone == -1)
     {
         (*inputs)[inputToUse]= 0.0;
         inputToUse++;
@@ -359,7 +393,7 @@ void Collect2Controller::stepBehaviour()
         (*inputs)[inputToUse]= 1.0;
         inputToUse++;
     }
-
+    */
 
 
     //Previous translational and rotational speeds (acts as recurrent connections from last step)
@@ -402,14 +436,17 @@ void Collect2Controller::stepBehaviour()
 //################ EVOLUTION ENGINE METHODS ################
 void Collect2Controller::stepEvolution()
 {
-    //broadcasting genome : robot broadcasts its genome
-    //to all neighbors (contact-based wrt proximity sensors)
-    broadcastGenome();
+    if(!Collect2SharedData::gIsCentralized)
+    {
+        //broadcasting genome : robot broadcasts its genome
+        //to all neighbors (contact-based wrt proximity sensors)
+        broadcastGenome();
+    }
     _lifetime++;
     if(_lifetime == Collect2SharedData::gEvaluationTime - 1)
     {
         if(Collect2SharedData::gFitness == 3)
-            _currentFitness = getDoorPassages() * 1000.0 + (1000 - getDistanceToNextDoor());
+            _currentFitness = getDoorPassages() * 1000.0 + (1000 - getMinDistanceToNextDoor());
     }
     //agent's lifetime ended: replace genome (if possible)
     if(_lifetime >= Collect2SharedData::gEvaluationTime)
@@ -423,6 +460,7 @@ void Collect2Controller::stepEvolution()
         //    std::cout << it->second << std::endl;
         _currentFitness = 0.0;
         _countDoorPassages = 0;
+        _minDistNextDoor =  std::numeric_limits<double>::max();
         _lifetime = 0;
 
        if (Collect2SharedData::gClearPopulation)
@@ -583,7 +621,7 @@ void Collect2Controller::broadcastGenome()
                 double fitness = _currentFitness;
                 if(Collect2SharedData::gFitness==3)
                 {
-                    fitness = getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
+                    fitness = getDoorPassages() * 1000.0 + (1000.0 - getMinDistanceToNextDoor());
                 }
                 targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
             }
@@ -618,7 +656,7 @@ void Collect2Controller::broadcastGenome()
                     double fitness = _currentFitness;
                     if(Collect2SharedData::gFitness==3)
                     {
-                        fitness =getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
+                        fitness =getDoorPassages() * 1000.0 + (1000.0 - getMinDistanceToNextDoor());
                     }
                     targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
                 }

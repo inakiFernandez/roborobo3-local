@@ -123,15 +123,24 @@ void Collect2WorldObserver::updateMonitoring()
         double sumFitness = 0.0;
         double sumAvgLocalPopFitness = 0.0;
         int gatheredGenomes = 0;
+        int fullLaps = 0;
+        int towardDoor0 = 0, towardDoor1 = 0;
         for ( int i = 0 ; i != gNumberOfRobots ; i++ )
         {
 
-             sumFitness += (dynamic_cast<Collect2Controller*>(gWorld->getRobot(i)->getController()))
-                     -> getFitness();
-             sumAvgLocalPopFitness += (dynamic_cast<Collect2Controller*>
-                                       (gWorld->getRobot(i)->getController())) -> getAvgPopFitness();
-             gatheredGenomes += (dynamic_cast<Collect2Controller*>
-                                 (gWorld->getRobot(i)->getController())) ->_genomesList.size();
+            Collect2Controller* c =(dynamic_cast<Collect2Controller*>(gWorld->getRobot(i)->getController()));
+             sumFitness += c-> getFitness();
+             sumAvgLocalPopFitness += c-> getAvgPopFitness();
+             gatheredGenomes += c->_genomesList.size();
+             fullLaps += c-> getDoorPassages();
+             if(c->_lastZone==0)
+             {
+                 towardDoor1++;
+             }
+             else if (c->_lastZone==1)
+             {
+                 towardDoor0++;
+             }
         }
         std::cout << gWorld->getIterations() << " ";
         //<< (sumFitness  / gNumberOfRobots) / Collect2SharedData::gEvaluationTime
@@ -140,6 +149,9 @@ void Collect2WorldObserver::updateMonitoring()
         //std::cout << sumFitness / 2 << " " << sumAvgLocalPopFitness / 2 << std::endl;
 
         std::cout << sumFitness/(double) gNumberOfRobots << //" " << sumAvgLocalPopFitness <<
+                   " " << fullLaps <<
+                     " " << towardDoor0 <<
+                     " " << towardDoor1 <<
                      std::endl;
         //<< gatheredGenomes
 	}

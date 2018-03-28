@@ -92,6 +92,7 @@ private:
     void storeOwnGenome();
     void resetRobot();
     int _countDoorPassages;
+    double _minDistNextDoor;
     
 public:
 
@@ -108,7 +109,7 @@ public:
     {
         if(Collect2SharedData::gFitness==3)
         {
-            return getDoorPassages() * 1000.0 + (1000.0 - getDistanceToNextDoor());
+            return getDoorPassages() * 1000.0 + (1000.0 - getMinDistanceToNextDoor());
         }
         return _currentFitness;
     }
@@ -151,6 +152,19 @@ public:
 
     int _lastZone = -1;
     double getDistanceToNextDoor();
+    void resetMinDistNextDoor()
+    {
+        _minDistNextDoor =  std::numeric_limits<double>::max();
+    }
+    double getMinDistanceToNextDoor()
+    {
+        double result = getDistanceToNextDoor();
+        if(result < _minDistNextDoor)
+        {
+            _minDistNextDoor = result;
+        }
+        return result;
+    }
 
 };
 

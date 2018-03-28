@@ -85,6 +85,7 @@ void Collect2AgentObserver::step()
                //c->updateFitness(1000);
                c->passDoor();
                c->_lastZone = 0;
+               c->resetMinDistNextDoor();
            }
                _wm->setRobotLED_colorValues(255, 102, 204);
         }
@@ -99,7 +100,7 @@ void Collect2AgentObserver::step()
                 //c->updateFitness(1000);
                 c->passDoor();
                 c->_lastZone = 1;
-
+               c->resetMinDistNextDoor();
             }
                 _wm->setRobotLED_colorValues(204, 153, 0);
         }
