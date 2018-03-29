@@ -1326,9 +1326,12 @@ bool loadProperties( std::string __propertiesFilename )
 		
 		if ( gRandomSeed == -1 ) // value = -1 means random seed. set seed, then update content of properties.
 		{
+            struct timeval timeNow;
+            gettimeofday(&timeNow, NULL);
+            gRandomSeed = (unsigned int) timeNow.tv_sec * 1000 + (unsigned int) timeNow.tv_usec;
 			// set seed value
-			gRandomSeed = (unsigned int)time(NULL); // time-based random seed, if needed.
-
+            //gRandomSeed = (unsigned int)time(NULL); // time-based random seed, if needed.
+            std::cout << gRandomSeed << std::endl;
 			// update properties
 
 			gProperties.setProperty("gRandomSeed",convertToString(gRandomSeed)); // update value.
@@ -1343,7 +1346,7 @@ bool loadProperties( std::string __propertiesFilename )
 	if ( gProperties.hasProperty("gScreenHeight") )
 		convertFromString<int>(gScreenHeight, gProperties.getProperty("gScreenHeight"), std::dec);
 	else
-	{
+    {
 		std::cerr << "[MISSING] gScreenHeight value is missing.\n";
 		returnValue = false;
 	}

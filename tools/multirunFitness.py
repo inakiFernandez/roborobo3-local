@@ -26,6 +26,7 @@ def perc(data_l):
     median = np.zeros(data.shape[0])
     perc_25 = np.zeros(data.shape[0])
     perc_75 = np.zeros(data.shape[0])
+    print(data)
     for i in range(0, len(median)):
         median[i] = np.median(data[i, :])
         perc_25[i] = np.percentile(data[i, :], 75)
@@ -55,11 +56,13 @@ def plot_mean_curve(data, color, axis, label):
 
 def plot_one_curve(data, color, axis, label, quartiles=False):
     med, perc_25, perc_75 = perc(data)
-    
+    #print(med)
+    #print(perc_25)
+    #print(perc_75)    
     if quartiles:
         axis.fill_between(np.arange(0, len(med)), perc_25, perc_75,
                           alpha=0.25, linewidth=0, color=color)
-    lineWidth = 5 #2
+    lineWidth = 2
     axis.plot(med, lw=lineWidth, label=label,               
               color=color,linestyle="-")
     gridcolor="#FFFFFF"    
@@ -84,7 +87,7 @@ def plot_one_curve_precomp(data, color, axis, label):
     perc_75 = data[2]
     
     axis.fill_between(np.arange(0, len(med)), perc_25, perc_75, alpha=0.25, linewidth=0, color=color)
-    lineWidth = 5
+    lineWidth = 3
     axis.plot(med, lw=lineWidth, label=label,               
               color=color,linestyle="-")
     gridcolor="#FFFFFF"    
@@ -129,6 +132,9 @@ if __name__ == "__main__":
     colors = bmap.mpl_colors
     axis = subplot2grid((1, 1), (0, 0))
 
-    print(len(dat[-1]))
-    plot_one_curve(dat, colors[1], axis, "Collecting", True)
+    print(len(dat))
+    datRow = [list(x)  for x in zip(*dat)]
+
+    #print(dat)
+    plot_one_curve(dat, colors[1], axis, "Swarm Fitness", True)
     show()
