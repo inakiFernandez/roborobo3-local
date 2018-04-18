@@ -177,13 +177,13 @@ void Collect2WorldObserver::updateMonitoring()
                   //   " " << towardDoor0 <<
                   //   " " << towardDoor1
                   //<< "       ";
-        for ( int i = 0 ; i != gNumberOfRobots ; i++ )
+        /*for ( int i = 0 ; i != gNumberOfRobots ; i++ )
         {
 
             Collect2Controller* c =(dynamic_cast<Collect2Controller*>(gWorld->getRobot(i)->getController()));
              //std::cout << c-> getDoorPassages() << " ";
               std::cout << " " << c->computeIntraRobotDiversity() << " ";
-        }
+        }*/
         //std::cout<< "       ";
         std::cout<< std::endl;
         //<< gatheredGenomes
