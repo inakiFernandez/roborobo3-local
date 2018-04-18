@@ -20,8 +20,9 @@ class Collect2SharedData {
     static int gEvaluationTime; //! theoretical duration of a generation (ie. maximum time a controller will be evaluated on a robot)
 	static int gIteration; //! used by every class to know what is the current iteration step of roborobo
     static int gSelectionMethod; //! Random by default
+    static double gSelPressure;
 
-	static bool gPropertiesLoaded;
+    static bool gPropertiesLoaded;
 
     static int gControllerType; // MLP, Perceptron, Elman
     static int gNbHiddenLayers; // default: 1
@@ -41,6 +42,11 @@ class Collect2SharedData {
     static bool gSaveGenome;
 
     static bool gIsCentralized;
+
+    static int freqMeasureBehav;
+
+    static int gNbInputsBehavior;
+    static std::vector<std::vector<double> > gInputsBehavior;
 };
 
 

@@ -57,6 +57,7 @@ private:
     void selectRandomGenome();
     void selectBestGenome();
     void selectRankBasedGenome();
+    void selectTournament(double sp);
 
     void mutate(float sigma);
 
@@ -93,6 +94,25 @@ private:
     void resetRobot();
     int _countDoorPassages;
     double _minDistNextDoor;
+
+    std::vector<std::vector<double> > _behavior;
+    void updateBehavior(std::vector<double> descriptor)
+    {
+        _behavior.push_back(descriptor);
+    }
+
+    void cleanBehavior()
+    {
+        for(auto v : _behavior)
+        {
+            v.clear();
+        }
+        _behavior.clear();
+    }
+    bool doUpdateBehavior()
+    {
+        return ((_lifetime  % Collect2SharedData::freqMeasureBehav) == 0 );
+    }
     
 public:
 
@@ -100,11 +120,13 @@ public:
     ~Collect2Controller();
 
     double computeIntraRobotDiversity();
-    double computeGenomeVSLocalPopDiversity(std::vector<double> g);
+    double computeCurrentVSLocalPopDiversity();
+    double computeBehavDistance(std::vector< std::vector<double> > b1,std::vector< std::vector<double> > b2);
     void reset();
     void step();
     void updateFitness(double delta);
     int getBirthdate() { return _birthdate; }
+    int getNbInputs(){return _nbInputs;}
     double getFitness()
     {
         if(Collect2SharedData::gFitness==3)
@@ -165,6 +187,11 @@ public:
         }
         return result;
     }
+    std::vector<std::vector <double> > getBehavior()
+    {
+        return _behavior;
+    }
+    std::vector<std::vector <double> > computeFunctionalControllerBehavior(std::vector<double> g);
 
 };
 

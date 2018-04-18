@@ -26,7 +26,7 @@ def perc(data_l):
     median = np.zeros(data.shape[0])
     perc_25 = np.zeros(data.shape[0])
     perc_75 = np.zeros(data.shape[0])
-    print(data)
+    
     for i in range(0, len(median)):
         median[i] = np.median(data[i, :])
         perc_25[i] = np.percentile(data[i, :], 75)
@@ -56,6 +56,7 @@ def plot_mean_curve(data, color, axis, label):
 
 def plot_one_curve(data, color, axis, label, quartiles=False):
     med, perc_25, perc_75 = perc(data)
+    print(data)
     #print(med)
     #print(perc_25)
     #print(perc_75)    
@@ -79,6 +80,7 @@ def plot_one_curve(data, color, axis, label, quartiles=False):
     #axis.set_axisbelow(True)
     #axis.grid(color='red', linestyle='-', linewidth=1)  
     #plt.grid(color=gridcolor,linewidth=1,linestyle='-') 
+    legend()
 
 def plot_one_curve_precomp(data, color, axis, label):
     
@@ -105,6 +107,7 @@ def plot_one_curve_precomp(data, color, axis, label):
     #axis.grid(color='red', linestyle='-', linewidth=1)  
     #plt.grid(color=gridcolor,linewidth=1,linestyle='-') 
 
+
 def taskIntervals(horSize,interv=25):
     #vertical coordinates for taskswitch
     isT1 = True
@@ -122,19 +125,22 @@ def taskIntervals(horSize,interv=25):
 
 if __name__ == "__main__":
     # args: file name
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         sys.exit("Error: wrong number of arguments\n" +
-                 "Usage: python multirunFitness filename")
+                 "Usage: python multirunFitness filename [filename2 [...]]")
 
-    dat = read_logfile(sys.argv[1])
-
+    print(sys.argv)
     bmap = brewer2mpl.get_map('Set2', 'qualitative', 7)
     colors = bmap.mpl_colors
     axis = subplot2grid((1, 1), (0, 0))
-
-    print(len(dat))
-    datRow = [list(x)  for x in zip(*dat)]
-
-    #print(dat)
-    plot_one_curve(dat, colors[1], axis, "Swarm Fitness", True)
+    names = ["Distributed", "Centralized"]
+    for i in range(len(sys.argv) - 1):
+        dat = read_logfile(sys.argv[1 + i])
+    
+        #print(len(dat))
+        #datRow = [list(x)  for x in zip(*dat)]
+    
+        #print(dat)
+        plot_one_curve(dat, colors[i%len(colors)], axis, names[i], True)
+        
     show()

@@ -69,12 +69,17 @@ Collect2WorldObserver::Collect2WorldObserver( World* world ) : WorldObserver( wo
     gProperties.checkAndGetPropertyValue("gWithBias",&Collect2SharedData::gWithBias,true);
 
     gProperties.checkAndGetPropertyValue("gOutGenomeFile",&Collect2SharedData::gOutGenomeFile,true);
-    gProperties.checkAndGetPropertyValue("gIsCentralized",&Collect2SharedData::gIsCentralized,false);
+    gProperties.checkAndGetPropertyValue("gIsCentralized",&Collect2SharedData::gIsCentralized,true);
+    gProperties.checkAndGetPropertyValue("gSelPressure",&Collect2SharedData::gSelPressure,true);
+
+    Collect2SharedData::gInputsBehavior.clear(); // = std::vector<std::vector<double> >() ;
 
 	// * iteration and generation counters
 
 	_lifeIterationCount = -1;
 	_generationCount = -1;
+
+
 
 
 }
@@ -100,6 +105,23 @@ void Collect2WorldObserver::step()
         // update iterations and generations counters
         _lifeIterationCount = 0;
         _generationCount++;
+    }
+    if( gWorld->getIterations() == 0)
+    {
+        std::vector<double> inputs;
+
+        for(int i=0; i < Collect2SharedData::gNbInputsBehavior; i++)
+        {
+            inputs.clear();
+
+            for(int j = 0; j < dynamic_cast<Collect2Controller*>(gWorld->getRobot(0)->getController())->getNbInputs(); j++)
+            {
+                float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+
+                inputs.push_back(r);//TOCHECK
+            }
+            Collect2SharedData::gInputsBehavior.push_back(inputs);
+        }
     }
 }
 
@@ -149,17 +171,20 @@ void Collect2WorldObserver::updateMonitoring()
         //std::cout << sumFitness / 2 << " " << sumAvgLocalPopFitness / 2 << std::endl;
 
         std::cout << sumFitness/(double) gNumberOfRobots << //" " << sumAvgLocalPopFitness <<
-                   " " << fullLaps <<
-                     " " << towardDoor0 <<
-                     " " << towardDoor1
-                  << "       ";
+                 " " << computeGlobalDiversity(); //<<
+                     //" " << computeInterRobotDiversity();
+                     //  " " << fullLaps <<
+                  //   " " << towardDoor0 <<
+                  //   " " << towardDoor1
+                  //<< "       ";
         for ( int i = 0 ; i != gNumberOfRobots ; i++ )
         {
 
             Collect2Controller* c =(dynamic_cast<Collect2Controller*>(gWorld->getRobot(i)->getController()));
-             std::cout << c-> getDoorPassages() << " ";
+             //std::cout << c-> getDoorPassages() << " ";
+              std::cout << " " << c->computeIntraRobotDiversity() << " ";
         }
-        std::cout<< "       ";
+        //std::cout<< "       ";
         std::cout<< std::endl;
         //<< gatheredGenomes
 	}
@@ -220,16 +245,19 @@ void Collect2WorldObserver::updateMonitoring()
     //Simulate centralized algorithm by maintaining panmictic communication
     if(Collect2SharedData::gIsCentralized)
     {
-        for (int i = 0 ; i != gNumberOfRobots ; i++ )
+        if( _lifeIterationCount == Collect2SharedData::gEvaluationTime-10)
         {
-            Collect2Controller* c1 = (dynamic_cast<Collect2Controller*>
-                                      (gWorld->getRobot(i)->getController()));
-
-            for (int j = 0 ; j != gNumberOfRobots ; j++ )
+            for (int i = 0 ; i != gNumberOfRobots ; i++ )
             {
-                Collect2Controller* c2 = (dynamic_cast<Collect2Controller*>
-                                          (gWorld->getRobot(j)->getController()));
-                c2->storeGenomeHelper(c1->getCurrentGenome(),c1->getCurrentId(), c1->getFitness());
+                Collect2Controller* c1 = (dynamic_cast<Collect2Controller*>
+                                          (gWorld->getRobot(i)->getController()));
+
+                for (int j = 0 ; j != gNumberOfRobots ; j++ )
+                {
+                    Collect2Controller* c2 = (dynamic_cast<Collect2Controller*>
+                                              (gWorld->getRobot(j)->getController()));
+                    c2->storeGenomeHelper(c1->getCurrentGenome(),c1->getCurrentId(), c1->getFitness());
+                }
             }
         }
     }
@@ -245,7 +273,27 @@ void Collect2WorldObserver::updateMonitoring()
 double Collect2WorldObserver::computeGlobalDiversity()
 {
     double result = 0.0;
-    //TODO
+    std::vector<double> pairwiseDistances;
+    if(gNumberOfRobots == 1)
+        return 0.0;
+    for (int i = 0 ; i < gNumberOfRobots ; i++ )
+    {
+        Collect2Controller* c1 = (dynamic_cast<Collect2Controller*>
+                                  (gWorld->getRobot(i)->getController()));
+
+        for (int j = i + 1 ; j < gNumberOfRobots ; j++ )
+        {
+            Collect2Controller* c2 = (dynamic_cast<Collect2Controller*>
+                                      (gWorld->getRobot(j)->getController()));
+            pairwiseDistances.push_back(c1->computeBehavDistance(c1->getBehavior(),c2->getBehavior()));
+        }
+    }
+    for(auto d : pairwiseDistances)
+    {
+        result += d;
+    }
+    result = result/pairwiseDistances.size();
+    //Average of pairwise distances between active behaviors
     return result;
 
 }
@@ -253,5 +301,19 @@ std::vector<double> Collect2WorldObserver::computeInterRobotDiversity()
 {
     std::vector<double> result;
     //TODO
+    for (int i = 0 ; i != gNumberOfRobots ; i++ )
+    {
+        Collect2Controller* c1 = (dynamic_cast<Collect2Controller*>
+                                  (gWorld->getRobot(i)->getController()));
+
+        for (int j = i + 1 ; j != gNumberOfRobots ; j++ )
+        {
+            Collect2Controller* c2 = (dynamic_cast<Collect2Controller*>
+                                      (gWorld->getRobot(j)->getController()));
+            //TODO c1->computeDiversity(c1->getBehavior(),c2->getBehavior());
+            //result.push_back(c1->getInterRobotDiversity(c2));//TODO
+        }
+
+    }
     return result;
 }

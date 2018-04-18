@@ -322,94 +322,101 @@ void Collect2Controller::stepBehaviour()
 
         inputToUse++;
     }*/
-
-    //Nextdoor distance and angle
-    double x = _wm->getXReal();
-    double y = _wm->getYReal();
-
-    double xDoor = 240;
-    double yDoor = 100;
-
-
-    if(_lastZone == 0)
+    if (Collect2SharedData::gFitness == 3)
     {
-        xDoor = 760;
-        yDoor = 880;
-    }
-    else if(_lastZone == -1)
-    {
-        double distD1 = ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
-        double distD2 = ((sqrt((x-760)*(x-760)+((y-880)*(y-880)))/1.414) - 0.5) * 2.0;
-        if(distD2<distD1)
+        //Nextdoor distance and angle
+        double x = _wm->getXReal();
+        double y = _wm->getYReal();
+
+        double xDoor = 240;
+        double yDoor = 100;
+
+
+        if(_lastZone == 0)
         {
             xDoor = 760;
             yDoor = 880;
         }
-    }
-    (*inputs)[inputToUse]=  ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
-    inputToUse++;
-    double angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x)) / 2.0 * 3.1416);
-    (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
-    inputToUse++;
-
-
-    /*
-    //Door1 distance and angle (normalized)
-    double x = _wm->getXReal();
-    double y = _wm->getYReal();
-
-    double xDoor = 240;
-    double yDoor = 100;
-    (*inputs)[inputToUse]=((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
-    inputToUse++;
-    double angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x)) / 2.0 * 3.1416);
-
-    (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
-    inputToUse++;
-
-    //Door2 distance and angle (normalized)
-    xDoor = 760;
-    yDoor = 880;
-
-    (*inputs)[inputToUse]=((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2;
-    inputToUse++;
-    angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x) - 3.1416/2.0 - _agentAbsoluteOrientation) / 2.0 * 3.1416);
-    (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
-    inputToUse++;
-    */
-
-    /*if(_lastZone == -1)
-    {
-        (*inputs)[inputToUse]= 0.0;
+        else if(_lastZone == -1)
+        {
+            double distD1 = ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
+            double distD2 = ((sqrt((x-760)*(x-760)+((y-880)*(y-880)))/1.414) - 0.5) * 2.0;
+            if(distD2<distD1)
+            {
+                xDoor = 760;
+                yDoor = 880;
+            }
+        }
+        (*inputs)[inputToUse]=  ((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
         inputToUse++;
-    }
-    else if(_lastZone == 0)
-    {
-        (*inputs)[inputToUse]= -1.0;
+        double angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x)) / 2.0 * 3.1416);
+        (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
         inputToUse++;
-    }
-    else if(_lastZone == 1)
-    {
-        (*inputs)[inputToUse]= 1.0;
-        inputToUse++;
-    }
-    */
 
+
+        /*
+        //Door1 distance and angle (normalized)
+        double x = _wm->getXReal();
+        double y = _wm->getYReal();
+
+        double xDoor = 240;
+        double yDoor = 100;
+        (*inputs)[inputToUse]=((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2.0;
+        inputToUse++;
+        double angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x)) / 2.0 * 3.1416);
+
+        (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
+        inputToUse++;
+
+        //Door2 distance and angle (normalized)
+        xDoor = 760;
+        yDoor = 880;
+
+        (*inputs)[inputToUse]=((sqrt((x-xDoor)*(x-xDoor)+((y-yDoor)*(y-yDoor)))/1.414) - 0.5) * 2;
+        inputToUse++;
+        angle = getAngleToTarget(x,y,_wm->_agentAbsoluteOrientation,xDoor,yDoor); //(acos((yDoor - y)/(xDoor - x) - 3.1416/2.0 - _agentAbsoluteOrientation) / 2.0 * 3.1416);
+        (*inputs)[inputToUse]=angle/180; //(angle - 0.5) * 2.0;
+        inputToUse++;
+        */
+
+        /*if(_lastZone == -1)
+        {
+            (*inputs)[inputToUse]= 0.0;
+            inputToUse++;
+        }
+        else if(_lastZone == 0)
+        {
+            (*inputs)[inputToUse]= -1.0;
+            inputToUse++;
+        }
+        else if(_lastZone == 1)
+        {
+            (*inputs)[inputToUse]= 1.0;
+            inputToUse++;
+        }
+        */
+    }
 
     //Previous translational and rotational speeds (acts as recurrent connections from last step)
     //(*inputs)[inputToUse] = _wm->_desiredTranslationalValue / gMaxTranslationalSpeed;
     //inputToUse++;
     //(*inputs)[inputToUse] = _wm->_desiredRotationalVelocity / gMaxRotationalSpeed;
     //inputToUse++;
-    /*if(_wm->_id == 0)
+    /*
+    if(_wm->_id == 0)
     {
         for(auto it = inputs->begin(); it < inputs->end(); it++)
             std::cout << (*it) << " | ";
         std::cout << std::endl;
-    }*/
+    }
+    */
 
     // ---- compute and read out ----
     nn->setWeigths(_parameters); // set genome
+    /*if(doUpdateBehavior())
+    {
+        updateBehavior(*inputs);
+    }*/
     nn->setInputs(*inputs);
     nn->step();
     std::vector<double> outputs = nn->readOut();
@@ -447,6 +454,11 @@ void Collect2Controller::stepEvolution()
     {
         if(Collect2SharedData::gFitness == 3)
             _currentFitness = getDoorPassages() * 1000.0 + (1000 - getMinDistanceToNextDoor());
+
+        //Compute this robot's behavior
+        //Need common base of inputs TODO
+        //updateBehavior(
+        _behavior = computeFunctionalControllerBehavior(_genome); //);
     }
     //agent's lifetime ended: replace genome (if possible)
     if(_lifetime >= Collect2SharedData::gEvaluationTime)
@@ -485,7 +497,9 @@ void Collect2Controller::loadNewGenome()
    // If 1+ genome(s) imported, select best.
    if (_genomesList.size() > 0)
    {
-       selectBestGenome();
+       //std::cout << _genomesList.size() << std::endl;
+       selectTournament(Collect2SharedData::gSelPressure);
+       //selectBestGenome();
        //selectRankBasedGenome();
    }
    else
@@ -496,7 +510,34 @@ void Collect2Controller::loadNewGenome()
    setNewGenomeStatus(true);
    _birthdate = gWorld->getIterations();
 }
+void Collect2Controller::selectTournament(double sp){
+    /* the size of the tournament */
+    int size = _genomesList.size();
+    int inspected = sp * (double) size;
 
+    /* shuffle indexes */
+    std::vector<GC> v;
+    for(auto i: _fitnessList)
+        v.push_back(i.first);
+    std::random_shuffle(v.begin(), v.end());
+
+    /* get the best from the inspected */
+    double max_fit =  _fitnessList[v[0]];
+    GC    best_g  =  (*v.begin());
+    //int    j=1; /* index in v */
+    for (int i=1 ; i<inspected; i++)
+    {
+        double f  = _fitnessList[v[i]];
+        if(f > max_fit)
+        {
+            max_fit = f;
+            best_g = v[i] ;
+        }
+        //j++;
+    }
+
+        _currentGenome = _genomesList[best_g];
+}
 void Collect2Controller::selectBestGenome()
 {
 
@@ -735,18 +776,7 @@ void Collect2Controller::logGenome(std::string s)
 
     genomeF.close();
 }
-double Collect2Controller::computeIntraRobotDiversity()
-{
-    double result = 0.0;
-    //TODO
-    return result;
-}
-double Collect2Controller::computeGenomeVSLocalPopDiversity(std::vector<double> g)
-{
-double result = 0.0;
-    //TODO
-    return result;
-}
+
 double Collect2Controller::getDistanceToNextDoor()
 {
     double x = _wm->getXReal();
@@ -786,4 +816,65 @@ double Collect2Controller::getDistanceToNextDoor()
         return result;
         //TODO what to reward if no zone visited? Distance to closest door? or distance to a fixed door?
     }
+}
+double Collect2Controller::computeBehavDistance(std::vector< std::vector<double> > b1,std::vector< std::vector<double> > b2)
+{
+    double result = 0.0;
+
+    for(unsigned int i = 0 ;  i < b1.size() ; i++)
+    {
+        double sampleDistance = 0.0;
+
+        //Compute Euclidian distance
+        for(unsigned int j = 0; j < b1[i].size(); j++)
+        {
+            sampleDistance += (b1[i][j] - b2[i][j]) * (b1[i][j] - b2[i][j]);
+        }
+        result+=sqrt(sampleDistance);
+
+    }
+    result =  result / b1.size();
+    return result;
+}
+double Collect2Controller::computeIntraRobotDiversity()
+{
+    double result = 0.0;
+    //TODO tocheck
+    for(auto it = _genomesList.begin();it!=_genomesList.end();it++)
+    {
+        for(auto it2 = _genomesList.begin();it2!=_genomesList.end();it2++)
+        {
+            result += computeBehavDistance(computeFunctionalControllerBehavior(std::get<1>(*it)),computeFunctionalControllerBehavior(std::get<1>(*it2)));
+        }
+    }
+    return result/(_genomesList.size() * _genomesList.size());
+}
+
+double Collect2Controller::computeCurrentVSLocalPopDiversity()
+{
+    double result = 0.0;
+    //TODO tocheck. todo getbehavior
+    for(auto it = _genomesList.begin();it!=_genomesList.end();it++)
+    {
+        result += computeBehavDistance(getBehavior(),computeFunctionalControllerBehavior(std::get<1>(*it)));
+    }
+    return result/_genomesList.size();
+}
+
+std::vector<std::vector<double> > Collect2Controller::computeFunctionalControllerBehavior(std::vector<double> g)
+{
+    std::vector<double> outputs;
+    std::vector<double> inputs;
+    std::vector<std::vector<double> > result;
+    NeuralNetwork* neuralNet = new MLP(g, _nbInputs, _nbOutputs, *(_nbNeuronsPerHiddenLayer), Collect2SharedData::gWithBias);
+    for(int i=0; i < Collect2SharedData::gNbInputsBehavior; i++)
+    {
+        inputs = Collect2SharedData::gInputsBehavior[i];
+        neuralNet->setInputs(inputs);
+        neuralNet->step();
+        outputs = neuralNet->readOut();
+        result.push_back(outputs);
+    }
+    delete neuralNet;
+    return result;
 }

@@ -14,7 +14,7 @@ bool Collect2SharedData::gStoreOwn; // store own genome in local population?
 int Collect2SharedData::gEvaluationTime = 0; // how long a controller will be evaluated on a robot
 
 int Collect2SharedData::gSelectionMethod = 0; // Random by default
-
+double Collect2SharedData::gSelPressure = 1.0;
 // global variable local to file -- TODO: move specific properties loader in dedicated WorldObserver
 bool Collect2SharedData::gPropertiesLoaded = false;
 
@@ -33,3 +33,7 @@ int Collect2SharedData::gTaskIdx = 0;
 std::string Collect2SharedData::gOutGenomeFile = "";
 bool Collect2SharedData::gSaveGenome = true;
 bool Collect2SharedData::gIsCentralized = false;
+
+int Collect2SharedData::freqMeasureBehav = 25;
+int Collect2SharedData::gNbInputsBehavior = 50;
+std::vector<std::vector<double> > Collect2SharedData::gInputsBehavior = std::vector<std::vector<double> >() ;
