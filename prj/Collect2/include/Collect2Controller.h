@@ -89,7 +89,8 @@ private:
     unsigned int _nbHiddenLayers;
     std::vector<unsigned int>* _nbNeuronsPerHiddenLayer;
     
-    void storeGenome(std::vector<double> genome, GC senderId, double fitness);
+    //void storeGenome(std::vector<double> genome, GC senderId, double fitness);
+    void storeGenome(std::vector<double> genome, GC senderId, double fitness, std::vector<std::vector<double> >behavior);
     void storeOwnGenome();
     void resetRobot();
     int _countDoorPassages;
@@ -144,9 +145,9 @@ public:
         return _genomeId;
     }
 
-    void storeGenomeHelper(std::vector<double> genome, GC senderId, double fitness)
+    void storeGenomeHelper(std::vector<double> genome, GC senderId, double fitness, std::vector<std::vector<double> > behavior)
     {
-        storeGenome(genome,senderId,fitness);
+        storeGenome(genome,senderId,fitness,behavior);
     }
 
     int getDoorPassages()
@@ -171,6 +172,7 @@ public:
     void logGenome(std::string s);
     std::map<GC, std::vector<double> > _genomesList;
     std::map<GC, double > _fitnessList;
+    std::map<GC, std::vector<std::vector<double> > > _behaviorsList;
 
     int _lastZone = -1;
     double getDistanceToNextDoor();
@@ -192,6 +194,7 @@ public:
         return _behavior;
     }
     std::vector<std::vector <double> > computeFunctionalControllerBehavior(std::vector<double> g);
+    std::vector<std::vector<double> > getBehavior(GC id);
 
 };
 

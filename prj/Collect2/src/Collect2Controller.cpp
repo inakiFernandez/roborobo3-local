@@ -118,9 +118,11 @@ void Collect2Controller::resetRobot()
     }
 
     _currentGenome = _genome;
+    _behavior = computeFunctionalControllerBehavior(_currentGenome);
     setNewGenomeStatus(true);
     _genomesList.clear();
     _fitnessList.clear();
+    _behaviorsList.clear();
 
 }
 
@@ -479,6 +481,7 @@ void Collect2Controller::stepEvolution()
        {
            _genomesList.clear();
            _fitnessList.clear();
+           _behaviorsList.clear();
        }
        _lastZone = -1;
        _wm->setRobotLED_colorValues(0, 0, 0);
@@ -508,6 +511,16 @@ void Collect2Controller::loadNewGenome()
    }
    mutate(_currentSigma);
    setNewGenomeStatus(true);
+   _behavior = computeFunctionalControllerBehavior(_currentGenome);
+   /*for(auto it : _behavior)
+   {
+       for (auto it2 :it)
+       {
+           std::cout << it2 << " ";
+       }
+       std::cout << std::endl;
+   }
+   std::cout << std::endl<< std::endl<< std::endl<< std::endl<< std::endl;*/
    _birthdate = gWorld->getIterations();
 }
 void Collect2Controller::selectTournament(double sp){
@@ -664,7 +677,7 @@ void Collect2Controller::broadcastGenome()
                 {
                     fitness = getDoorPassages() * 1000.0 + (1000.0 - getMinDistanceToNextDoor());
                 }
-                targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
+                targetRobotController->storeGenome(_currentGenome, _genomeId, fitness, _behavior);
             }
         }
     }
@@ -699,14 +712,14 @@ void Collect2Controller::broadcastGenome()
                     {
                         fitness =getDoorPassages() * 1000.0 + (1000.0 - getMinDistanceToNextDoor());
                     }
-                    targetRobotController->storeGenome(_currentGenome, _genomeId, fitness);
+                    targetRobotController->storeGenome(_currentGenome, _genomeId, fitness, _behavior);
                 }
             }
         }
     }
 }
 
-void Collect2Controller::storeGenome(std::vector<double> genome, GC senderId, double fitness)
+void Collect2Controller::storeGenome(std::vector<double> genome, GC senderId, double fitness, std::vector<std::vector<double> > behavior)
 {
     if(_genomesList.find(senderId) != _genomesList.end())
     {
@@ -719,6 +732,7 @@ void Collect2Controller::storeGenome(std::vector<double> genome, GC senderId, do
         {
             _genomesList[senderId] = genome;
             _fitnessList[senderId] = fitness;
+            _behaviorsList[senderId] = behavior;
         }
         else
         {
@@ -738,9 +752,12 @@ void Collect2Controller::storeGenome(std::vector<double> genome, GC senderId, do
             {
                 _fitnessList.erase(indexWorse);
                 _genomesList.erase(indexWorse);
+                _behaviorsList.erase(indexWorse);
 
                 _fitnessList[senderId] = fitness;
                 _genomesList[senderId] = genome;
+                _behaviorsList[senderId] = behavior;
+
             }
         }
     }
@@ -748,7 +765,7 @@ void Collect2Controller::storeGenome(std::vector<double> genome, GC senderId, do
 
 void Collect2Controller::storeOwnGenome()
 {
-    storeGenome(_currentGenome, _genomeId, _currentFitness);
+    storeGenome(_currentGenome, _genomeId, _currentFitness,_behavior);
 }
 
 void Collect2Controller::logGenome(std::string s)
@@ -844,10 +861,13 @@ double Collect2Controller::computeIntraRobotDiversity()
     {
         for(auto it2 = _genomesList.begin();it2!=_genomesList.end();it2++)
         {
-            result += computeBehavDistance(computeFunctionalControllerBehavior(std::get<1>(*it)),computeFunctionalControllerBehavior(std::get<1>(*it2)));
+            if(it!=it2)
+            {
+                result += computeBehavDistance(getBehavior(std::get<0>(*it)),getBehavior(std::get<0>(*it2)));
+            }
         }
     }
-    return result/(_genomesList.size() * _genomesList.size());
+    return result/(_genomesList.size() * _genomesList.size() - 2);
 }
 
 double Collect2Controller::computeCurrentVSLocalPopDiversity()
@@ -876,5 +896,11 @@ std::vector<std::vector<double> > Collect2Controller::computeFunctionalControlle
         result.push_back(outputs);
     }
     delete neuralNet;
+    return result;
+}
+std::vector<std::vector<double> > Collect2Controller::getBehavior(GC id)
+{
+    std::vector<std::vector<double> > result;
+    result = _behaviorsList[id];
     return result;
 }

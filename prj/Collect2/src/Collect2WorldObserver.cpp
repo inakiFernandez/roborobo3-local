@@ -78,8 +78,23 @@ Collect2WorldObserver::Collect2WorldObserver( World* world ) : WorldObserver( wo
 
 	_lifeIterationCount = -1;
 	_generationCount = -1;
-
-
+    int nbIn = -1;
+    switch (Collect2SharedData::gFitness) {
+    case 0:
+        nbIn = 8;
+        break;
+    case 1:
+        nbIn = 16;
+        break;
+    case 2:
+        nbIn = 16;
+        break;
+    default:
+        std::cerr << "[ERROR] Wrong or non implemented task" << std::endl;
+        exit(-1);
+        break;
+    }
+    Collect2SharedData::initInputsBehavior(Collect2SharedData::gNbInputsBehavior, nbIn);
 
 
 }
@@ -106,23 +121,7 @@ void Collect2WorldObserver::step()
         _lifeIterationCount = 0;
         _generationCount++;
     }
-    if( gWorld->getIterations() == 0)
-    {
-        std::vector<double> inputs;
 
-        for(int i=0; i < Collect2SharedData::gNbInputsBehavior; i++)
-        {
-            inputs.clear();
-
-            for(int j = 0; j < dynamic_cast<Collect2Controller*>(gWorld->getRobot(0)->getController())->getNbInputs(); j++)
-            {
-                float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-
-                inputs.push_back(r);//TOCHECK
-            }
-            Collect2SharedData::gInputsBehavior.push_back(inputs);
-        }
-    }
 }
 
 
@@ -256,7 +255,7 @@ void Collect2WorldObserver::updateMonitoring()
                 {
                     Collect2Controller* c2 = (dynamic_cast<Collect2Controller*>
                                               (gWorld->getRobot(j)->getController()));
-                    c2->storeGenomeHelper(c1->getCurrentGenome(),c1->getCurrentId(), c1->getFitness());
+                    c2->storeGenomeHelper(c1->getCurrentGenome(),c1->getCurrentId(), c1->getFitness(), c1->getBehavior());
                 }
             }
         }

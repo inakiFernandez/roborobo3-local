@@ -36,4 +36,21 @@ bool Collect2SharedData::gIsCentralized = false;
 
 int Collect2SharedData::freqMeasureBehav = 25;
 int Collect2SharedData::gNbInputsBehavior = 50;
-std::vector<std::vector<double> > Collect2SharedData::gInputsBehavior = std::vector<std::vector<double> >() ;
+std::vector<std::vector<double> > Collect2SharedData::gInputsBehavior; // = std::vector<std::vector<double> >() ;
+
+void Collect2SharedData::initInputsBehavior(int n,int in)
+{
+  std::vector<double> inputs;
+
+    for(int i=0; i < n; i++)
+    {
+        inputs.clear();
+
+        for(int j = 0; j < in; j++)
+        {
+            float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+            inputs.push_back(r);
+        }
+        Collect2SharedData::gInputsBehavior.push_back(inputs);
+    }
+}

@@ -47,6 +47,8 @@ class Collect2SharedData {
 
     static int gNbInputsBehavior;
     static std::vector<std::vector<double> > gInputsBehavior;
+    static void initInputsBehavior(int n,int in);
+
 };
 
 
