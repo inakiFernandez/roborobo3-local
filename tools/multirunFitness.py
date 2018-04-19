@@ -80,7 +80,7 @@ def plot_one_curve(data, color, axis, label, quartiles=False):
     #axis.set_axisbelow(True)
     #axis.grid(color='red', linestyle='-', linewidth=1)  
     #plt.grid(color=gridcolor,linewidth=1,linestyle='-') 
-    legend()
+    #legend()
 
 def plot_one_curve_precomp(data, color, axis, label):
     
@@ -134,13 +134,14 @@ if __name__ == "__main__":
     colors = bmap.mpl_colors
     axis = subplot2grid((1, 1), (0, 0))
     names = ["Distributed", "Centralized"]
+     
     for i in range(len(sys.argv) - 1):
         dat = read_logfile(sys.argv[1 + i])
-    
+        colors = [(0.9, 0.3, 0.0, float(i)/float(len(sys.argv))), (0.3, 0.1, 1.0, float(i)/float(len(sys.argv)) )]
         #print(len(dat))
         #datRow = [list(x)  for x in zip(*dat)]
     
         #print(dat)
-        plot_one_curve(dat, colors[i%len(colors)], axis, names[i], True)
+        plot_one_curve(dat, colors[i%len(colors)], axis,sys.argv[1 + i], True)  #names[i], True)
         
     show()
