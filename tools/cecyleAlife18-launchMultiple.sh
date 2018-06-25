@@ -22,7 +22,7 @@ distance='10000 500 200 40'
 
 
 
-listProp=`parallel --header : echo R{1}.SP{2}.FR{3}.BC{4}.D{5} gInitialNumberOfRobots={f1} gSelPressure={f2} gBroadcastRate={f3} gBroadcast={f4} gBroadcastRadius={f5} ::: f1 $nbRob f2 $selpres f3 $frequence f4 $broadcast f5 $distance`
+listProp=`parallel --header : echo R{1}.SP{2}.FR{3}.BC{4}.D{5} gInitialNumberOfRobots={f1} gSelPressure={f2} gBroadcastTime={f3} gMatingOperator={f4} gCommunicationRange={f5} ::: f1 $nbRob f2 $selpres f3 $frequence f4 $broadcast f5 $distance`
 
 #listProp=`parallel --header : echo R{1}.T{2}.B{3}.S{4} gInitialNumberOfRobots={f1} gTaskSeq={f2} gBrait={f3} gSigmaRef={f4} ::: f1 $nbRob ::: f2 $taskSeq ::: f3 $ctrlSetup ::: f4 $sigma`
 
