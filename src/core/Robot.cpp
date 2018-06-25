@@ -667,6 +667,7 @@ bool Robot::isCollision()
 		( _y < 0 ) || ( _y + gRobotHeight >= gAreaHeight )
 	   )
 	{
+        //std::cout << "Out of area.     (" << _x << "," << _y << ")"  << std::endl;
 		// * collision with border 
 		return true;
 	}
@@ -681,8 +682,17 @@ bool Robot::isCollision()
                     // not useful: testing out-of-the-world status
                     // if ( ( _x + i < 0 ) || ( _x + i  >= gAreaWidth ) || ( _y + j < 0 ) || ( _y + i  >= gAreaHeight ) ) { return true;	}				
 					Uint32 pixel = getPixel32( gEnvironmentImage , _x+i , _y+j);
-					if (  pixel != SDL_MapRGBA( gEnvironmentImage->format, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE ) )
-					{
+                    //TODO ATTENTION MOFIFICATION FOR TEST!!!
+                    if (  pixel != SDL_MapRGBA( gEnvironmentImage->format, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE ) )
+                    //if (  abs(pixel - SDL_MapRGBA( gEnvironmentImage->format, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE )) > 10000 )
+                    //Uint8 r,g,b,a;
+                    //SDL_GetRGBA(pixel,gEnvironmentImage->format,&r,&g,&b,&a);
+                    //if (  (abs(r - 255) + abs((int)g-255) + abs((int)b-255)) > 10 )
+                    {
+                        //std::cout << _x+i << ", " << _y+j << " : " << pixel
+                                  //<< "(" << (int)r << "," << (int)g << "," << (int)b << ")"
+                        //    <<".... then " << SDL_MapRGBA( gEnvironmentImage->format, 0xFF, 0xFF, 0xFF, SDL_ALPHA_OPAQUE )<< std::endl;
+
 						return true;
 					}
 				}

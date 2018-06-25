@@ -12,6 +12,7 @@
 #include "Config/Collect2RobotSensorsConfigurationLoader.h"
 #include "Config/OriginalConfigurationLoader.h"
 #include "Config/OriginalEA2017ConfigurationLoader.h"
+#include "Config/TemplateMedeaGRNConfigurationLoader.h"
 //###DO-NOT-DELETE-THIS-LINE###TAG:INCLUDE###//
 
 
@@ -95,6 +96,12 @@ ConfigurationLoader* ConfigurationLoader::make_ConfigurationLoader (std::string 
 	else if (configurationLoaderObjectName == "OriginalEA2017ConfigurationLoader" )
 	{
 		return new OriginalEA2017ConfigurationLoader();
+	}
+#endif
+#if defined PRJ_TEMPLATEMEDEAGRN || !defined MODULAR
+	else if (configurationLoaderObjectName == "TemplateMedeaGRNConfigurationLoader" )
+	{
+		return new TemplateMedeaGRNConfigurationLoader();
 	}
 #endif
     //###DO-NOT-DELETE-THIS-LINE###TAG:SWITCH###//
