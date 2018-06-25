@@ -15,10 +15,10 @@ nbRob='100'
 
 selpres='1.0'
 
-broadcast='0 1 2 -1'
+broadcast='0 2 -1'
 frequence='10'
 
-distance='10000 500 200 40'
+distance='10000 200 40'
 
 
 
