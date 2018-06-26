@@ -34,11 +34,12 @@ TemplateMedeaGRNController::TemplateMedeaGRNController( RobotWorldModel *wm )
     
     //_grn = NULL;
     // evolutionary engine
-
-    resetRobot();
-
     _g.id.robot_id = _wm->_id;
     _g.id.gene_id = 0;
+    _genomesList.clear();
+    resetRobot();
+
+
     // behaviour
     _iteration = 0;
     _g.birthdate = 0;
@@ -355,7 +356,7 @@ void TemplateMedeaGRNController::stepEvolution()
     }
 
     // * lifetime ended: replace genome (if possible)
-    if( gWorld->getIterations() > 0 && gWorld->getIterations() % TemplateMedeaGRNSharedData::gEvaluationTime == 0 )
+    if( gWorld->getIterations() > 1 && gWorld->getIterations() % TemplateMedeaGRNSharedData::gEvaluationTime == 0 )
     {
         loadNewGenome();
         _nbGenomeTransmission = 0;
@@ -370,7 +371,14 @@ void TemplateMedeaGRNController::stepEvolution()
     //std::string sLog = std::string("");   //gLogManager->write(sLog);
 
 }
-
+bool TemplateMedeaGRNController::doBroadcast()
+{
+    if(((double)rand() / RAND_MAX) <= getBroadcastRate()
+            && gWorld->getIterations() % TemplateMedeaGRNSharedData::gEvaluationTime > TemplateMedeaGRNSharedData::gMaturationTime )
+        return true;
+    else
+        return false;
+}
 double TemplateMedeaGRNController::getBroadcastRate()
 {
     double result = 0.0;
@@ -417,7 +425,18 @@ bool TemplateMedeaGRNController::storeGenome(Genome g) //(GRN<RealC> gReceived, 
     //std::map<int,int>::const_iterator it = _birthdateList.find(senderBirthdate);
     //TODO filter on receive
     //TODO limited-size local pop?
-    _genomesList[g.id] = g;
+    std::map< GC , Genome >::iterator it = _genomesList.find(g.id);
+    if(_genomesList.end() == it)
+    {
+        _genomesList[g.id] = g;
+    }
+    else
+    {
+        _genomesList[g.id].fitness = g.fitness;
+        _genomesList[g.id].nbCollisions = g.nbCollisions;
+        _genomesList[g.id].collectedItems = g.collectedItems;
+        _genomesList[g.id].nbFitnessUpdates = g.nbFitnessUpdates;
+    }
     //_fitnessList[senderId] = fitness; //TODO multiObjective
     //_birthdateList[senderId] = senderBirthdate;
     return true;
@@ -473,6 +492,7 @@ void TemplateMedeaGRNController::resetRobot()
     _g.collectedItems = 0;
     _g.nbCollisions= 0;
     _g.nbFitnessUpdates = 0;
+    _g.generations = 1;
 
 
     _genomesList.clear();
@@ -493,7 +513,8 @@ void TemplateMedeaGRNController::broadcastGenome()
         for(int i = 0; i < gNumberOfRobots ; i++)
         {
 
-            if(distanceMatrix[_wm->getId()][i] < TemplateMedeaGRNSharedData::gCommunicationRange)
+            if(distanceMatrix[_wm->getId()][i] < TemplateMedeaGRNSharedData::gCommunicationRange
+                    && i != _wm->getId())
             {
                 TemplateMedeaGRNController* targetRobotController = dynamic_cast<TemplateMedeaGRNController*>(gWorld->getRobot(i)->getController());
                 GRN<RealC> copy = GRN<RealC>(_g.controller);
@@ -504,6 +525,7 @@ void TemplateMedeaGRNController::broadcastGenome()
                 copyG.collectedItems = _g.collectedItems;
                 copyG.nbFitnessUpdates = _g.nbFitnessUpdates;
                 copyG.birthdate = _g.birthdate;
+                copyG.id = _g.id;
                 copyG.generations = _g.generations;
                 bool success = targetRobotController->storeGenome(copyG);
 
@@ -523,7 +545,8 @@ void TemplateMedeaGRNController::broadcastGenome()
         {
             int targetIndex = _wm->getObjectIdFromCameraSensor(i);
 
-            if ( targetIndex >= gRobotIndexStartOffset && targetIndex < gRobotIndexStartOffset+gNumberOfRobots )   // sensor ray bumped into a robot : communication is possible
+            if ( targetIndex >= gRobotIndexStartOffset && targetIndex < gRobotIndexStartOffset+gNumberOfRobots
+                 && targetIndex != _wm->getId())   // sensor ray bumped into a robot : communication is possible
             {
                 targetIndex = targetIndex - gRobotIndexStartOffset; // convert image registering index into robot id.
 
@@ -543,6 +566,7 @@ void TemplateMedeaGRNController::broadcastGenome()
                 copyG.collectedItems = _g.collectedItems;
                 copyG.nbFitnessUpdates = _g.nbFitnessUpdates;
                 copyG.birthdate = _g.birthdate;
+                copyG.id = _g.id;
                 copyG.generations = _g.generations;
                 bool success = targetRobotController->storeGenome(copyG);
                 // other agent stores my genome. Contaminant strategy.
@@ -590,7 +614,7 @@ void TemplateMedeaGRNController::loadNewGenome()
             offspring.nbFitnessUpdates = 0;
             offspring.generations = 1;
             offspring.birthdate = gWorld->getIterations();
-            offspring.id.gene_id++;
+            //offspring.id.gene_id++;
             isNew = true;
         }
         else
@@ -606,7 +630,7 @@ void TemplateMedeaGRNController::loadNewGenome()
            offspring.nbFitnessUpdates = 0;
            offspring.generations = 1;
            offspring.birthdate = gWorld->getIterations();
-           offspring.id.gene_id++;
+           //offspring.id.gene_id++;
            isNew = true;
         }
         if(!isNew)
@@ -617,18 +641,19 @@ void TemplateMedeaGRNController::loadNewGenome()
         std::cout << offspring.serialize() << std::endl;
         cout << "************************************************************************************************************************************************************************************************************" << std::endl;
         */
+        offspring.id.gene_id++;
 
         //TODO destroy previous grn
         _g =  offspring;
-
+        _g.id.robot_id = _wm->getId();
         //_g.controller.setParam(0, 1.0);
         //_g.controller.setParam(1, 1.0);
 
         //_g.controller.updateSignatures();
         for(int i = 0; i < 25; i++) _g.controller.step();
 
-
         _genomesList.clear(); //TODO destroy GRN objects inside
+
         //_fitnessList.clear();
         //_birthdateList.clear();
         _Xinit = _wm->getXReal();

@@ -105,9 +105,12 @@ void TemplateMedeaGRNWorldObserver::step()
                 double y2 = c2->getWorldModel()->getYReal();
                 _robotDistances[i][j] = sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)); //.push_back(sqrt((x-x2)*(x-x2) + (y-y2)*(y-y2)));
                 _robotDistances[j][i] = _robotDistances[i][j];
+                //std::cout << _robotDistances[i][j] << "      ";
             }
+            //std::cout << std::endl;
 
         }
+        //std::cout << TemplateMedeaGRNSharedData::gCommunicationRange << std::endl << std::endl << std::endl;
     }
     updateMonitoring();
     
@@ -179,7 +182,7 @@ void TemplateMedeaGRNWorldObserver::monitorPopulation( bool localVerbose )
     double sumFitness = 0.0;
     double sumItems = 0.0;
     double sumCollisions = 0.0;
-    int gatheredGenomes = 0;
+    double gatheredGenomes = 0.0;
     for ( int i = 0 ; i != gNumberOfRobots ; i++ )
     {
 
@@ -188,6 +191,10 @@ void TemplateMedeaGRNWorldObserver::monitorPopulation( bool localVerbose )
          sumItems += c->getCollectedItems();
          sumCollisions += c->getNbCollisions();
          gatheredGenomes += c->getGenomesList().size();
+         /*for(std::map<GC,Genome>::iterator it = c->getGenomesList().begin(); it != c->getGenomesList().end(); it++ )
+         {
+             std::cout << (*it).first.robot_id << ", " << (*it).first.gene_id << std::endl;
+         }*/
     }
     switch (TemplateMedeaGRNSharedData::gFitness)
     {

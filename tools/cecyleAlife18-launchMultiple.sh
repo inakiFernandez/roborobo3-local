@@ -18,7 +18,7 @@ selpres='1.0'
 broadcast='0 2 -1'
 frequence='10'
 
-distance='10000 200 40'
+distance='1000 200 80 40'
 
 
 
@@ -48,7 +48,7 @@ mkdir $outlogbasename/$suffix
 echo $line | perl -p -e  's/^.*? //' | sed -e 's/ /\n/g' >> $outbasename-$suffix.properties
 
 #FOR SEQUENCE ONLY
-echo "gTimeChange=$taskTimeChange" >> $outbasename-$suffix.properties
+#echo "gTimeChange=$taskTimeChange" >> $outbasename-$suffix.properties
 
 
     for (( j=1; j<=$nbRuns; j++))

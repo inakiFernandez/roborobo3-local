@@ -56,3 +56,4 @@ bool TemplateMedeaGRNSharedData::gCommunicationOnRadius = false;
 
 int TemplateMedeaGRNSharedData::gMatingOperator = 0;
 int TemplateMedeaGRNSharedData::gBroadcastTime = 1;
+int TemplateMedeaGRNSharedData::gMaturationTime = 5;

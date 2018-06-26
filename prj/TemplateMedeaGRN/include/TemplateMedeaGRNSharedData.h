@@ -64,7 +64,7 @@ public:
 
     static int gMatingOperator;
     static int gBroadcastTime;
-
+    static int gMaturationTime;
     // -----
     
     

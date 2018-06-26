@@ -142,13 +142,7 @@ private:
 
     double getBroadcastRate();
 
-    bool doBroadcast()
-    {
-        if(((double)rand() / RAND_MAX) <= getBroadcastRate())
-            return true;
-        else
-            return false;
-    }
+    bool doBroadcast();
 
     void logCurrentState();
     
