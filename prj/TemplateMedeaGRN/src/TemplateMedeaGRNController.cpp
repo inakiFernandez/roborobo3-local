@@ -46,7 +46,7 @@ TemplateMedeaGRNController::TemplateMedeaGRNController( RobotWorldModel *wm )
     _g.collectedItems = 0;
     _g.nbCollisions = 0;
     _g.generations = 0;
-    _g.nbFitnessUpdates = 0;
+    _g.nbFitnessUpdates = 1;
     _lifetime = -1;
     _nbGenomeTransmission = 0;
 
@@ -374,7 +374,7 @@ void TemplateMedeaGRNController::stepEvolution()
 bool TemplateMedeaGRNController::doBroadcast()
 {
     if(((double)rand() / RAND_MAX) <= getBroadcastRate()
-            && gWorld->getIterations() % TemplateMedeaGRNSharedData::gEvaluationTime > TemplateMedeaGRNSharedData::gMaturationTime )
+            && (gWorld->getIterations() % TemplateMedeaGRNSharedData::gEvaluationTime) > TemplateMedeaGRNSharedData::gMaturationTime )
         return true;
     else
         return false;
@@ -385,20 +385,24 @@ double TemplateMedeaGRNController::getBroadcastRate()
     bool doRank = (TemplateMedeaGRNSharedData::gMatingOperator == 2);
     if(TemplateMedeaGRNSharedData::gMatingOperator > 0) //Rate proportional to fitness or rank
     {
-        int rank = 0;
+        int rank = 1;
         double totalFitness = _g.getFitness();
         for(auto i: _genomesList)
         {
-            if(_g.getFitness() > i.second.getFitness())
+            if(_g.getFitness() >= i.second.getFitness())
                 rank++;
             totalFitness += i.second.getFitness();
         }
         if(doRank)
-            result = (double)rank/(_genomesList.size() + 1);
+        {
+            result = (double)rank/((double)_genomesList.size() + 1.0);
+        }
         else
-            result = _g.getFitness() / totalFitness;
+        {
+            result = (_g.getFitness() + 1) / (totalFitness + 1);
+        }
     }
-    else //Always broadcast
+    else
     {
         if(TemplateMedeaGRNSharedData::gMatingOperator == -2)
         {
@@ -411,7 +415,7 @@ double TemplateMedeaGRNController::getBroadcastRate()
               result = 0.0;
           }
         }
-        else
+        else  //Always broadcast
         {
             result = 1.0;
         }
@@ -491,7 +495,7 @@ void TemplateMedeaGRNController::resetRobot()
     _g.fitness = 0.0;
     _g.collectedItems = 0;
     _g.nbCollisions= 0;
-    _g.nbFitnessUpdates = 0;
+    _g.nbFitnessUpdates = 1;
     _g.generations = 1;
 
 
@@ -611,7 +615,7 @@ void TemplateMedeaGRNController::loadNewGenome()
             offspring.fitness = 0.0;
             offspring.collectedItems = 0;
             offspring.nbCollisions= 0;
-            offspring.nbFitnessUpdates = 0;
+            offspring.nbFitnessUpdates = 1;
             offspring.generations = 1;
             offspring.birthdate = gWorld->getIterations();
             //offspring.id.gene_id++;
@@ -627,7 +631,7 @@ void TemplateMedeaGRNController::loadNewGenome()
            offspring.fitness = 0.0;
            offspring.collectedItems = 0;
            offspring.nbCollisions= 0;
-           offspring.nbFitnessUpdates = 0;
+           offspring.nbFitnessUpdates = 1;
            offspring.generations = 1;
            offspring.birthdate = gWorld->getIterations();
            //offspring.id.gene_id++;
