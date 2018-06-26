@@ -47,13 +47,11 @@ mkdir $outlogbasename/$suffix
 #echo $line
 echo $line | perl -p -e  's/^.*? //' | sed -e 's/ /\n/g' >> $outbasename-$suffix.properties
 
-#FOR SEQUENCE ONLY
-#echo "gTimeChange=$taskTimeChange" >> $outbasename-$suffix.properties
 
 
     for (( j=1; j<=$nbRuns; j++))
     do
-	echo "$program $outbasename-$suffix.properties > $outlogbasename/$suffix/run-$j.log" 1> $commandFile    
+	echo "$program $outbasename-$suffix.properties 1> $outlogbasename/$suffix/run-$j.log" >> $commandFile    
     done
 
 done <<< "$listProp"
