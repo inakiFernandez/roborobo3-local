@@ -53,7 +53,7 @@ echo $line | perl -p -e  's/^.*? //' | sed -e 's/ /\n/g' >> $outbasename-$suffix
 
     for (( j=1; j<=$nbRuns; j++))
     do
-	echo "$program $outbasename-$suffix.properties > $outlogbasename/$suffix/run-$j.log" >> $commandFile    
+	echo "$program $outbasename-$suffix.properties > $outlogbasename/$suffix/run-$j.log" 1> $commandFile    
     done
 
 done <<< "$listProp"
