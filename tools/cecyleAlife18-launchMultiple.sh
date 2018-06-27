@@ -16,6 +16,7 @@ nbRob='100'
 selpres='1.0'
 
 broadcast='0 2 -1'
+broadcast='2'
 frequence='10'
 
 distance='1000 200 80 40'
