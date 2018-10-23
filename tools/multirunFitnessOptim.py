@@ -53,7 +53,7 @@ def plot_one_curve(x,data, color, axis, label, quartiles=False):
     if quartiles:
         axis.fill_between(np.arange(0, len(med)), perc_25, perc_75,
                           alpha=0.25, linewidth=0, color=color)
-    lineWidth = 5
+    lineWidth = 3
     handle = axis.plot_date(x,med, lw=lineWidth, label=label,               
               color=color,linestyle="-")
     gridcolor="#DDDDDD"    
@@ -86,8 +86,8 @@ if __name__ == "__main__":
     colors = bmap.mpl_colors
     
     #axis = subplot2grid((1, 1), (0, 0))
-    fig = plt.figure("OptimCells",figsize=(10, 11),dpi=100,facecolor=bgcolor)
-    axes = [plt.subplot2grid((3, 1), (0, 0)) , plt.subplot2grid((3, 1), (1, 0)),plt.subplot2grid((3, 1), (2, 0))]
+    fig = plt.figure("OptimCells",figsize=(27, 5),dpi=70,facecolor=bgcolor)
+    axes = [plt.subplot2grid((1, 3), (0, 0)) , plt.subplot2grid((1, 3), (0, 1)),plt.subplot2grid((1, 3), (0,2))]
     fnames = ["staff.log","incidents.log","clients.log"]
     fnamesS = ["staffS.log","incidentsS.log","clientsS.log"]
     expnames = ["#Deployed Agents", "#Failures", "#Clients without Power"]
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     #months = matplotlib.dates.MonthLocator()  # every month
     #yearsFmt = matplotlib.dates.DateFormatter('%Y')
     dateFormat = '%H:%M %m/%d'
-    
+
     datemin = np.datetime64(dt.datetime(2009, 1, 24, 7, 30))
     datemax = np.datetime64(dt.datetime(2009, 1, 27, 7, 0))
     print(datemin, datemax)        

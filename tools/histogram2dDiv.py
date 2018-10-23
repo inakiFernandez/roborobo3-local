@@ -297,7 +297,7 @@ if __name__ == "__main__":
     colors = bmap.mpl_colors
     
     #axis = subplot2grid((1, 1), (0, 0))
-    fig = plt.figure("Foraging",figsize=(11, 10),dpi=100,facecolor=bgcolor)
+    fig = plt.figure("Foraging",figsize=(11, 10),dpi=60,facecolor=bgcolor)
     axis = plt.subplot2grid((1, 1), (0, 0)) #,facecolor=bgcolor) 
     yAxisName =  "Centralized" 
     typeComm= ["D","C"]
@@ -310,11 +310,15 @@ if __name__ == "__main__":
     datC = []
     for i in range(len(sys.argv) - excessParam):
         if sys.argv[1]=="-d":
-            for j in range(30):
-                if "Centfalse" in sys.argv[excessParam + i]:
-                    datD.extend([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
-                else:
-                    datC.extend([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
+            if "Centfalse" in sys.argv[excessParam + i]:
+                datD.extend(read_logfile(sys.argv[excessParam + i]))
+            else:       
+                datC.extend(read_logfile(sys.argv[excessParam + i]))
+            #for j in range(30):
+                #if "Centfalse" in sys.argv[excessParam + i]:
+                #    datD.extend([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
+                #else:
+                #    datC.extend([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
             #datRow = [list(x)  for x in zip(*dat)]
         else:
             if "Centfalse" in sys.argv[excessParam + i]:
@@ -328,8 +332,8 @@ if __name__ == "__main__":
     
     x = np.array(datD).flatten('F')
     y = np.array(datC).flatten('F')
-    maxX = np.max(x)
-    maxY = np.max(y)
+    maxX = 1.4 #np.max(x)
+    maxY = 1.4 #np.max(y)
     print()
     print(x.size)
 
@@ -350,28 +354,35 @@ if __name__ == "__main__":
     coordFigure = np.array([(0.0,maxBoth),(0.0,maxBoth)])
     print(coordFigure)
     plt.hist2d(x,y, bins=15,cmap=colormap,range=coordFigure)
-    cbar = plt.colorbar()
+    #cbar = plt.colorbar()
     
     plt.plot([0.0,1.5],[0.0,1.5],c=(0.65,0.65,0.65,0.9),ls='--',lw=6)
-    cbar.ax.tick_params(labelsize=40)
+    #cbar.ax.tick_params(labelsize=40)
     axis.set_ylim(ymax=maxBoth)
     axis.set_xlim(xmax=maxBoth)    
 
     
     plt.ylabel(yAxisName,fontsize = 60,x=-0.06)
     plt.xlabel("Distributed",fontsize = 60,y=-0.06)
-    plt.xticks(fontsize = 35)
-    plt.yticks(fontsize = 35)
-    
+    #plt.xticks(fontsize = 35)
+    plt.tick_params(
+    axis='both',          # changes apply to the x-axis
+    which='both',      # both major and minor ticks are affected
+    bottom=False,      # ticks along the bottom edge are off
+    top=False,         # ticks along the top edge are off
+    left=False,      # ticks along the bottom edge are off
+    right=False,         # ticks along the top edge are off        
+    labelbottom=False,
+    labelleft=False)
     fig.set_facecolor("white")
-    plt.title("Histogram Global Diversity",fontsize=50, y=1.06) 
-    if sys.argv[1]=="-d":
-        plt.title("Histogram Local Diversity",fontsize=50, y=1.06) 
-    
-    plt.title(r"$\theta_{\mathrm{sp}=}$" + sys.argv[excessParam-1][1:],fontsize=110, y=1.07) 
+    #plt.title("Histogram Global Diversity",fontsize=50, y=1.06) 
+    #if sys.argv[1]=="-d":
+        #plt.title("Histogram Local Diversity",fontsize=50, y=1.06) 
+    if sys.argv[1]!="-d":
+        plt.title(r"$\theta_{\mathrm{sp}=}$" + sys.argv[excessParam-1][1:],fontsize=110, y=1.07) 
     filename = sys.argv[excessParam - 1] + "Global.png"
     if sys.argv[1]=="-d":    
         filename = sys.argv[excessParam - 1] + "Local.png"
     plt.tight_layout()
-    #savefig(filename, dpi=100 )
+    savefig(filename, dpi=100 )
     show()

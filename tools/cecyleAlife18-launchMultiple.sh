@@ -70,12 +70,13 @@ done <<< "$listProp"
 #for i in */ ; do paste $i/*.log.1 > $i/all.log.1; done
 
 #for i in *.log ; do tail -n +21 $i > tmp ; rm $i ; mv tmp $i ; done ;
-#for i in * ; do for j in $i/*.log ; do tail -n +22 $j > tmp ; rm $j ; mv tmp $j ; done ; done ;
+#for i in * ; do for j in $i/*.log ; do tail -n +13 $j > tmp ; rm $j ; mv tmp $j ; done ; done ;
 
 #for i in *.log ; do head -n -6 $i > tmp ; rm $i ; mv tmp $i ; done ;
-#for i in * ; do for j in $i/*.log ; do head -n -6 $j > tmp ; rm $j ; mv tmp $j ; done ; done ; 
+#for i in * ; do for j in $i/*.log ; do head -n -5 $j > tmp ; rm $j ; mv tmp $j ; done ; done ; 
 
 #scp -rf -P 3003 cecyle.irit.fr:~/roborobo3/logs/collect2_with_positions_*/ .
 
 
-# for i in */ ; do for j in $i/*.log ; do ../cutIntoColumnFiles.sh $j ;  done ; done ; 
+# for i in */ ; do for j in $i/*.log ; do ./cutIntoColumnFiles.sh $j ;  done ; done ; 
+#for i in * ; do for j in $i/*.log ; do sed -i '/^\[INFO\]*/d' $j ; done ; done ; 

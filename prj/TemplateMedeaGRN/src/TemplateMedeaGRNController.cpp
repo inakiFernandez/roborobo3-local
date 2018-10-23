@@ -39,7 +39,6 @@ TemplateMedeaGRNController::TemplateMedeaGRNController( RobotWorldModel *wm )
     _genomesList.clear();
     resetRobot();
 
-
     // behaviour
     _iteration = 0;
     _g.birthdate = 0;
@@ -72,7 +71,6 @@ void TemplateMedeaGRNController::step()
     _iteration++;
     // * step evolution
     stepEvolution();
-
     // * step controller
     stepBehaviour();
 
@@ -141,7 +139,8 @@ void TemplateMedeaGRNController::stepBehaviour()
 
     // ---- Build inputs ----
     
-    std::vector<double>* inputs = new std::vector<double>(_nbInputs);
+    //std::vector<double>* inputs = new std::vector<double>(_nbInputs);
+    std::vector<double> inputs;
     int inputToUse = 0;
     int objectId = -1;
     // distance sensors
@@ -150,12 +149,12 @@ void TemplateMedeaGRNController::stepBehaviour()
         objectId = _wm->getObjectIdFromCameraSensor(i);
         if ( ! PhysicalObject::isInstanceOf(objectId) )
         {
-            (*inputs)[inputToUse] = 1.0 - _wm->getDistanceValueFromCameraSensor(i) / _wm->getCameraSensorMaximumDistanceValue(i);
+            inputs.push_back(1.0 - _wm->getDistanceValueFromCameraSensor(i) / _wm->getCameraSensorMaximumDistanceValue(i));
             inputToUse++;
         }
         else
         {
-            (*inputs)[inputToUse] = 0.0;
+            inputs.push_back(0.0);
             inputToUse++;
         }
 
@@ -171,16 +170,16 @@ void TemplateMedeaGRNController::stepBehaviour()
             if ( PhysicalObject::isInstanceOf(objectId) )
             {
                 if ( type == gPhysicalObjects[objectId - gPhysicalObjectIndexStartOffset]->getType() )
-                  (*inputs)[inputToUse] = 1.0 - _wm->getDistanceValueFromCameraSensor(i) /
-                      _wm->getCameraSensorMaximumDistanceValue(i);
+                  inputs.push_back(1.0 - _wm->getDistanceValueFromCameraSensor(i) /
+                      _wm->getCameraSensorMaximumDistanceValue(i));
                 else
-                    (*inputs)[inputToUse] = 0.0;
+                    inputs.push_back(0.0);
                 inputToUse++;
             }
             else
             {
                 //Not a physical object. But: should still fill in the inputs 0.0
-                (*inputs)[inputToUse] = 0.0;
+                inputs.push_back(0.0);
                 inputToUse++;
             }
 
@@ -194,23 +193,24 @@ void TemplateMedeaGRNController::stepBehaviour()
     //(*inputs)[inputToUse++] = (double)_wm->getGroundSensor_blueValue()/255.0;
     
     // landmark (targeted landmark depends on g_skill)
-    if ( gLandmarks.size() > 0 )
+    /*if ( gLandmarks.size() > 0 )
     {
-         (*inputs)[inputToUse++] = _wm->getLandmarkDirectionAngleValue();
-         (*inputs)[inputToUse++] = _wm->getLandmarkDistanceValue();
-    }
-    
+         inputs.push_back(_wm->getLandmarkDirectionAngleValue());
+         inputs.push_back(_wm->getLandmarkDistanceValue());
+         inputToUse++;
+         inputToUse++;
+    }*/
+    inputs.push_back(1.0);
     // energy level
    /* if ( gEnergyLevel )
     {
         (*inputs)[inputToUse++] = _wm->getEnergyLevel() / gEnergyMax;
     }*/
-
     // ---- set inputs, step, and read out ----
-    setInputs(_g.controller,*inputs);
+    setInputs(_g.controller,inputs); //*inputs
 
 
-    /*for(unsigned int i=0; i< (*inputs).size();i++)
+    /*for(unsigned int i=0; i< inputs.size();i++)
     {
         std::cout << _inputNames[i] << " : " << _g.controller.getProteinConcentration(_inputNames[i],GRN<RealC>::ProteinType_t::input) << std::endl;
     }*/
@@ -236,7 +236,7 @@ void TemplateMedeaGRNController::stepBehaviour()
     _wm->_desiredTranslationalValue = _wm->_desiredTranslationalValue * gMaxTranslationalSpeed;
     _wm->_desiredRotationalVelocity = _wm->_desiredRotationalVelocity * gMaxRotationalSpeed;
     
-    delete (inputs);
+    //delete (inputs);
 }
 
 void TemplateMedeaGRNController::setInputs(GRN<RealC> &g, std::vector<double> in)
@@ -246,8 +246,8 @@ void TemplateMedeaGRNController::setInputs(GRN<RealC> &g, std::vector<double> in
 
     for(unsigned int i=0; i< in.size();i++)
     {
+        //std::cout << i << "," << in[i] << "," << _inputNames[i] << std::endl;
         g.setInputConcentration(_inputNames[i], in[i]);
-        //std::cout << _inputNames[i] << " : " << g.getProteinConcentration(_inputNames[i],GRN<RealC>::ProteinType_t::input) << std::endl;
     }
 
 }
@@ -310,6 +310,8 @@ void TemplateMedeaGRNController::createGRN()
                         || (TemplateMedeaGRNSharedData::gFitness == 2))
                     _g.controller.addRandomProtein(GRN<RealC>::ProteinType_t::input, "I" + std::to_string(i));
             }
+            _g.controller.addRandomProtein(GRN<RealC>::ProteinType_t::input, "Bias");
+
             // left wheel differential coding
             _g.controller.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW+");
             _g.controller.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW-");
@@ -481,15 +483,16 @@ void TemplateMedeaGRNController::resetRobot()
         _inputNames.push_back("DistL");
     }
 
+    _inputNames.push_back("Bias");
+    _nbInputs +=1;
+
     _nbOutputs = 2;
     _outputNames.push_back("LW");
     _outputNames.push_back("RW");
 
     _nbRegulatory = TemplateMedeaGRNSharedData::gNbRegulatory;
 
-
     createGRN(); //updateSignature and warmup called inside
-
 
     // initialize robot
     _g.fitness = 0.0;
@@ -497,7 +500,6 @@ void TemplateMedeaGRNController::resetRobot()
     _g.nbCollisions= 0;
     _g.nbFitnessUpdates = 1;
     _g.generations = 1;
-
 
     _genomesList.clear();
     //_fitnessList.clear();

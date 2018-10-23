@@ -338,7 +338,7 @@ Genome *Genome::mutate(float sigma, int idR,GC idNewGenome,int &nodeId,int &gc)
 
 void Genome::mutate_link_weights(double power)
 {    
-    bool multisynapseAdaptedSigma = true;//false; //
+    bool multisynapseAdaptedSigma = false;//false; //
 
     if(!Helper::allowMultisynapses || !multisynapseAdaptedSigma)
     {

@@ -13,6 +13,8 @@
 #include "Config/OriginalConfigurationLoader.h"
 #include "Config/OriginalEA2017ConfigurationLoader.h"
 #include "Config/TemplateMedeaGRNConfigurationLoader.h"
+#include "Config/EvolvabilityGRNandOdNEATConfigurationLoader.h"
+#include "Config/SocialBehaviorConfigurationLoader.h"
 //###DO-NOT-DELETE-THIS-LINE###TAG:INCLUDE###//
 
 
@@ -102,6 +104,18 @@ ConfigurationLoader* ConfigurationLoader::make_ConfigurationLoader (std::string 
 	else if (configurationLoaderObjectName == "TemplateMedeaGRNConfigurationLoader" )
 	{
 		return new TemplateMedeaGRNConfigurationLoader();
+	}
+#endif
+#if defined PRJ_EVOLVABILITYGRNANDODNEAT || !defined MODULAR
+	else if (configurationLoaderObjectName == "EvolvabilityGRNandOdNEATConfigurationLoader" )
+	{
+		return new EvolvabilityGRNandOdNEATConfigurationLoader();
+	}
+#endif
+#if defined PRJ_SOCIALBEHAVIOR || !defined MODULAR
+	else if (configurationLoaderObjectName == "SocialBehaviorConfigurationLoader" )
+	{
+		return new SocialBehaviorConfigurationLoader();
 	}
 #endif
     //###DO-NOT-DELETE-THIS-LINE###TAG:SWITCH###//

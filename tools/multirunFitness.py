@@ -137,7 +137,7 @@ def sortLegend(objs,labels):
     result = ([x for _,_,x in sorted(zip(typeComm,sp,objs), key=itemgetter(0,1),reverse=True)],
                [x for _,_,x in sorted(zip(typeComm,sp,labels), key=itemgetter(0,1),reverse=True)])
     return result
-
+ 
 if __name__ == "__main__":
     # args: file name
     if len(sys.argv) < 3:
@@ -150,47 +150,51 @@ if __name__ == "__main__":
     colors = bmap.mpl_colors
     
     #axis = subplot2grid((1, 1), (0, 0))
-    fig = plt.figure("Cooperative Foraging",figsize=(21, 12.05),dpi=100,facecolor=bgcolor)
+    fig = plt.figure("Cooperative Foraging",figsize=(18, 12),dpi=70,facecolor=bgcolor)
     axis = plt.subplot2grid((1, 1), (0, 0)) #,facecolor=bgcolor) 
     yAxisName =  "Swarm Fitness" #"Global Diversity" #
-    names = ["Distributed", "Centralized"]
-    typeComm= ["D","C"]
-    selP = ["0.0","0.25","0.5","0.75","1.0"]
+    #names = ["Distributed", "Centralized"]
+    names = ["F", "L","M","S"]
+    names = ["Full", "Large","Medium","Small"] # #,"Full,", "Rate=0.1,Large","Rate=0.1,Medium","Rate=0.1,Small"]
+
+    #typeComm= ["D","C"]
+    #selP = ["0.0","0.25","0.5","0.75","1.0"]
     excessParam = 2
-    if sys.argv[1]=="-d":
-        excessParam+=1
-        yAxisName = "Local Diversity"
-    nbRuns = 30
+    #if sys.argv[1]=="-d":
+    #    excessParam+=1
+    #    yAxisName = "Local Diversity"
+    nbRuns = 20
     labelsPlots = []
     handlesPlots = []
     colorsPlots = []
     legendObjects = []
-    for i in range(len(sys.argv) - excessParam):
+    for i in range(len(sys.argv) - excessParam +1):
         dat = []
-        colors = [(1.0, 0.50, 0.0, float(selP[(i) //2])), (0.25, 0.0, 1.0, float(selP[(i) //2]))]
-        if i <= 1:
-            colors =[(1.0, 0.50, 0.0, 0.1), (0.25, 0.0, 1.0, 0.1)]
-        if sys.argv[1]=="-d":
-            for j in range(30):    
-                dat.append([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
-            datRow = [list(x)  for x in zip(*dat)]
-            dat = datRow
-            colorsPlots.append(colors[(i)%len(colors)])
-            p = Rectangle((0, 0), 1, 1, fc=colors[(i)%len(colors)])        
-        else:
-            dat = read_logfile(sys.argv[2 + i])
-            colorsPlots.append(colors[(i)%len(colors)])
-            p = Rectangle((0, 0), 1, 1, fc=colors[(i)%len(colors)])
-        print(i+2, ": ",sys.argv[i+2])
+        #colors = [(1.0, 0.50, 0.0, float(i % 4 )/4.0 - 0.10),(0.25, 0.0, 1.0, float(i % 4 )/4.0 - 0.10)]
+        print(colors)
+        #if i % 4 < 1:
+        #    colors =[(1.0, 0.50, 0.0, 0.05), (0.25, 0.0, 1.0, 0.05)]
+        #if sys.argv[1]=="-d":
+        #    for j in range(30):    
+        #        dat.append([np.average(x) for x in read_logfile(sys.argv[excessParam + i] + "run-"+str(j+1) + ".log.localDiv.log")])
+        #    datRow = [list(x)  for x in zip(*dat)]
+        #    dat = datRow
+        #    colorsPlots.append(colors[(i)%len(colors)])
+        #    p = Rectangle((0, 0), 1, 1, fc=colors[(i)%len(colors)])        
+        #else:
+        dat = read_logfile(sys.argv[1 + i])
+        color = colors[i]
+        print(color)
+        colorsPlots.append(color)
+        p = Rectangle((0, 0), 1, 1, fc=color)
+        #print(i+2, ": ",sys.argv[i+2])
         #print(len(dat))
         #datRow = [list(x)  for x in zip(*dat)]
-        name =  "$"+typeComm[(i) % len(typeComm)] + ", θ_{\mathrm{sp}}="+ selP[(i) //2]+"$"
+        name = names[i] #"$"+typeComm[(i) % len(typeComm)] + ", θ_{\mathrm{sp}}="+ selP[(i) //2]+"$"
         #print(dat)
         labelsPlots.append(name)
-
-
         legendObjects.append(p)
-        handlesPlots.append(plot_one_curve(dat, colors[(i)%len(colors)], axis, r''+name ,False))#sys.argv[excessParam + i], True)  #names[i], True)
+        handlesPlots.append(plot_one_curve(dat, colors[(i)%len(colors)], axis, r''+name ,True))#sys.argv[excessParam + i], True)  #names[i], True)
     
     plt.ylabel(yAxisName,fontsize = 40)
     #plt.ylabel("Global Diversity",fontsize = 40)
@@ -201,11 +205,15 @@ if __name__ == "__main__":
     print(colorsPlots)
     print(len(colorsPlots))
     
-    legSorted,lblSorted =sortLegend(legendObjects,labelsPlots)
-    legend = axis.legend(legSorted,lblSorted,loc='best', fontsize = 33,ncol=2)
+    #legSorted,lblSorted =sortLegend(legendObjects,labelsPlots)
+    legSorted,lblSorted = legendObjects,labelsPlots
+    legend = axis.legend(legSorted,lblSorted,loc='best', fontsize = 23,ncol=2)
     legend.get_frame().set_alpha(0.75)
-    #axis.set_ylim(ymin=-0.01,ymax=np.max(fitness))
+    axis.set_ylim(ymin=-0.01,ymax=6)
     #axis.set_xlim(xmin=-0.01,xmax=200)
-    #plt.title("Swarm Fitness over Generations",fontsize=50) 
-    savefig(sys.argv[excessParam - 1] + ".test.png", dpi=100 )
+    title = "$Broadcast\ rate \propto rank$" #"$Broadcast\ every\ 10\ it.$" # "$Always\ Broadcast$" #
+    plt.title(r''+title,fontsize=50) 
+    print(sys.argv[excessParam - 1] + ".test.all.png")
+    plt.tight_layout()
+    savefig(sys.argv[excessParam - 1] + ".test.all.png", dpi=100 )
     #plt.show()
