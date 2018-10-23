@@ -380,7 +380,11 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     }
     else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
+        //std::cout << "step" << std::endl;
+
         _g.nn->load_sensors (&((inputs)[0]));
+        //std::cout << "step2" << std::endl;
+
         if (!(_g.nn->activate ()))
         {
             std::cerr << "[ERROR] Activation of ANN not correct: genome R"
@@ -388,6 +392,7 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
             //save_genome();
             exit (-1);
         }
+        //std::cout << "step3" << std::endl;
 
         for (auto out_iter  = _g.nn->outputs.begin();
              out_iter != _g.nn->outputs.end();
@@ -523,9 +528,9 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
         // Inputs, outputs, 0 hidden neurons, fully connected.
         //Initial Genes=>common to all agents, thus identified by a common historical marker
             //TODO for the struct Genome
-            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs);
+            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs,EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
             //Weights at 0.0, so mutate
-            _g.nnGenome->mutate_link_weights(EvolvabilityGRNandOdNEATSharedData::gSigmaRef);
+            _g.nnGenome->mutate_link_weights(1.0);
 
             //Fully connected
             _g_count = _nbInputs * _nbOutputs + 1;
@@ -647,7 +652,16 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
         _genomesList[g.id].nbCollisions = g.nbCollisions;
         _genomesList[g.id].collectedItems= g.collectedItems;
         _genomesList[g.id].nbFitnessUpdates = g.nbFitnessUpdates;
-        //TODO delete g?
+        //TODO delete g
+        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        {
+            //delete g.grn;
+        }
+        else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        {
+            delete g.nnGenome;
+            delete g.nn;
+        }
         stored = true;
     }
     else
@@ -673,6 +687,15 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
             }
             if (minFitness <= g.fitness)
             {
+                if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+                {
+                    //delete _genomesList[indexWorse].grn;
+                }
+                else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+                {
+                    delete _genomesList[indexWorse].nnGenome;
+                    delete _genomesList[indexWorse].nn;
+                }
                 _genomesList.erase(indexWorse);
                 _genomesList[g.id] = g;
 
@@ -948,12 +971,15 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             {
                 //_g.controller.setParam(0, 1.0);
                 //_g.controller.setParam(1, 1.0);
-                _g.grn.updateSignatures();
+                offspring.grn.updateSignatures();
                 for(int i = 0; i < 25; i++) offspring.grn.step();
+                //delete _g.grn;
             }
             else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
             {
                 offspring.nn = offspring.nnGenome->genesis();
+                //delete _g.nnGenome;
+                //delete _g.nn;
             }
             offspring.id = {_wm->getId(),_genomeId};
             if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
@@ -964,6 +990,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         else
         {
             offspring = _g;
+            _genomesList.erase(_genomesList.find(_g.id));
             offspring.fitness = 0.0;
             offspring.collectedItems = 0;
             offspring.nbCollisions= 0;
@@ -977,6 +1004,22 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         _g =  offspring;
         _g.id.robot_id = _wm->getId();
 
+        std::vector<GCIndividual> v;
+        for(auto i: _genomesList)
+            v.push_back(i.first);
+        for(int i=0; i< _genomesList.size();i++)
+        {
+            if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+            {
+                //delete _genomesList[v[i]].grn;
+            }
+            else if (EvolvabilityGRNandOdNEATSharedData::gControllerType ==1)
+            {
+                //delete _genomesList[v[i]].nnGenome;
+                //delete _genomesList[v[i]].nn;
+            }
+        }
+        //std::cout << "afterdelete" << std::endl;
         _genomesList.clear(); //TODO leak? destroy GRN and NN objects inside
 
         //_fitnessList.clear();

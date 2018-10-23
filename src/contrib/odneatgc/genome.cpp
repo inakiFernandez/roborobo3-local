@@ -159,6 +159,81 @@ Genome::Genome(GC id,int num_in,int num_out) {
     nbFitnessUpdates = 0;
 }
 
+Genome::Genome(GC id,int num_in,int num_out, int num_hid) {
+
+    //Temporary lists of nodes
+    std::vector<NNode*> inputs; std::vector<NNode*> outputs;
+    std::vector<NNode*> hidden;
+    std::vector<NNode*>::iterator curnode1; //Node iterator1
+    std::vector<NNode*>::iterator curnode2; //Node iterator2
+
+    //For creating the new genes
+    NNode *newnode; Gene *newgene; int ncount, count;
+
+    genome_id=id; phenotype = NULL;
+
+    //Create the inputs and outputs
+    //Build the input nodes. Last one is bias
+    for(ncount=1;ncount<=num_in;ncount++)
+    {
+        //Set common initial Gene Clock
+        innov innovClock; innovClock.idR = -1; innovClock.gc = ncount;
+
+        if (ncount<num_in)
+            newnode=new NNode(SENSOR,innovClock,INPUT);
+        else
+            newnode=new NNode(SENSOR,innovClock,BIAS);
+
+        //Add the node to the lists of nodes
+        nodes.push_back(newnode); inputs.push_back(newnode);
+    }
+    //Build the output nodes
+    for(ncount=num_in+1;ncount<=num_in+num_out;ncount++)
+    {
+        innov innovClock; innovClock.idR = -1; innovClock.gc = ncount;
+        newnode=new NNode(NEURON,innovClock,OUTPUT);
+        //Add the node to the lists of nodes
+        nodes.push_back(newnode); outputs.push_back(newnode);
+    }
+    for(ncount=num_in+num_out+1;ncount<=num_in+num_out+num_hid;ncount++)
+    {
+        innov innovClock; innovClock.idR = -1; innovClock.gc = ncount;
+        newnode=new NNode(NEURON,innovClock,HIDDEN);
+        //Add the node to the lists of nodes
+        nodes.push_back(newnode); hidden.push_back(newnode);
+    }
+
+    //Create the links: connect inputs to hidden to outputs
+    //Initially fully-connected 1 hidden-layer perceptron
+    count = 0;
+    for(curnode1=inputs.begin();curnode1!=inputs.end();++curnode1)
+    {
+        for(curnode2=hidden.begin();curnode2!=hidden.end();++curnode2)
+        {
+            count++; innov innovClock; innovClock.idR = -1; innovClock.gc = count;
+            //Connect each input to each hidden with 0 weight, to be mutated later
+            newgene=new Gene(0, (*curnode1), (*curnode2),false,innovClock);
+            //Add the gene to the genome
+            genes.push_back(newgene);
+
+        }
+    }
+    for(curnode1=hidden.begin();curnode1!=hidden.end();++curnode1)
+    {
+        for(curnode2=outputs.begin();curnode2!=outputs.end();++curnode2)
+        {
+            count++; innov innovClock; innovClock.idR = -1; innovClock.gc = count;
+            //Connect each input to each output with 0 weight, to be mutated later
+            newgene=new Gene(0, (*curnode1), (*curnode2),false,innovClock);
+            //Add the gene to the genome
+            genes.push_back(newgene);
+        }
+    }
+    GC m = {id.robot_id, -1}; GC d = {id.robot_id, -1};
+    mom_id = m; dad_id = d; species = -1;
+    nbFitnessUpdates = 0;
+}
+
 Genome *Genome::duplicate()
 {
     //Collections for the new Genome

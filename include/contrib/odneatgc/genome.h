@@ -42,7 +42,8 @@ namespace ODNEATGC
     //Special constructor that creates a Genome:
     //Fully linked, no hidden nodes with default innovation numbers
     Genome(GC idGenome,int num_in,int num_out);
-
+    //Fully linked, 1 hidden layer with num_hid hidden nodes with default innovation numbers
+    Genome(GC id,int num_in,int num_out, int num_hid);
     Genome(GC id, std::vector<NNode*> n, std::vector<Gene*> g);
 
     //Destructor kills off all lists

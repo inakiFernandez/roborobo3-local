@@ -203,6 +203,11 @@ void Network::load_sensors(double *sensvals)
     std::vector<NNode*>::iterator sensPtr;
     for(sensPtr=inputs.begin();sensPtr!=inputs.end();++sensPtr)
     {
+        /*if((*sensPtr) == NULL)
+            std::cout << "INPUTWRONG" << std::endl;
+        else
+            std::cout << ((*sensPtr)->type) << std::endl;
+        */
         //only load values into SENSORS (not BIASes)
         if (((*sensPtr)->type)==SENSOR)
         {
