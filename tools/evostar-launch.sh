@@ -1,4 +1,6 @@
 #!/bin/bash
+# ./tools/evostar-launch.sh config/evolvability.properties config/evo- evoGRNANN 20
+
 
 if [ $# -ne 4 ]; then
     echo "Wrong number of parameters. [progname] template outconfigbasename outlogbasename nbRuns"

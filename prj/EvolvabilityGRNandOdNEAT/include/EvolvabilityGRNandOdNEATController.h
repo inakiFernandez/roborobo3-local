@@ -179,6 +179,24 @@ public:
     double getFitness(){return _g.getFitness();}
     int getCollectedItems(){return _g.collectedItems;}
     int getNbCollisions(){return _g.nbCollisions;}
+    double getDSumTravelled(){return _dSumTravelled;}
+    double getNbUnits()
+    {
+        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        {
+            return _g.grn.getProteinSize(ProteinType::regul);
+        }
+        else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        {
+            double result = 0.0;
+            for(auto it = _g.nnGenome->nodes.begin(); it != _g.nnGenome->nodes.end(); it++)
+            {
+                if((*it)->gen_node_label == HIDDEN)
+                    result +=1.0;
+            }
+            return result;
+        }
+    }
     std::map<GCIndividual, GenomeData > getGenomesList(){return _genomesList;}
     EvolvabilityGRNandOdNEATController(RobotWorldModel *wm);
     ~EvolvabilityGRNandOdNEATController();

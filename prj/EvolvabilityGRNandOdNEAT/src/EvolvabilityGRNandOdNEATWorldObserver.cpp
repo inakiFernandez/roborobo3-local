@@ -230,6 +230,9 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
     double sumItems = 0.0;
     double sumCollisions = 0.0;
     double gatheredGenomes = 0.0;
+    double distance = 0.0;
+    double nbUnits = 0.0;
+
     for ( int i = 0 ; i != gNumberOfRobots ; i++ )
     {
 
@@ -237,8 +240,10 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
          sumFitness += c->getFitness();
          sumAvgLocalPopFitness += c-> getAvgPopFitness();
          sumItems += c->getCollectedItems();
-         sumCollisions += c->getNbCollisions();
+         sumCollisions += c->getNbCollisions() - c->getCollectedItems();
          gatheredGenomes += c->getGenomesList().size();
+         distance += c->getDSumTravelled();
+         nbUnits += c->getNbUnits();
     }
     switch (EvolvabilityGRNandOdNEATSharedData::gFitness)
     {
@@ -271,8 +276,13 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
                  //  " " << fullLaps <<
               //   " " << towardDoor0 <<
               //   " " << towardDoor1
-    << "       ";
-    if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
+    << "       "
+    << distance / gNumberOfRobots
+    << " "
+    << nbUnits / gNumberOfRobots //nb neurones ou proteines (répartition des tailles de réseau par quartiles de fitness)
+    << " "; // nbOffspring + fitness pour mesurer le kendall-tau-b pression de sélection
+
+   /* if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
    {
 
         for ( int i = 0 ; i != gNumberOfRobots ; i++ )
@@ -282,7 +292,7 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
              //std::cout << c-> getDoorPassages() << " ";
              std::cout << " " << c->computeIntraRobotDiversity() << " ";
         }
-    }
+    }*/
     std::cout << std::endl;
 
     //std::cout //<< "[gen:"

@@ -54,7 +54,7 @@ int EvolvabilityGRNandOdNEATSharedData::gPopSize = 10;
 
 double EvolvabilityGRNandOdNEATSharedData::gCommunicationRange = 30;
 bool EvolvabilityGRNandOdNEATSharedData::gCommunicationOnRadius = false;
-bool   EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv = false;
+bool   EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv = true; //false;
 
 int EvolvabilityGRNandOdNEATSharedData::gMatingOperator = 0;
 int EvolvabilityGRNandOdNEATSharedData::gBroadcastTime = 1;

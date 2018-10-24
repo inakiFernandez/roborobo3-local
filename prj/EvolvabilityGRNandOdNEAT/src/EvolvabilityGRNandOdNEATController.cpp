@@ -406,15 +406,20 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         //default
         std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<EvolvabilityGRNandOdNEATSharedData::gControllerType << std::endl;
         exit(-1);
-
     }
 
-
-    //TODO  switch for controller type, load inputs, nn.step, getOutputs
-
+    double lw, rw;
     //std::cout << outputs[0] << ", " << outputs[1] << std::endl;
-    double lw = outputs[0]; // * 2 - 1;
-    double rw = outputs[1]; // * 2 - 1;
+    if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    {
+        lw = outputs[0] * 2 - 1;
+        rw = outputs[1] * 2 - 1;
+    }
+    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    {
+        lw = outputs[0];
+        rw = outputs[1];
+    }
 
     //std::cout << lw << ", " << rw << std::endl;
 
@@ -455,8 +460,11 @@ std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
     //return result;
     //******************************************************************************************************************************
 
+    /*
+    //differential wheel coding
     double sumL = (g.getOutputConcentration("LW+") + g.getOutputConcentration("LW-"));
     double diffL = (g.getOutputConcentration("LW+") - g.getOutputConcentration("LW-"));
+
 
     if(sumL != 0)
         result.push_back( diffL / sumL  );
@@ -476,7 +484,10 @@ std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
             result.push_back(1.0);
         else
             result.push_back(-1.0);
-
+    */
+    //direct wheel coding
+    result.push_back(g.getOutputConcentration("LW"));
+    result.push_back(g.getOutputConcentration("RW"));
     return result;
 }
 
@@ -503,12 +514,16 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
                         || (EvolvabilityGRNandOdNEATSharedData::gFitness == 2))
                     _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "I" + std::to_string(i));
             }
+            // left wheel direct coding
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW");
             // left wheel differential coding
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW+");
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW-");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW+");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW-");
+            //right wheel direct coding
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW");
             // right wheel differential coding
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW+");
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW-");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW+");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW-");
 
 
             _g.grn.randomReguls(EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
@@ -528,7 +543,7 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
         // Inputs, outputs, 0 hidden neurons, fully connected.
         //Initial Genes=>common to all agents, thus identified by a common historical marker
             //TODO for the struct Genome
-            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs,EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
+            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs); //,EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
             //Weights at 0.0, so mutate
             _g.nnGenome->mutate_link_weights(1.0);
 
@@ -746,16 +761,19 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
     _nbInputs += 1;
 
     _nbOutputs = 2;
+
+    /*
     _outputNames.push_back("LW+");
     _outputNames.push_back("RW-");
     _outputNames.push_back("LW-");
     _outputNames.push_back("RW+");
-
+    */
+    _outputNames.push_back("LW");
+    _outputNames.push_back("RW");
     if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
     {
         _nbRegulatory = EvolvabilityGRNandOdNEATSharedData::gNbRegulatory;
         //createGRN(); //updateSignature and warmup called inside
-
     }
     else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
@@ -887,7 +905,6 @@ void EvolvabilityGRNandOdNEATController::broadcastGenome()
 //TODO: evolvability how to measure, define measure etc
 void EvolvabilityGRNandOdNEATController::loadNewGenome()
 {
-
         storeGenome(_g);
         //With selfinsemination always list>0
         //TODO GRN and NN cases with similar operators
@@ -986,24 +1003,30 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             {
                 offspring.behavior = computeFunctionalControllerBehavior(offspring);
             }
+        offspring.id.gene_id++;
         }
         else
         {
-            offspring = _g;
+            //offspring = _g;
             _genomesList.erase(_genomesList.find(_g.id));
             offspring.fitness = 0.0;
             offspring.collectedItems = 0;
-            offspring.nbCollisions= 0;
+            offspring.nbCollisions = 0;
             offspring.nbFitnessUpdates = 1;
             offspring.generations++;
         }
-        offspring.id.gene_id++;
+
         //delete _g.grn;
         //delete _g.nnGenome; //TODO do delete nn?
         //TODO destroy previous grn
         _g =  offspring;
         _g.id.robot_id = _wm->getId();
-
+        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        {
+            gProperties.checkAndGetPropertyValue("gModifRate",&_g.grn.config.MODIF_RATE,true);
+            gProperties.checkAndGetPropertyValue("gAddRate",&_g.grn.config.ADD_RATE,true);
+            gProperties.checkAndGetPropertyValue("gDeleteRate",&_g.grn.config.DEL_RATE,true);
+        }
         std::vector<GCIndividual> v;
         for(auto i: _genomesList)
             v.push_back(i.first);
@@ -1012,6 +1035,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
             {
                 //delete _genomesList[v[i]].grn;
+
             }
             else if (EvolvabilityGRNandOdNEATSharedData::gControllerType ==1)
             {
