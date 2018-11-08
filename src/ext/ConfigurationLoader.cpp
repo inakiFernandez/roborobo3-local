@@ -15,6 +15,7 @@
 #include "Config/TemplateMedeaGRNConfigurationLoader.h"
 #include "Config/EvolvabilityGRNandOdNEATConfigurationLoader.h"
 #include "Config/SocialBehaviorConfigurationLoader.h"
+#include "Config/SocialBehaviorANNConfigurationLoader.h"
 //###DO-NOT-DELETE-THIS-LINE###TAG:INCLUDE###//
 
 
@@ -116,6 +117,12 @@ ConfigurationLoader* ConfigurationLoader::make_ConfigurationLoader (std::string 
 	else if (configurationLoaderObjectName == "SocialBehaviorConfigurationLoader" )
 	{
 		return new SocialBehaviorConfigurationLoader();
+	}
+#endif
+#if defined PRJ_SOCIALBEHAVIORANN || !defined MODULAR
+	else if (configurationLoaderObjectName == "SocialBehaviorANNConfigurationLoader" )
+	{
+		return new SocialBehaviorANNConfigurationLoader();
 	}
 #endif
     //###DO-NOT-DELETE-THIS-LINE###TAG:SWITCH###//

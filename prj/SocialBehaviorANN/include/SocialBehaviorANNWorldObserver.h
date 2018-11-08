@@ -7,41 +7,36 @@
 
 
 
-#ifndef EVOLVABILITYGRNANDODNEATWORLDOBSERVER_H
-#define EVOLVABILITYGRNANDODNEATWORLDOBSERVER_H
+#ifndef SOCIALBEHAVIORANNWORLDOBSERVER_H
+#define SOCIALBEHAVIORANNWORLDOBSERVER_H
 
 #include "RoboroboMain/common.h"
 #include "RoboroboMain/roborobo.h"
 #include "Observers/Observer.h"
 #include "Observers/WorldObserver.h"
 #include "WorldModels/RobotWorldModel.h"
-#include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATSharedData.h"
-#include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATSharedData.h"
-#include "EvolvabilityGRNandOdNEATController.h"
+#include "SocialBehaviorANN/include/SocialBehaviorANNSharedData.h"
+#include "SocialBehaviorANN/include/SocialBehaviorANNSharedData.h"
 
 //class World;
 
-class EvolvabilityGRNandOdNEATWorldObserver : public WorldObserver
+class SocialBehaviorANNWorldObserver : public WorldObserver
 {
 private:
     void updateEnvironment();
     void updateMonitoring();
     void monitorPopulation( bool localVerbose = true );
     std::vector<std::vector<double> > _robotDistances;
-    std::vector<std::map<GCIndividual,Stats > > _offspringStats;
     
 protected:
     int _generationCount;
     int _generationItCount;
     
 public:
-    EvolvabilityGRNandOdNEATWorldObserver(World *world);
-    ~EvolvabilityGRNandOdNEATWorldObserver();
+    SocialBehaviorANNWorldObserver(World *world);
+    ~SocialBehaviorANNWorldObserver();
     
     std::vector<std::vector<double> > getRobotDistances(){return _robotDistances;}
-
-    std::vector<std::map<GCIndividual,Stats > > getOffspringStats() {return _offspringStats;}
-    std::map<GCIndividual,Stats> computeNbOffspringAndFitness();
     void reset();
     void step();
     

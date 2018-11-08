@@ -5,15 +5,15 @@
 
 
 
-#ifndef EVOLVABILITYGRNANDODNEATCONTROLLER_H
-#define EVOLVABILITYGRNANDODNEATCONTROLLER_H
+#ifndef SOCIALBEHAVIORANNCONTROLLER_H
+#define SOCIALBEHAVIORANNCONTROLLER_H
 
 #include "RoboroboMain/common.h"
 #include "RoboroboMain/roborobo.h"
 #include "Utilities/Graphics.h"
 #include "Controllers/Controller.h"
 #include "WorldModels/RobotWorldModel.h"
-#include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATAgentObserver.h"
+#include "SocialBehaviorANN/include/SocialBehaviorANNAgentObserver.h"
 #include <neuralnetworks/NeuralNetwork.h>
 #include "odNeat/include/odNeatAgentObserver.h"
 #include "odNeat/include/odNeatSpecies.h"
@@ -47,37 +47,6 @@ struct GCIndividual
     }
     friend std::ostream& operator<<(std::ostream& os, const GCIndividual& gene_clock);
 };
-struct Stats
-{
-    double fitness = -1;
-    int collectedItems = -1;
-    int nbCollisions = -1;
-    int gatheredGenomes = -1;
-    int numberOffspring = -1; //requires global info: postanalysis metric
-    double distance = -1;
-    void incrementOffspring()
-    {
-        //std::cout << "incr." << this->numberOffspring << std::endl;
-        if(this->numberOffspring < 0)
-        {
-            this->numberOffspring = 1;
-        }
-        else
-            this->numberOffspring +=1;
-        //std::cout << "postincr." << this->numberOffspring << std::endl;
-    }
-    std::string toString()
-    {
-        std::stringstream sstream("");
-        sstream << "" << numberOffspring
-                << "," << fitness
-                << "," << nbCollisions
-                << "," << gatheredGenomes
-                << "," << collectedItems
-                << "," << distance;
-        return sstream.str();
-    }//offsp.,fit,collisions,genomes,items,distance
-};
 
 struct GenomeData
 {
@@ -96,12 +65,12 @@ struct GenomeData
     double getFitness()
     {
         double result = -1;
-        if(EvolvabilityGRNandOdNEATSharedData::gFitness == 0)
+        if(SocialBehaviorANNSharedData::gFitness == 0)
             {
                 result = fitness / nbFitnessUpdates;
 
             }
-        else if(EvolvabilityGRNandOdNEATSharedData::gFitness == 1)
+        else if(SocialBehaviorANNSharedData::gFitness == 1)
             {
                 result = (double)collectedItems / nbFitnessUpdates; // - 0.001 * nbCollisions;
 
@@ -110,14 +79,14 @@ struct GenomeData
         {
             //default
 
-                std::cerr << "Wrong fitness or not implemented: " << EvolvabilityGRNandOdNEATSharedData::gFitness << std::endl;
+                std::cerr << "Wrong fitness or not implemented: " << SocialBehaviorANNSharedData::gFitness << std::endl;
                 exit(-1);
         }
         return result;
     }
 };
 
-class EvolvabilityGRNandOdNEATController : public Controller
+class SocialBehaviorANNController : public Controller
 {
 private:
     int _iteration;
@@ -157,8 +126,6 @@ private:
     
     // evolutionary engine
     std::map<GCIndividual, GenomeData > _genomesList;
-    GCIndividual _previousMother;
-    GCIndividual _previousFather;
     //std::map<GCIndividual, double > _fitnessList;
     //std::map<GCIndividual,int> _birthdateList; // store the birthdate of the received controllers (useful for monitoring).
     // GRN
@@ -205,7 +172,7 @@ private:
     }
     bool doUpdateBehavior()
     {
-        return ((_lifetime  % EvolvabilityGRNandOdNEATSharedData::freqMeasureBehav) == 0 );
+        return ((_lifetime  % SocialBehaviorANNSharedData::freqMeasureBehav) == 0 );
     }
 public:
     void updateFitness(double v){_g.fitness+= v;}
@@ -213,17 +180,13 @@ public:
     int getCollectedItems(){return _g.collectedItems;}
     int getNbCollisions(){return _g.nbCollisions;}
     double getDSumTravelled(){return _dSumTravelled;}
-    void setPreviousMother(GCIndividual m){ _previousMother = m;}
-    void setPreviousFather(GCIndividual f){ _previousFather = f;}
-    GCIndividual getPreviousMother(){ return _previousMother;}
-    GCIndividual getPreviousFather(){ return _previousFather;}
     double getNbUnits()
     {
-        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        if(SocialBehaviorANNSharedData::gControllerType == 0)
         {
             return _g.grn.getProteinSize(ProteinType::regul);
         }
-        else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        else if(SocialBehaviorANNSharedData::gControllerType == 1)
         {
             double result = 0.0;
             for(auto it = _g.nnGenome->nodes.begin(); it != _g.nnGenome->nodes.end(); it++)
@@ -234,21 +197,9 @@ public:
             return result;
         }
     }
-    Stats getStats()
-    {
-        Stats result;
-        result.fitness = this->getFitness();
-        result.distance = this->getDSumTravelled();
-        result.collectedItems = this->getCollectedItems();
-        result.nbCollisions = this->getNbCollisions();
-        result.gatheredGenomes = this->getGenomesList().size();
-        result.numberOffspring = 0; //Computed as posthoc analysis during reproduction
-
-        return result;
-    }
     std::map<GCIndividual, GenomeData > getGenomesList(){return _genomesList;}
-    EvolvabilityGRNandOdNEATController(RobotWorldModel *wm);
-    ~EvolvabilityGRNandOdNEATController();
+    SocialBehaviorANNController(RobotWorldModel *wm);
+    ~SocialBehaviorANNController();
     double _minValue, _maxValue;
     void reset();
     void step();

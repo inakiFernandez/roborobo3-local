@@ -262,8 +262,7 @@ template <typename Implem> class GRN {
 			// we add a new regulatory protein
 			ostringstream name;
 			name << "r" << getProteinSize(ProteinType::regul);
-			addProtein(ProteinType::regul, name.str(), Protein());
-            std::cout << "add" << std::endl;
+            addProtein(ProteinType::regul, name.str(), Protein());
 		} else {
 			// we delete one regulatory protein
 			if (getProteinSize(ProteinType::regul) > 0) {

@@ -8,7 +8,7 @@
 #include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATWorldObserver.h"
 #include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATController.h"
 #include "World/World.h"
-
+#include <fstream>
 EvolvabilityGRNandOdNEATWorldObserver::EvolvabilityGRNandOdNEATWorldObserver( World* world ) : WorldObserver( world )
 {
     _world = world;
@@ -140,7 +140,22 @@ void EvolvabilityGRNandOdNEATWorldObserver::step()
         //std::cout << EvolvabilityGRNandOdNEATSharedData::gCommunicationRange << std::endl << std::endl << std::endl;
     }
     updateMonitoring();
-    
+    if (gWorld->getIterations() == (gMaxIt - 1))
+    {
+        std::ofstream log_file( //todo log in experiment folder
+                "logOffspring.txt", std::ios_base::out | std::ios_base::app );
+        int countGeneration = 0;
+        for(auto it = _offspringStats.begin(); it != _offspringStats.end();it++)
+        {
+            log_file << "Generation Starts\n" << countGeneration++ << std::endl;
+            for(auto it2 = (*it).begin(); it2 != (*it).end(); it2++ )
+            {
+                log_file <<  (*it2).second.toString()<< std::endl;
+            }
+            log_file <<  "Generation Ends\n\n\n\n\n\n\n\n" << std::endl;
+        }
+    }
+
     updateEnvironment();
     
 }
@@ -253,17 +268,21 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
             break;
         }
     }
+    //Space-separated values on stdout:
+    // Timestep AvgFitness LocalPopAvgFitnessAveragedOverRobots
+    // GlobalDiversity AvgCollectedItems AvgCollisions AvgGatheredGenomes
+    // AverageCoveredDistances AvgNumberOfComputingUnits
     std::cout << gWorld->getIterations() << " ";
     //<< (sumFitness  / gNumberOfRobots) / EvolvabilityGRNandOdNEATSharedData::gEvaluationTime
 
     // divided by two because each item gives 1 fitness point to both agents
     //std::cout << sumFitness / 2 << " " << sumAvgLocalPopFitness / 2 << std::endl;
 
-    std::cout << sumFitness/(double) gNumberOfRobots << " ";
-                 //" " << sumAvgLocalPopFitness <<
+    std::cout << sumFitness/(double) gNumberOfRobots <<
+                 " " << sumAvgLocalPopFitness/(double) gNumberOfRobots;
     if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
     {
-        std::cout << computeGlobalDiversity();
+        std::cout << " " << computeGlobalDiversity();
     }
                         //" " << computeInterRobotDiversity();
     std::cout << " "
@@ -280,7 +299,8 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
     << distance / gNumberOfRobots
     << " "
     << nbUnits / gNumberOfRobots //nb neurones ou proteines (répartition des tailles de réseau par quartiles de fitness)
-    << " "; // nbOffspring + fitness pour mesurer le kendall-tau-b pression de sélection
+    << " ";
+    // nbOffspring + fitness pour mesurer le kendall-tau-b pression de sélection
 
    /* if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
    {
@@ -294,7 +314,7 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
         }
     }*/
     std::cout << std::endl;
-
+    _offspringStats.push_back(this->computeNbOffspringAndFitness());
     //std::cout //<< "[gen:"
     //        << (gWorld->getIterations()/EvolvabilityGRNandOdNEATSharedData::gEvaluationTime)
             //<< ", fitness: "
@@ -307,6 +327,7 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
     //std::string sLog = std::string("") + std::to_string(gWorld->getIterations()) + ",pop,alive," + std::to_string(activeCount) + "\n";
     //gLogManager->write(sLog);
     //gLogManager->flush();
+
 }
 double EvolvabilityGRNandOdNEATWorldObserver::computeGlobalDiversity()
 {
@@ -332,6 +353,27 @@ double EvolvabilityGRNandOdNEATWorldObserver::computeGlobalDiversity()
     }
     result = result/pairwiseDistances.size();
     //Average of pairwise distances between active behaviors
+    return result;
+
+}
+std::map<GCIndividual,Stats> EvolvabilityGRNandOdNEATWorldObserver::computeNbOffspringAndFitness()
+{
+    //For computing selection pressure kendall-tau correlation coefficient
+    //between number of offspring and other traits (fitness, gathered genomes,distance, collisions,items)
+    std::map<GCIndividual,Stats> result;
+    for (int i = 0 ; i < gNumberOfRobots ; i++ )
+    {
+        EvolvabilityGRNandOdNEATController* c1 = (dynamic_cast<EvolvabilityGRNandOdNEATController*>
+                                  (gWorld->getRobot(i)->getController()));
+
+        //if not the first generation
+        if(gWorld->getIterations()> EvolvabilityGRNandOdNEATSharedData::gEvaluationTime)
+        {
+            this->_offspringStats.back()[c1->getPreviousMother()].incrementOffspring(); ;
+           // std::cout << gWorld->getIterations() << ":" << this->getOffspringStats().back()[c1->getPreviousMother()].numberOffspring << std::endl;
+        }
+        result[c1->getGenome().id] = c1->getStats();
+    }
     return result;
 
 }

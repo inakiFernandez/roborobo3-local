@@ -1,0 +1,4 @@
+#this only on bash, before module load cuda/9.1.85.3
+#sbatch commandsCALMIP.cmd
+#module avail
+#/tmpdir/cussat/inaki to move temporal result logs

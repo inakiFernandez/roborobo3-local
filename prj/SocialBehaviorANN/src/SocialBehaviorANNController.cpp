@@ -3,10 +3,11 @@
  * NNlib: Leo Cazenille <leo.cazenille@upmc.fr>
  */
 
-#include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATController.h"
-#include "EvolvabilityGRNandOdNEAT/include/EvolvabilityGRNandOdNEATWorldObserver.h"
+#include "SocialBehaviorANN/include/SocialBehaviorANNController.h"
+#include "SocialBehaviorANN/include/SocialBehaviorANNWorldObserver.h"
 
 #include "odneatgc/helper.h"
+#include "odneatgc/gene.h"
 
 #include "World/World.h"
 #include "Utilities/Misc.h"
@@ -30,7 +31,7 @@
 
 //using namespace Neural;
 
-EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWorldModel *wm )
+SocialBehaviorANNController::SocialBehaviorANNController( RobotWorldModel *wm )
 {
     _wm = wm;
      _g.nn = NULL;
@@ -55,14 +56,7 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
     _g.nbCollisions = 0;
     _g.generations = 0;
     _g.nbFitnessUpdates = 1;
-    //Id of the parent(s) in the previous generation of the current active genome
-    // "mother": Single parent id for mutations, or first parent in case of xover
-    // "father": -1 if current genome results from mutation, second parent id otherwise
-    //-1 as null value for initialization, updated in loadNewGenome
-    _previousMother.robot_id = -1;
-    _previousMother.gene_id = -1;
-    _previousFather.robot_id = -1;
-    _previousFather.gene_id = -1;
+
     /*
     std::cout << "Begin" << std::endl;
 
@@ -84,7 +78,7 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
                 std::cout << inputs[j] << ", ";
             }
             std::cout << std::endl;
-            switch ( EvolvabilityGRNandOdNEATSharedData::gControllerType )
+            switch ( SocialBehaviorANNSharedData::gControllerType )
             {
                 case 0:
                 {
@@ -122,7 +116,7 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
             inputs.clear();
             outputs.clear();
         }
-        switch ( EvolvabilityGRNandOdNEATSharedData::gControllerType )
+        switch ( SocialBehaviorANNSharedData::gControllerType )
         {
             case 0:
             {
@@ -133,7 +127,7 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
             }
             case 1:
             {
-                _g.nnGenome->mutate_link_weights(EvolvabilityGRNandOdNEATSharedData::gSigmaRef);
+                _g.nnGenome->mutate_link_weights(SocialBehaviorANNSharedData::gSigmaRef);
                 _g.nn = _g.nnGenome->genesis();
                  break;
             }
@@ -158,15 +152,15 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
     
 }
 
-EvolvabilityGRNandOdNEATController::~EvolvabilityGRNandOdNEATController()
+SocialBehaviorANNController::~SocialBehaviorANNController()
 {
-    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if(SocialBehaviorANNSharedData::gControllerType == 0)
     {
 
         //delete &_grn;
         //_grn = NULL;
     }
-    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if (SocialBehaviorANNSharedData::gControllerType == 1)
     {
 
         delete _g.nn;
@@ -176,7 +170,7 @@ EvolvabilityGRNandOdNEATController::~EvolvabilityGRNandOdNEATController()
     else
     {
         //default
-        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<EvolvabilityGRNandOdNEATSharedData::gControllerType << std::endl;
+        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<SocialBehaviorANNSharedData::gControllerType << std::endl;
         exit(-1);
 
     }
@@ -186,21 +180,21 @@ EvolvabilityGRNandOdNEATController::~EvolvabilityGRNandOdNEATController()
     //_tabu.clear();
 }
 
-void EvolvabilityGRNandOdNEATController::reset()
+void SocialBehaviorANNController::reset()
 {
-    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if(SocialBehaviorANNSharedData::gControllerType == 0)
     {
     }
-    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if (SocialBehaviorANNSharedData::gControllerType == 1)
     {
 
 
     }
 
     /*_g.nbFitnessUpdates = 0;
-    //_energy = EvolvabilityGRNandOdNEATSharedData::gDefaultInitialEnergy;
+    //_energy = SocialBehaviorANNSharedData::gDefaultInitialEnergy;
     _g.fitness =  0 ; //_energy;
-    if (EvolvabilityGRNandOdNEATSharedData::gFitness == 1)
+    if (SocialBehaviorANNSharedData::gFitness == 1)
     {
         _g.collectedItems = 0;
     }
@@ -221,7 +215,7 @@ void EvolvabilityGRNandOdNEATController::reset()
 
 }
 
-void EvolvabilityGRNandOdNEATController::step()
+void SocialBehaviorANNController::step()
 {
 
     _iteration++;
@@ -246,7 +240,7 @@ void EvolvabilityGRNandOdNEATController::step()
     }
 
     //Fitness measurement and update
-    switch (EvolvabilityGRNandOdNEATSharedData::gFitness)
+    switch (SocialBehaviorANNSharedData::gFitness)
     {
     case 0:
        //deltaFitness: fitness contribution at current time-step
@@ -283,7 +277,7 @@ void EvolvabilityGRNandOdNEATController::step()
 // ################ BEHAVIOUR METHOD(S)      ################
 // ################ ######################## ################
 
-void EvolvabilityGRNandOdNEATController::stepBehaviour()
+void SocialBehaviorANNController::stepBehaviour()
 {
     _wm->updateLandmarkSensor(); // update with closest landmark
 
@@ -312,8 +306,8 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         }
 
     }
-   if((EvolvabilityGRNandOdNEATSharedData::gFitness == 1)
-           || (EvolvabilityGRNandOdNEATSharedData::gFitness == 2))
+   if((SocialBehaviorANNSharedData::gFitness == 1)
+           || (SocialBehaviorANNSharedData::gFitness == 2))
    {
         int type = 1; //item to forage
         for(int i  = 0; i < _wm->_cameraSensorsNb; i++)
@@ -376,7 +370,7 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
 
     // ---- set inputs, step, and read out ----
     std::vector<double> outputs;
-    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if(SocialBehaviorANNSharedData::gControllerType == 0)
     {
         setInputs(_g.grn,inputs);
 
@@ -385,7 +379,7 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         outputs = getOutputs(_g.grn);
 
     }
-    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if (SocialBehaviorANNSharedData::gControllerType == 1)
     {
         //std::cout << "step" << std::endl;
 
@@ -411,18 +405,18 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     else
     {
         //default
-        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<EvolvabilityGRNandOdNEATSharedData::gControllerType << std::endl;
+        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<SocialBehaviorANNSharedData::gControllerType << std::endl;
         exit(-1);
     }
 
     double lw, rw;
     //std::cout << outputs[0] << ", " << outputs[1] << std::endl;
-    if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if (SocialBehaviorANNSharedData::gControllerType == 0)
     {
         lw = outputs[0] * 2 - 1;
         rw = outputs[1] * 2 - 1;
     }
-    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if (SocialBehaviorANNSharedData::gControllerType == 1)
     {
         lw = outputs[0];
         rw = outputs[1];
@@ -445,7 +439,7 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     //delete (inputs);
 }
 
-void EvolvabilityGRNandOdNEATController::setInputs(GRN<RealC> &g, std::vector<double> in)
+void SocialBehaviorANNController::setInputs(GRN<RealC> &g, std::vector<double> in)
 {
     //TODO check if normalized in [0,1]
     for(unsigned int i=0; i< _nbInputs;i++)//_inputNames.size();i++)
@@ -455,7 +449,7 @@ void EvolvabilityGRNandOdNEATController::setInputs(GRN<RealC> &g, std::vector<do
     }
 
 }
-std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
+std::vector<double> SocialBehaviorANNController::getOutputs(GRN<RealC> g)
 {
     //std::cout << "LW+ :" << std::to_string(g.getOutputConcentration("LW+")) << ", LW- :" << std::to_string(g.getOutputConcentration("LW-"))
     //         << ", RW+ :" << std::to_string(g.getOutputConcentration("RW+")) << ", RW- :" << std::to_string(g.getOutputConcentration("LW-")) << std::endl;
@@ -498,22 +492,18 @@ std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
     return result;
 }
 
-void EvolvabilityGRNandOdNEATController::createController() //GRN()
+void SocialBehaviorANNController::createController() //GRN()
 {
     //TODO    //if (_grn != NULL )   //    delete _grn;
     GC genomeId;
     genomeId.robot_id = _wm->_id;
     genomeId.gene_id = 0;
-    switch ( EvolvabilityGRNandOdNEATSharedData::gControllerType )
+    switch ( SocialBehaviorANNSharedData::gControllerType )
     {
         case 0:
         {
             // Real-coded GRN
-            //TODO set parameters (
-                                 //func=tanh,
-                                //impl= with original affinity equation,
-                                 //norm=divided by sum concentr.)
-            _g.grn = GRN<RealC>(1,2,0);
+            _g.grn = GRN<RealC>();
             //_nbInputs, _nbOutputs
 
 
@@ -521,8 +511,8 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
             for (int i = 0; i < _wm->_cameraSensorsNb; ++i)
             {
                 _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "S" + std::to_string(i));
-                if((EvolvabilityGRNandOdNEATSharedData::gFitness == 1)
-                        || (EvolvabilityGRNandOdNEATSharedData::gFitness == 2))
+                if((SocialBehaviorANNSharedData::gFitness == 1)
+                        || (SocialBehaviorANNSharedData::gFitness == 2))
                     _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "I" + std::to_string(i));
             }
             // left wheel direct coding
@@ -537,11 +527,10 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
             //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW-");
 
 
-            _g.grn.randomReguls(EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
+            _g.grn.randomReguls(SocialBehaviorANNSharedData::gNbRegulatory);
             _g.grn.randomParams();
 
             _g.grn.updateSignatures();
-
             for(int i = 0; i < 25; i++) _g.grn.step();
 
             gProperties.checkAndGetPropertyValue("gModifRate",&_g.grn.config.MODIF_RATE,true);
@@ -555,9 +544,24 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
         // Inputs, outputs, 0 hidden neurons, fully connected.
         //Initial Genes=>common to all agents, thus identified by a common historical marker
             //TODO for the struct Genome
-            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs); //,EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
-            //Weights at 0.0, so mutate
-            _g.nnGenome->mutate_link_weights(1.0);
+
+            _g.nnGenome = new Genome (genomeId,_nbInputs, _nbOutputs); //,SocialBehaviorANNSharedData::gNbRegulatory);
+            //Initialize with braitenberg
+            std::vector<double> w;
+            w = {1.0, 0.5, -1.5, -0.5, -1.0, 0.0, 0.0, 0.0,     //obst. sensor to left wh.
+                 -1.0, -0.5, 0.5, 0.5, 1.0, 0.0, 0.0, 0.0,      //item sensor to left wh.
+                  0.25,
+                 -1.0, -0.5, -1.5, 0.5, 1.0, 0.0, 0.0, 0.0,       //obst. sensor to right wh.
+                 1.0, 0.5, 0.5, -0.5, -1.0, 0.0, 0.0, 0.0,     //item sensor to right wh.
+                 0.25
+                };
+            int i =0;
+            for(auto &curgene : _g.nnGenome->genes)
+            {
+                curgene->lnk->weight =w[i]*15;
+                i++;
+            }
+            //_g.nnGenome->mutate_link_weights(1.0);
 
             //Fully connected
             _g_count = _nbInputs * _nbOutputs + 1;
@@ -569,10 +573,10 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
             break;
         }
         default: // default: no controller
-            std::cerr << "[ERROR] gController type unknown (value: " << EvolvabilityGRNandOdNEATSharedData::gControllerType << ").\n";
+            std::cerr << "[ERROR] gController type unknown (value: " << SocialBehaviorANNSharedData::gControllerType << ").\n";
             exit(-1);
     };
-    if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
+    if(SocialBehaviorANNSharedData::gDoMeasureDiv)
     {
         _g.behavior = computeFunctionalControllerBehavior(_g);
     }
@@ -584,7 +588,7 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
 // ################ EVOLUTION ENGINE METHODS ################
 // ################ ######################## ################
 
-void EvolvabilityGRNandOdNEATController::stepEvolution()
+void SocialBehaviorANNController::stepEvolution()
 {
     _lifetime++;
     // * broadcasting genome : robot broadcasts its genome to all neighbors (contact-based wrt proximity sensors)
@@ -595,7 +599,7 @@ void EvolvabilityGRNandOdNEATController::stepEvolution()
     }
 
     // * lifetime ended: replace genome (if possible)
-    if( gWorld->getIterations() > 1 && gWorld->getIterations() % EvolvabilityGRNandOdNEATSharedData::gEvaluationTime == 0 )
+    if( gWorld->getIterations() > 1 && gWorld->getIterations() % SocialBehaviorANNSharedData::gEvaluationTime == 0 )
     {
         loadNewGenome();
         _nbGenomeTransmission = 0;
@@ -610,22 +614,22 @@ void EvolvabilityGRNandOdNEATController::stepEvolution()
     //std::string sLog = std::string("");   //gLogManager->write(sLog);
 
 }
-bool EvolvabilityGRNandOdNEATController::doBroadcast()
+bool SocialBehaviorANNController::doBroadcast()
 {
-    if(!EvolvabilityGRNandOdNEATSharedData::gIsCentralized)
+    if(!SocialBehaviorANNSharedData::gIsCentralized)
     {
         if(((double)rand() / RAND_MAX) <= getBroadcastRate()
-                && (gWorld->getIterations() % EvolvabilityGRNandOdNEATSharedData::gEvaluationTime) > EvolvabilityGRNandOdNEATSharedData::gMaturationTime )
+                && (gWorld->getIterations() % SocialBehaviorANNSharedData::gEvaluationTime) > SocialBehaviorANNSharedData::gMaturationTime )
             return true;
         else
             return false;
     }
 }
-double EvolvabilityGRNandOdNEATController::getBroadcastRate()
+double SocialBehaviorANNController::getBroadcastRate()
 {
     double result = 0.0;
-    bool doRank = (EvolvabilityGRNandOdNEATSharedData::gMatingOperator == 2);
-    if(EvolvabilityGRNandOdNEATSharedData::gMatingOperator > 0) //Rate proportional to fitness or rank
+    bool doRank = (SocialBehaviorANNSharedData::gMatingOperator == 2);
+    if(SocialBehaviorANNSharedData::gMatingOperator > 0) //Rate proportional to fitness or rank
     {
         int rank = 1;
         double totalFitness = _g.getFitness();
@@ -646,9 +650,9 @@ double EvolvabilityGRNandOdNEATController::getBroadcastRate()
     }
     else
     {
-        if(EvolvabilityGRNandOdNEATSharedData::gMatingOperator == -2)
+        if(SocialBehaviorANNSharedData::gMatingOperator == -2)
         {
-          if((gWorld->getIterations() % EvolvabilityGRNandOdNEATSharedData::gBroadcastTime) == 0 )
+          if((gWorld->getIterations() % SocialBehaviorANNSharedData::gBroadcastTime) == 0 )
           {
               result = 1.0;
           }
@@ -666,7 +670,7 @@ double EvolvabilityGRNandOdNEATController::getBroadcastRate()
 
 }
 
-bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC> gReceived, GCIndividual senderId, int senderBirthdate, double fitness)
+bool SocialBehaviorANNController::storeGenome(GenomeData g) //(GRN<RealC> gReceived, GCIndividual senderId, int senderBirthdate, double fitness)
 {
     //std::map<int,int>::const_iterator it = _birthdateList.find(senderBirthdate);
     //TODO filter on receive. maybe based on behavioral distance
@@ -680,11 +684,11 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
         _genomesList[g.id].collectedItems= g.collectedItems;
         _genomesList[g.id].nbFitnessUpdates = g.nbFitnessUpdates;
         //TODO delete g
-        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        if(SocialBehaviorANNSharedData::gControllerType == 0)
         {
             //delete g.grn;
         }
-        else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        else if(SocialBehaviorANNSharedData::gControllerType == 1)
         {
             delete g.nnGenome;
             delete g.nn;
@@ -693,7 +697,7 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
     }
     else
     {
-        if(_genomesList.size() < EvolvabilityGRNandOdNEATSharedData::gPopSize)
+        if(_genomesList.size() < SocialBehaviorANNSharedData::gPopSize)
         {
             _genomesList[g.id] = g;
             stored = true;
@@ -714,11 +718,11 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
             }
             if (minFitness <= g.fitness)
             {
-                if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+                if(SocialBehaviorANNSharedData::gControllerType == 0)
                 {
                     //delete _genomesList[indexWorse].grn;
                 }
-                else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+                else if(SocialBehaviorANNSharedData::gControllerType == 1)
                 {
                     delete _genomesList[indexWorse].nnGenome;
                     delete _genomesList[indexWorse].nn;
@@ -735,7 +739,7 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
 }
 
 
-void EvolvabilityGRNandOdNEATController::resetRobot()
+void SocialBehaviorANNController::resetRobot()
 {
     _nbInputs = 0;
 
@@ -748,8 +752,8 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
     }
 
     //If task=collect, add object sensors
-    if ((EvolvabilityGRNandOdNEATSharedData::gFitness == 1)
-            || (EvolvabilityGRNandOdNEATSharedData::gFitness == 2))
+    if ((SocialBehaviorANNSharedData::gFitness == 1)
+            || (SocialBehaviorANNSharedData::gFitness == 2))
     {
         // gathering object distance
         _nbInputs +=  _wm->_cameraSensorsNb;
@@ -782,12 +786,12 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
     */
     _outputNames.push_back("LW");
     _outputNames.push_back("RW");
-    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if(SocialBehaviorANNSharedData::gControllerType == 0)
     {
-        _nbRegulatory = EvolvabilityGRNandOdNEATSharedData::gNbRegulatory;
+        _nbRegulatory = SocialBehaviorANNSharedData::gNbRegulatory;
         //createGRN(); //updateSignature and warmup called inside
     }
-    else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if(SocialBehaviorANNSharedData::gControllerType == 1)
     {
 
 
@@ -808,30 +812,30 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
 }
 
 
-void EvolvabilityGRNandOdNEATController::broadcastGenome()
+void SocialBehaviorANNController::broadcastGenome()
 {
     //TODO communication through distance matrix (in WorldObserver)
     //TODO communication mating
 
-    if(EvolvabilityGRNandOdNEATSharedData::gCommunicationOnRadius)
+    if(SocialBehaviorANNSharedData::gCommunicationOnRadius)
     {
-        std::vector<std::vector<double> > distanceMatrix = (dynamic_cast<EvolvabilityGRNandOdNEATWorldObserver*>(gWorld->getWorldObserver()))->getRobotDistances();
+        std::vector<std::vector<double> > distanceMatrix = (dynamic_cast<SocialBehaviorANNWorldObserver*>(gWorld->getWorldObserver()))->getRobotDistances();
         for(int i = 0; i < gNumberOfRobots ; i++)
         {
 
-            if(distanceMatrix[_wm->getId()][i] < EvolvabilityGRNandOdNEATSharedData::gCommunicationRange
+            if(distanceMatrix[_wm->getId()][i] < SocialBehaviorANNSharedData::gCommunicationRange
                     && i != _wm->getId())
             {
-                EvolvabilityGRNandOdNEATController* targetRobotController = dynamic_cast<EvolvabilityGRNandOdNEATController*>(gWorld->getRobot(i)->getController());
+                SocialBehaviorANNController* targetRobotController = dynamic_cast<SocialBehaviorANNController*>(gWorld->getRobot(i)->getController());
 
                 GRN<RealC> copy;
                 Genome* copyNNG = NULL;
                 Network* copyNN = NULL;
-                if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+                if(SocialBehaviorANNSharedData::gControllerType == 0)
                 {
                     copy = GRN<RealC>(_g.grn);
                 }
-                else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+                else if(SocialBehaviorANNSharedData::gControllerType == 1)
                 {
                     copyNNG = _g.nnGenome->duplicate();
                     copyNN = copyNNG->genesis();
@@ -861,9 +865,9 @@ void EvolvabilityGRNandOdNEATController::broadcastGenome()
     {
         // remarque \todo: limiting genome transmission is sensitive to sensor order
         for( int i = 0 ; i < _wm->_cameraSensorsNb
-             && ( EvolvabilityGRNandOdNEATSharedData::gLimitGenomeTransmission == false
-                  || ( EvolvabilityGRNandOdNEATSharedData::gLimitGenomeTransmission == true
-                       && _nbGenomeTransmission < EvolvabilityGRNandOdNEATSharedData::gMaxNbGenomeTransmission ) ); i++)
+             && ( SocialBehaviorANNSharedData::gLimitGenomeTransmission == false
+                  || ( SocialBehaviorANNSharedData::gLimitGenomeTransmission == true
+                       && _nbGenomeTransmission < SocialBehaviorANNSharedData::gMaxNbGenomeTransmission ) ); i++)
         {
             int targetIndex = _wm->getObjectIdFromCameraSensor(i);
 
@@ -872,7 +876,7 @@ void EvolvabilityGRNandOdNEATController::broadcastGenome()
             {
                 targetIndex = targetIndex - gRobotIndexStartOffset; // convert image registering index into robot id.
 
-                EvolvabilityGRNandOdNEATController* targetRobotController = dynamic_cast<EvolvabilityGRNandOdNEATController*>(gWorld->getRobot(targetIndex)->getController());
+                SocialBehaviorANNController* targetRobotController = dynamic_cast<SocialBehaviorANNController*>(gWorld->getRobot(targetIndex)->getController());
 
                 if ( !targetRobotController )
                 {
@@ -882,11 +886,11 @@ void EvolvabilityGRNandOdNEATController::broadcastGenome()
                 GRN<RealC> copy;
                 Genome* copyNNG = NULL;
                 Network* copyNN = NULL;
-                if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+                if(SocialBehaviorANNSharedData::gControllerType == 0)
                 {
                     copy = GRN<RealC>(_g.grn);
                 }
-                else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+                else if(SocialBehaviorANNSharedData::gControllerType == 1)
                 {
                     copyNNG = _g.nnGenome->duplicate();
                     copyNN = copyNNG->genesis();
@@ -915,7 +919,7 @@ void EvolvabilityGRNandOdNEATController::broadcastGenome()
 }
 //TODO add behavior descriptors and diversity measuring here and in world observer.
 //TODO: evolvability how to measure, define measure etc
-void EvolvabilityGRNandOdNEATController::loadNewGenome()
+void SocialBehaviorANNController::loadNewGenome()
 {
         storeGenome(_g);
         //With selfinsemination always list>0
@@ -924,40 +928,34 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         GenomeData parent1, parent2, offspring;
         bool isNew = false;
         _genomeId++;
-        switch ( EvolvabilityGRNandOdNEATSharedData::gSelectionMethod )
+        switch ( SocialBehaviorANNSharedData::gSelectionMethod )
         {
             case 0:
-               parent1 = selectTournament(EvolvabilityGRNandOdNEATSharedData::gSelPressure);
+               parent1 = selectTournament(SocialBehaviorANNSharedData::gSelPressure);
                 break;
             default:
-                std::cerr << "[ERROR] unknown selection method (gSelectionMethod = " << EvolvabilityGRNandOdNEATSharedData::gSelectionMethod << ")\n";
+                std::cerr << "[ERROR] unknown selection method (gSelectionMethod = " << SocialBehaviorANNSharedData::gSelectionMethod << ")\n";
                 exit(-1);
         }
-        //Reset ids of mother and father in previous generation
-        //if the genome does not change, number of offspring are are already counted o
-        _previousMother.robot_id = -1;
-        _previousMother.gene_id = -1;
-        _previousFather.robot_id = -1;
-        _previousFather.gene_id = -1;
 
 
-        if ( ((double)rand()/RAND_MAX < EvolvabilityGRNandOdNEATSharedData::gCrossoverProb) && (_genomesList.size() > 1))
+        if ( ((double)rand()/RAND_MAX < SocialBehaviorANNSharedData::gCrossoverProb) && (_genomesList.size() > 1))
         {
-            switch ( EvolvabilityGRNandOdNEATSharedData::gSelectionMethod )
+            switch ( SocialBehaviorANNSharedData::gSelectionMethod )
             {
                 case 0:
-                    parent2 = selectTournament(EvolvabilityGRNandOdNEATSharedData::gSelPressure);
+                    parent2 = selectTournament(SocialBehaviorANNSharedData::gSelPressure);
                     break;
                 default:
-                    std::cerr << "[ERROR] unknown selection method (gSelectionMethod = " << EvolvabilityGRNandOdNEATSharedData::gSelectionMethod << ")\n";
+                    std::cerr << "[ERROR] unknown selection method (gSelectionMethod = " << SocialBehaviorANNSharedData::gSelectionMethod << ")\n";
                     exit(-1);
             }
 
-            if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+            if(SocialBehaviorANNSharedData::gControllerType == 0)
             {
                 offspring.grn = parent1.grn.crossover(parent2.grn);
             }
-            else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+            else if (SocialBehaviorANNSharedData::gControllerType == 1)
             {
                 GC newId = {_wm->getId(),_genomeId};
                 offspring.nnGenome = parent1.nnGenome->mate(parent2.nnGenome,newId,parent1.fitness,parent2.fitness);
@@ -969,26 +967,23 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             offspring.generations = 1;
             offspring.birthdate = gWorld->getIterations();
             //offspring.id.gene_id++;
-            _previousMother = parent1.id;
-            _previousFather = parent2.id;
-
             isNew = true;
         }
         else
         {
             offspring = parent1;
         }
-        if ( (double)rand()/RAND_MAX < EvolvabilityGRNandOdNEATSharedData::gMutateProb)
+        if ( (double)rand()/RAND_MAX < SocialBehaviorANNSharedData::gMutateProb)
         {
 
-            if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+            if(SocialBehaviorANNSharedData::gControllerType == 0)
             {
                 offspring.grn.mutate();
             }
-            else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+            else if (SocialBehaviorANNSharedData::gControllerType == 1)
             {
                 GC newId = {_wm->getId(),_genomeId};
-                offspring.nnGenome->mutate(EvolvabilityGRNandOdNEATSharedData::gSigmaRef,_wm->getId(),newId,_n_count,_g_count);
+                offspring.nnGenome->mutate(SocialBehaviorANNSharedData::gSigmaRef,_wm->getId(),newId,_n_count,_g_count);
                 offspring.nn = offspring.nnGenome->genesis();
             }
 
@@ -1000,13 +995,12 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
            offspring.birthdate = gWorld->getIterations();
            //offspring.id.gene_id++;
            isNew = true;
-           _previousMother = parent1.id;
         }
 
         if(isNew)
         {
 
-            if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+            if (SocialBehaviorANNSharedData::gControllerType == 0)
             {
                 //_g.controller.setParam(0, 1.0);
                 //_g.controller.setParam(1, 1.0);
@@ -1014,29 +1008,18 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
                 for(int i = 0; i < 25; i++) offspring.grn.step();
                 //delete _g.grn;
             }
-            else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+            else if (SocialBehaviorANNSharedData::gControllerType == 1)
             {
                 offspring.nn = offspring.nnGenome->genesis();
                 //delete _g.nnGenome;
                 //delete _g.nn;
             }
             offspring.id = {_wm->getId(),_genomeId};
-            if(EvolvabilityGRNandOdNEATSharedData::gDoMeasureDiv)
+            if(SocialBehaviorANNSharedData::gDoMeasureDiv)
             {
                 offspring.behavior = computeFunctionalControllerBehavior(offspring);
             }
-            offspring.id.gene_id++;
-            //update in previous generation
-            EvolvabilityGRNandOdNEATWorldObserver* wObs = dynamic_cast<EvolvabilityGRNandOdNEATWorldObserver*>(gWorld->getWorldObserver());
-            //std::map<GCIndividual,Stats > previousStats = (*(wObs->getOffspringStats().end()-1));
-
-            //(*(wObs->getOffspringStats().end()-1))[_previousMother].incrementOffspring(); //numberOffspring++;
-
-            //std::cout << gWorld->getIterations() << ":" << (*(wObs->getOffspringStats().end()-1))[_previousMother].numberOffspring << std::endl;
-
-            //Not yet implemented for father
-            //if(_previousFather.robot_id != -1)
-            //
+        offspring.id.gene_id++;
         }
         else
         {
@@ -1054,7 +1037,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         //TODO destroy previous grn
         _g =  offspring;
         _g.id.robot_id = _wm->getId();
-        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        if(SocialBehaviorANNSharedData::gControllerType == 0)
         {
             gProperties.checkAndGetPropertyValue("gModifRate",&_g.grn.config.MODIF_RATE,true);
             gProperties.checkAndGetPropertyValue("gAddRate",&_g.grn.config.ADD_RATE,true);
@@ -1065,12 +1048,12 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             v.push_back(i.first);
         for(int i=0; i< _genomesList.size();i++)
         {
-            if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+            if(SocialBehaviorANNSharedData::gControllerType == 0)
             {
                 //delete _genomesList[v[i]].grn;
 
             }
-            else if (EvolvabilityGRNandOdNEATSharedData::gControllerType ==1)
+            else if (SocialBehaviorANNSharedData::gControllerType ==1)
             {
                 //delete _genomesList[v[i]].nnGenome;
                 //delete _genomesList[v[i]].nn;
@@ -1087,7 +1070,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         //_fitness = 0.0;
     }
 
-GenomeData EvolvabilityGRNandOdNEATController::selectTournament(double sp)
+GenomeData SocialBehaviorANNController::selectTournament(double sp)
 {
     /* size of the tournament */
     int size = _genomesList.size();
@@ -1105,13 +1088,13 @@ GenomeData EvolvabilityGRNandOdNEATController::selectTournament(double sp)
     /*
     std::cout << best_g.robot_id << "-"
               << best_g.gene_id << ": "
-              << _genomesList[v[0]].getFitness()* EvolvabilityGRNandOdNEATSharedData::gEvaluationTime
+              << _genomesList[v[0]].getFitness()* SocialBehaviorANNSharedData::gEvaluationTime
               << std::endl;
     */
     for (int i=1 ; i<inspected; i++)
     {
         double f  = _genomesList[v[i]].getFitness();        
-        //std::cout << v[i].robot_id << "-" << v[i].gene_id << ": " << f* EvolvabilityGRNandOdNEATSharedData::gEvaluationTime << std::endl;
+        //std::cout << v[i].robot_id << "-" << v[i].gene_id << ": " << f* SocialBehaviorANNSharedData::gEvaluationTime << std::endl;
 
         if(f > max_fit)
         {
@@ -1121,7 +1104,7 @@ GenomeData EvolvabilityGRNandOdNEATController::selectTournament(double sp)
     }
     return _genomesList[best_g];
 }
-double EvolvabilityGRNandOdNEATController::computeBehavDistance(std::vector< std::vector<double> > b1,std::vector< std::vector<double> > b2)
+double SocialBehaviorANNController::computeBehavDistance(std::vector< std::vector<double> > b1,std::vector< std::vector<double> > b2)
 {
     double result = 0.0;
 
@@ -1138,7 +1121,7 @@ double EvolvabilityGRNandOdNEATController::computeBehavDistance(std::vector< std
     result =  result / b1.size();
     return result;
 }
-double EvolvabilityGRNandOdNEATController::computeIntraRobotDiversity()
+double SocialBehaviorANNController::computeIntraRobotDiversity()
 {
     double result = 0.0;
     //TODO tocheck
@@ -1155,7 +1138,7 @@ double EvolvabilityGRNandOdNEATController::computeIntraRobotDiversity()
     return result/(_genomesList.size() * _genomesList.size() - 2);
 }
 
-double EvolvabilityGRNandOdNEATController::computeCurrentVSLocalPopDiversity()
+double SocialBehaviorANNController::computeCurrentVSLocalPopDiversity()
 {
     double result = 0.0;
     //TODO tocheck. todo getbehavior
@@ -1165,37 +1148,37 @@ double EvolvabilityGRNandOdNEATController::computeCurrentVSLocalPopDiversity()
     }
     return result/_genomesList.size();
 }
-std::vector<std::vector<double> > EvolvabilityGRNandOdNEATController::computeFunctionalControllerBehavior(GenomeData g) //std::vector<double> g
+std::vector<std::vector<double> > SocialBehaviorANNController::computeFunctionalControllerBehavior(GenomeData g) //std::vector<double> g
 {
     std::vector<double> outputs;
     std::vector<double> inputs;
     std::vector<std::vector<double> > result;
     //TODO maybe copy and recreate????
-    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    if(SocialBehaviorANNSharedData::gControllerType == 0)
     {
 
     }
-    else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    else if (SocialBehaviorANNSharedData::gControllerType == 1)
     {
 
     }
     else
     {
         //default
-        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<EvolvabilityGRNandOdNEATSharedData::gControllerType << std::endl;
+        std::cerr << "[ERROR] Wrong type of controller (not 0 or 1), but: " <<SocialBehaviorANNSharedData::gControllerType << std::endl;
         exit(-1);
 
     }
-    for(int i=0; i < EvolvabilityGRNandOdNEATSharedData::gNbInputsBehavior; i++)
+    for(int i=0; i < SocialBehaviorANNSharedData::gNbInputsBehavior; i++)
     {
-        inputs = EvolvabilityGRNandOdNEATSharedData::gInputsBehavior[i];
-        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        inputs = SocialBehaviorANNSharedData::gInputsBehavior[i];
+        if(SocialBehaviorANNSharedData::gControllerType == 0)
         {
             setInputs(_g.grn, inputs);
             _g.grn.step();
             outputs = getOutputs(_g.grn);
         }
-        else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        else if (SocialBehaviorANNSharedData::gControllerType == 1)
         {
             _g.nn->load_sensors (&(inputs[0]));
             if (!(_g.nn->activate ()))
@@ -1216,7 +1199,7 @@ std::vector<std::vector<double> > EvolvabilityGRNandOdNEATController::computeFun
     //delete neuralNet;
     return result;
 }
-std::vector<std::vector<double> > EvolvabilityGRNandOdNEATController::getBehavior(GCIndividual id)
+std::vector<std::vector<double> > SocialBehaviorANNController::getBehavior(GCIndividual id)
 {
     std::vector<std::vector<double> > result;
     result = _genomesList[id].behavior; //_behaviorsList[id];
