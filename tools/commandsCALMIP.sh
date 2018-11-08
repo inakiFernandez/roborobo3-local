@@ -3,7 +3,7 @@
 #SBATCH --job-name=test_emb_arr
 #SBATCH --output=res_emb_arr.txt
 #
-#SBATCH -c 32
+#SBATCH -c 10
 #SBATCH -N 1
 #SBATCH -n 1
 #SBATCH --ntasks=1
