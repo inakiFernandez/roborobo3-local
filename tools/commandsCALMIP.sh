@@ -6,7 +6,7 @@
 #SBATCH -N 1
 #SBATCH -n 128
 #SBATCH --ntasks=1
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=1
 #SBATCH --ntasks-per-core=1
 #SBATCH --time=00:03:00
 #SBATCH --mail-user=fernandezperez.inaki@gmail.com
