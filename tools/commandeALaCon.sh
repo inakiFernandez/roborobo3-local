@@ -1,3 +1,28 @@
-#!/bin/bash
-
-echo "File $1"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
+echo "File 1"  >> fileTest.txt
+echo "File 2"  >> fileTest.txt
+echo "File 3"  >> fileTest.txt
+echo "File 4"  >> fileTest.txt
