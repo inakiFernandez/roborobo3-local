@@ -10,5 +10,6 @@
 #SBATCH --mail-type=ALL
 
 
-parallel -j80 -a ./commandeALaCon.sh $SLURM_JOB_ID
+parallel -j80 -a ./commandeALaCon.sh
+#$SLURM_JOB_ID
 
