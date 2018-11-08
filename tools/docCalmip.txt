@@ -2,3 +2,6 @@
 #sbatch commandsCALMIP.cmd
 #module avail
 #/tmpdir/cussat/inaki to move temporal result logs
+module load intel/14.0.2.144
+module load gcc/7.2.0
+source ~/.bashrc
