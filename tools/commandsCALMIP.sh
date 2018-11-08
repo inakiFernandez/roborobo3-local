@@ -9,6 +9,6 @@
 #SBATCH --mail-type=ALL
 
 
-parallel -j80 -a ./config/evolvability.properties.parallel
+parallel -j100 -a ./config/evolvability.properties.parallel
 #$SLURM_JOB_ID
 
