@@ -10,5 +10,5 @@
 #SBATCH --mail-type=ALL
 
 
-parallel -j80 ./commandeALaCon.sh $SLURM_ARRAY_TASK_ID
+parallel -j80 -a ./commandeALaCon.sh $SLURM_JOB_ID
 
