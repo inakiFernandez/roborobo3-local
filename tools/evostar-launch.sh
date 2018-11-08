@@ -73,6 +73,8 @@ echo $line | perl -p -e  's/^.*? //' | sed -e 's/ /\n/g' >> $outbasename-$suffix
 
     for (( j=1; j<=$nbRuns; j++))
     do
+	cp $outbasename-$suffix.properties $outbasename-$suffix-run$j.properties
+	echo "gExpName=$outlogbasename/$suffix/run$j" >> $outbasename-$suffix-run$j.properties
 	echo "$program $outbasename-$suffix.properties > $outlogbasename/$suffix/run-$j.log" >> $commandFile    
     done
 

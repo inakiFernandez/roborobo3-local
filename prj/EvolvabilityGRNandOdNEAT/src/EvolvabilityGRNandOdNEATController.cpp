@@ -672,6 +672,7 @@ bool EvolvabilityGRNandOdNEATController::storeGenome(GenomeData g) //(GRN<RealC>
     //TODO filter on receive. maybe based on behavioral distance
     std::map< GCIndividual , GenomeData >::iterator it = _genomesList.find(g.id);
     bool stored = false;
+    //std::cout << g.id.robot_id << "," << g.id.gene_id << std::endl;
     if(_genomesList.end() != it)
     {
         _genomesList[g.id].fitness = g.fitness;
@@ -977,6 +978,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         else
         {
             offspring = parent1;
+            _previousMother = parent1.id;
         }
         if ( (double)rand()/RAND_MAX < EvolvabilityGRNandOdNEATSharedData::gMutateProb)
         {
@@ -1027,7 +1029,7 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
             }
             offspring.id.gene_id++;
             //update in previous generation
-            EvolvabilityGRNandOdNEATWorldObserver* wObs = dynamic_cast<EvolvabilityGRNandOdNEATWorldObserver*>(gWorld->getWorldObserver());
+            //EvolvabilityGRNandOdNEATWorldObserver* wObs = dynamic_cast<EvolvabilityGRNandOdNEATWorldObserver*>(gWorld->getWorldObserver());
             //std::map<GCIndividual,Stats > previousStats = (*(wObs->getOffspringStats().end()-1));
 
             //(*(wObs->getOffspringStats().end()-1))[_previousMother].incrementOffspring(); //numberOffspring++;
@@ -1040,6 +1042,9 @@ void EvolvabilityGRNandOdNEATController::loadNewGenome()
         }
         else
         {
+            //keep an eye on this id increment when not modifying the genome
+            //it's still the same genome
+            offspring.id.gene_id++;
             //offspring = _g;
             _genomesList.erase(_genomesList.find(_g.id));
             offspring.fitness = 0.0;

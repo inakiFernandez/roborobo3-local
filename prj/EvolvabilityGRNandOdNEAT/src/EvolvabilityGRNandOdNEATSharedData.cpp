@@ -62,7 +62,7 @@ int EvolvabilityGRNandOdNEATSharedData::gMaturationTime = 5;
 
 bool EvolvabilityGRNandOdNEATSharedData::gIsCentralized;
 
-
+std::string EvolvabilityGRNandOdNEATSharedData::gExpName;
 int EvolvabilityGRNandOdNEATSharedData::freqMeasureBehav = 25;
 int EvolvabilityGRNandOdNEATSharedData::gNbInputsBehavior = 50;
 std::vector<std::vector<double> > EvolvabilityGRNandOdNEATSharedData::gInputsBehavior; // = std::vector<std::vector<double> >() ;

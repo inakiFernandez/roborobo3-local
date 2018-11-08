@@ -75,6 +75,8 @@ public:
 
     static int freqMeasureBehav;
 
+    static std::string gExpName;
+
     static int gNbInputsBehavior;
     static std::vector<std::vector<double> > gInputsBehavior;
     static void initInputsBehavior(int n,int in);

@@ -58,7 +58,8 @@ EvolvabilityGRNandOdNEATWorldObserver::EvolvabilityGRNandOdNEATWorldObserver( Wo
     gProperties.checkAndGetPropertyValue("gCommunicationOnRadius",&EvolvabilityGRNandOdNEATSharedData::gCommunicationOnRadius,true);
 
     gProperties.checkAndGetPropertyValue("gMatingOperator",&EvolvabilityGRNandOdNEATSharedData::gMatingOperator,true);
-    gProperties.checkAndGetPropertyValue("gBroadcastTime",&EvolvabilityGRNandOdNEATSharedData::gBroadcastTime,true);    
+    gProperties.checkAndGetPropertyValue("gBroadcastTime",&EvolvabilityGRNandOdNEATSharedData::gBroadcastTime,true);
+    gProperties.checkAndGetPropertyValue("gExpName",&EvolvabilityGRNandOdNEATSharedData::gExpName,true);
 
     gProperties.checkAndGetPropertyValue("mutate_link_weights_prob",&Helper::mutateLinkWeightsProb,true);
     gProperties.checkAndGetPropertyValue("mutate_add_node_prob",&Helper::mutateAddNodeProb,true);
@@ -143,7 +144,7 @@ void EvolvabilityGRNandOdNEATWorldObserver::step()
     if (gWorld->getIterations() == (gMaxIt - 1))
     {
         std::ofstream log_file( //todo log in experiment folder
-                "logOffspring.txt", std::ios_base::out | std::ios_base::app );
+                EvolvabilityGRNandOdNEATSharedData::gExpName + "/logOffspring.txt", std::ios_base::out | std::ios_base::app );
         int countGeneration = 0;
         for(auto it = _offspringStats.begin(); it != _offspringStats.end();it++)
         {
@@ -268,10 +269,11 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
             break;
         }
     }
-    //Space-separated values on stdout:
-    // Timestep AvgFitness LocalPopAvgFitnessAveragedOverRobots
-    // GlobalDiversity AvgCollectedItems AvgCollisions AvgGatheredGenomes
-    // AverageCoveredDistances AvgNumberOfComputingUnits
+    //Space-separated values on stdout: \
+    // Timestep AvgFitness LocalPopAvgFitnessAveragedOverRobots \
+    // GlobalDiversity AvgCollectedItems AvgCollisions AvgGatheredGenomes \
+    // AverageCoveredDistances AvgNumberOfComputingUnits \
+
     std::cout << gWorld->getIterations() << " ";
     //<< (sumFitness  / gNumberOfRobots) / EvolvabilityGRNandOdNEATSharedData::gEvaluationTime
 
@@ -369,6 +371,7 @@ std::map<GCIndividual,Stats> EvolvabilityGRNandOdNEATWorldObserver::computeNbOff
         //if not the first generation
         if(gWorld->getIterations()> EvolvabilityGRNandOdNEATSharedData::gEvaluationTime)
         {
+            //std::cout << c1->getPreviousMother().robot_id << ", " << c1->getPreviousMother().gene_id << std::endl;
             this->_offspringStats.back()[c1->getPreviousMother()].incrementOffspring(); ;
            // std::cout << gWorld->getIterations() << ":" << this->getOffspringStats().back()[c1->getPreviousMother()].numberOffspring << std::endl;
         }
