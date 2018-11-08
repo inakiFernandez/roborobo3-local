@@ -3,7 +3,7 @@
 #SBATCH --job-name=test_emb_arr
 #SBATCH --output=res_emb_arr.txt
 #
-#SBATCH -N 4
+#SBATCH -N 1
 #SBATCH -n 128
 #SBATCH --ntasks=1
 #SBATCH --ntasks-per-node=32
