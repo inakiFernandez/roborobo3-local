@@ -143,8 +143,9 @@ void EvolvabilityGRNandOdNEATWorldObserver::step()
     updateMonitoring();
     if (gWorld->getIterations() == (gMaxIt - 1))
     {
+        //std::cout << EvolvabilityGRNandOdNEATSharedData::gExpName << "/logOffspring.txt" << std::endl;
         std::ofstream log_file( //todo log in experiment folder
-                EvolvabilityGRNandOdNEATSharedData::gExpName + "/logOffspring.txt", std::ios_base::out | std::ios_base::app );
+                EvolvabilityGRNandOdNEATSharedData::gExpName + "-logOffspring.txt", std::ios_base::out | std::ios_base::app );
         int countGeneration = 0;
         for(auto it = _offspringStats.begin(); it != _offspringStats.end();it++)
         {
