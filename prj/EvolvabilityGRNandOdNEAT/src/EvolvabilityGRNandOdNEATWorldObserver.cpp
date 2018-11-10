@@ -150,12 +150,12 @@ void EvolvabilityGRNandOdNEATWorldObserver::step()
         int countGeneration = 0;
         for(auto it = _offspringStats.begin(); it != _offspringStats.end();it++)
         {
-            log_file << "Generation Starts\n" << countGeneration++ << std::endl;
+            log_file << "Start " << countGeneration++ << std::endl;
             for(auto it2 = (*it).begin(); it2 != (*it).end(); it2++ )
             {
                 log_file <<  (*it2).second.toString()<< std::endl;
             }
-            log_file <<  "Generation Ends\n\n\n\n\n\n\n\n" << std::endl;
+            log_file <<  "End" << std::endl;
         }
     }
 
@@ -299,7 +299,7 @@ void EvolvabilityGRNandOdNEATWorldObserver::monitorPopulation( bool localVerbose
                  //  " " << fullLaps <<
               //   " " << towardDoor0 <<
               //   " " << towardDoor1
-    << "       "
+    << " "
     << distance / gNumberOfRobots
     << " "
     << nbUnits / gNumberOfRobots //nb neurones ou proteines (répartition des tailles de réseau par quartiles de fitness)
