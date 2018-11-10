@@ -354,11 +354,12 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
        //inputs = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
        //         0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
        //(*inputs)[inputToUse++] = 1.0;
+       inputs.push_back(1.0);
    }
    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
    {
-      inputs.push_back(1.0);
-      inputToUse++;
+      //inputs.push_back(1.0);
+      //inputToUse++;
    }
 
    //
@@ -425,26 +426,37 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         exit(-1);
     }
 
-    double lw, rw;
+    double lw = -1, rw = -1;
     //std::cout << outputs[0] << ", " << outputs[1] << std::endl;
     if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
     {
         //TODO sigmoid instead of capping
-        lw = outputs[0] * 2 - 1;
-        if(lw < -0.25)
+        lw = outputs[0]; // * 2 - 1;// ((outputs[0] * 2 - 1) - (outputs[1] * 2 - 1))/2;//
+
+        double threshold = 1.0; //0.25;
+        if(lw < -threshold)
             lw = -1;
-        if(lw > 0.25)
+        if(lw > threshold)
             lw = 1;
-        rw = outputs[1] * 2 - 1;
-        if(rw < -0.25)
+        rw = outputs[1]; // * 2 - 1; //((outputs[2] * 2 - 1) - (outputs[3] * 2 - 1))/2;
+        if(rw < -threshold)
             rw = -1;
-        if(rw > 0.25)
+        if(rw > threshold)
             rw = 1;
+        //std::cout << outputs[0] << ",   " << outputs[1] << std::endl;
+        //std::cout << lw << ",   " << rw << std::endl<< std::endl<< std::endl;
+
     }
     else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
         lw = outputs[0];
         rw = outputs[1];
+    }
+    else
+    {
+        // default: no controller
+         std::cerr << "[ERROR] gController type unknown (value: " << EvolvabilityGRNandOdNEATSharedData::gControllerType << ").\n";
+        exit(-1);
     }
 
     //std::cout << lw << ", " << rw << std::endl;
@@ -458,8 +470,8 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     //TODO add noise to outputs
 
     // normalize to motor interval values
-    _wm->_desiredTranslationalValue = _wm->_desiredTranslationalValue * gMaxTranslationalSpeed;
-    _wm->_desiredRotationalVelocity = _wm->_desiredRotationalVelocity * gMaxRotationalSpeed;
+    _wm->_desiredTranslationalValue = _wm->_desiredTranslationalValue * gMaxTranslationalSpeed + ((double)rand() / RAND_MAX) * gMaxTranslationalSpeed * 0.1;
+    _wm->_desiredRotationalVelocity = _wm->_desiredRotationalVelocity * gMaxRotationalSpeed + ((double)rand() / RAND_MAX) * gMaxRotationalSpeed * 0.1;
     
     //delete (inputs);
 }
@@ -480,17 +492,10 @@ std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
     //         << ", RW+ :" << std::to_string(g.getOutputConcentration("RW+")) << ", RW- :" << std::to_string(g.getOutputConcentration("LW-")) << std::endl;
     std::vector<double> result;
 
-    //******************************************************************************************************************************
-    //result.push_back(g.getOutputConcentration("LW"));
-    //result.push_back(g.getOutputConcentration("RW"));
-    //return result;
-    //******************************************************************************************************************************
 
-    /*
     //differential wheel coding
     double sumL = (g.getOutputConcentration("LW+") + g.getOutputConcentration("LW-"));
     double diffL = (g.getOutputConcentration("LW+") - g.getOutputConcentration("LW-"));
-
 
     if(sumL != 0)
         result.push_back( diffL / sumL  );
@@ -510,10 +515,10 @@ std::vector<double> EvolvabilityGRNandOdNEATController::getOutputs(GRN<RealC> g)
             result.push_back(1.0);
         else
             result.push_back(-1.0);
-    */
+
     //direct wheel coding
-    result.push_back(g.getOutputConcentration("LW"));
-    result.push_back(g.getOutputConcentration("RW"));
+    //result.push_back(g.getOutputConcentration("LW"));
+    //result.push_back(g.getOutputConcentration("RW"));
     return result;
 }
 
@@ -545,15 +550,15 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
                     _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "I" + std::to_string(i));
             }
             // left wheel direct coding
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW");
             // left wheel differential coding
-            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW+");
-            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW-");
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW+");
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "LW-");
             //right wheel direct coding
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW");
             // right wheel differential coding
-            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW+");
-            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW-");
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW+");
+            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::output, "RW-");
 
 
             _g.grn.randomReguls(EvolvabilityGRNandOdNEATSharedData::gNbRegulatory);
@@ -639,6 +644,8 @@ bool EvolvabilityGRNandOdNEATController::doBroadcast()
         else
             return false;
     }
+    else
+        return false;
 }
 double EvolvabilityGRNandOdNEATController::getBroadcastRate()
 {
@@ -802,18 +809,18 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
 
     _nbOutputs = 2;
 
-    /*
+
     _outputNames.push_back("LW+");
-    _outputNames.push_back("RW-");
     _outputNames.push_back("LW-");
     _outputNames.push_back("RW+");
-    */
-    _outputNames.push_back("LW");
-    _outputNames.push_back("RW");
+    _outputNames.push_back("RW-");
+
+    //_outputNames.push_back("LW");
+    //_outputNames.push_back("RW");
+
     if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
     {
         _nbRegulatory = EvolvabilityGRNandOdNEATSharedData::gNbRegulatory;
-        //createGRN(); //updateSignature and warmup called inside
     }
     else if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
@@ -838,9 +845,8 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
 
 void EvolvabilityGRNandOdNEATController::broadcastGenome()
 {
-    //TODO communication through distance matrix (in WorldObserver)
-    //TODO communication mating
-
+    //NOT HERE communication through distance matrix (in WorldObserver)
+    //HERE copy and broadcast through either radius or contact sensors
     if(EvolvabilityGRNandOdNEATSharedData::gCommunicationOnRadius)
     {
         std::vector<std::vector<double> > distanceMatrix = (dynamic_cast<EvolvabilityGRNandOdNEATWorldObserver*>(gWorld->getWorldObserver()))->getRobotDistances();

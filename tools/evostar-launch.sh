@@ -25,7 +25,7 @@ taskTimeChange='0,-1'
 
 ctrlSetup='1 2 3' #'3'
 ctrlSetup='5 6' 
-ctrlSetup='0 1' 
+ctrlSetup='0' 
 
 #evotop='3 0' #3=evotopo, 0,1,2= fixed topo (MLP, Elman, Perceptron)
 #evotop='3'
@@ -37,10 +37,14 @@ sigma='0.5'
 selpres='0.0 0.25 0.5 0.75 1.0'
 selpres='1.0'
 
-multisynapses='false true'
-#multisynapses='false'
+nbRegulatory='0'
+addRate='0 0.25'
+deleteRate='0.25'
 
-listProp=`parallel --header : echo R{1}.T{2}.S{3}.C{4}.SP{5} gInitialNumberOfRobots={f1} gTaskSeq={f2} gSigmaRef={f3} gControllerType={f4} gSelPressure={f5} ::: f1 $nbRob ::: f2 $taskSeq ::: f3  $sigma ::: f4 $ctrlSetup :::  f5 $selpres`
+multisynapses='false true'
+multisynapses='false'
+
+listProp=`parallel --header : echo R{1}.S{2}.C{3}.SP{4}.nbreg{5}.add{6}.del{7} gInitialNumberOfRobots={f1} gSigmaRef={f2} gControllerType={f3} gSelPressure={f4} gNbRegulatory={f5} gAddRate={f6} gDelRate={f7}  ::: f1 $nbRob ::: f2  $sigma ::: f3 $ctrlSetup :::  f4 $selpres ::: f5 $nbRegulatory ::: f6 $addRate ::: f7 $delRate`
 
 #listProp=`parallel --header : echo R{1}.T{2}.Top{6}.B{3}.S{4}.SP{7}.Time{5}.M{8} gInitialNumberOfRobots={f1} gTaskSeq={f2} gBrait={f3} gSigmaRef={f4} gTimeChange={f5} gControllerType={f6} gSelPressure={f7} allowMultisynapses={f8} ::: f1 $nbRob ::: f2 $taskSeq ::: f3 $ctrlSetup ::: f4 $sigma ::: f5 $taskTimeChange ::: f6 $evotop ::: f7 $selpres ::: f8 $multisynapses`
 
