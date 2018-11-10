@@ -260,8 +260,10 @@ template <typename Implem> class GRN {
 			}
 		} else if (diceRoll < (config.MODIF_RATE + config.ADD_RATE) / dTot) {
 			// we add a new regulatory protein
-			ostringstream name;
+            ostringstream name;
 			name << "r" << getProteinSize(ProteinType::regul);
+            std::cout <<  name.str() << std::endl;
+
             addProtein(ProteinType::regul, name.str(), Protein());
 		} else {
 			// we delete one regulatory protein
