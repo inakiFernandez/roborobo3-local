@@ -12,7 +12,7 @@ outlogbasename=$3
 nbRuns=$4
 
 nbRob='50 100 200 300 400'
-nbRob='50 100'
+nbRob='25 50 100 200'
 
 taskSeq='1,-1 2,-1'
 taskSeq='2,-1'
@@ -44,7 +44,7 @@ deleteRate='0.25'
 multisynapses='false true'
 multisynapses='false'
 
-listProp=`parallel --header : echo R{1}.S{2}.C{3}.SP{4}.nbreg{5}.add{6}.del{7} gInitialNumberOfRobots={f1} gSigmaRef={f2} gControllerType={f3} gSelPressure={f4} gNbRegulatory={f5} gAddRate={f6} gDelRate={f7}  ::: f1 $nbRob ::: f2  $sigma ::: f3 $ctrlSetup :::  f4 $selpres ::: f5 $nbRegulatory ::: f6 $addRate ::: f7 $delRate`
+listProp=`parallel --header : echo R{1}.S{2}.C{3}.SP{4}.nbreg{5}.add{6}.del{7} gInitialNumberOfRobots={f1} gSigmaRef={f2} gControllerType={f3} gSelPressure={f4} gNbRegulatory={f5} gAddRate={f6} gDeleteRate={f7}  ::: f1 $nbRob ::: f2  $sigma ::: f3 $ctrlSetup :::  f4 $selpres ::: f5 $nbRegulatory ::: f6 $addRate ::: f7 $deleteRate`
 
 #listProp=`parallel --header : echo R{1}.T{2}.Top{6}.B{3}.S{4}.SP{7}.Time{5}.M{8} gInitialNumberOfRobots={f1} gTaskSeq={f2} gBrait={f3} gSigmaRef={f4} gTimeChange={f5} gControllerType={f6} gSelPressure={f7} allowMultisynapses={f8} ::: f1 $nbRob ::: f2 $taskSeq ::: f3 $ctrlSetup ::: f4 $sigma ::: f5 $taskTimeChange ::: f6 $evotop ::: f7 $selpres ::: f8 $multisynapses`
 
