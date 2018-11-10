@@ -88,7 +88,7 @@ exit
 
 #./tools/template-launchMultiple.sh config/tColl2/template-medea config/tColl2/medea-colors logs/expColors 30
 
-
+#ATTENTION to offspring genome logs!!
 #for i in * ; do paste $i/*.log > $i.all.log; done
 
 #for i in */ ; do paste $i/*.log.1 > $i/all.log.1; done
@@ -97,7 +97,7 @@ exit
 
 
 #for i in *.log ; do head -n -6 $i > tmp ; rm $i ; mv tmp $i ; done ;
-#for i in * ; do for j in $i/*.log ; do head -n -6 $j > tmp ; rm $j ; mv tmp $j ; done ; done ; for i in * ; do for j in $i/*.log ; do tail -n +20 $j > tmp ; rm $j ; mv tmp $j ; done ; done ;  for i in */ ; do for j in $i/*.log ; do ../../../cutIntoColumnFiles.sh $j ;  done ; done ; 
+#for i in * ; do for j in $i/*.log ; do head -n -6 $j > tmp ; rm $j ; mv tmp $j ; done ; done ; for i in * ; do for j in $i/*.log ; do tail -n +20 $j > tmp ; rm $j ; mv tmp $j ; done ; done ;  for i in */ ; do for j in $i/*.log ; do ../tools/cutIntoColumnFiles.sh $j ;  done ; done ; 
 
 #scp -rf -P 3003 cecyle.irit.fr:~/roborobo3/logs/collect2_with_positions_*/ .
 

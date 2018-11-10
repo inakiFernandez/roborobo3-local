@@ -32,9 +32,9 @@ def perc(data_l):
     perc_75 = np.zeros(data.shape[0])
     
     for i in range(0, len(median)):
-        median[i] = np.median(data[i, :])
-        perc_25[i] = np.percentile(data[i, :], 75)
-        perc_75[i] = np.percentile(data[i, :], 25)
+        median[i] = np.median(data[i])
+        perc_25[i] = np.percentile(data[i], 75)
+        perc_75[i] = np.percentile(data[i], 25)
         #perc_25[i] = np.percentile(data[i, :], 5)
         #perc_75[i] = np.percentile(data[i, :], 95)
     return median, perc_25, perc_75
@@ -42,7 +42,7 @@ def perc(data_l):
 
 def plot_mean_curve(data, color, axis, label):
     mean = np.mean(data, 1)
-    axis.plot(mean, lw=8, label=label, color=color)
+    axis.plot(mean, lw=4, label=label, color=color)
     
     axis.grid(axis='y', color="0.9", linestyle='-', linewidth=1)
     
@@ -67,9 +67,11 @@ def plot_one_curve(data, color, axis, label, quartiles=False):
     #if color[3] == 0.0:
     #    color = (color[0],color[1],color[2],0.1)
     if quartiles:
+        shadedColor = (color[0],color[1],color[2],color[3] * 0.5)
         axis.fill_between(np.arange(0, len(med)), perc_25, perc_75,
-                          alpha=0.25, linewidth=0, color=color)
-    lineWidth = 2
+                          #alpha=0.25, 
+                          linewidth=0, color=shadedColor)
+    lineWidth = 0.5
     handle = axis.plot(med, lw=lineWidth, label=label,               
               color=color,linestyle="-")
     gridcolor="#FFFFFF"    

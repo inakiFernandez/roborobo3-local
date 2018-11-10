@@ -148,7 +148,6 @@ EvolvabilityGRNandOdNEATController::EvolvabilityGRNandOdNEATController( RobotWor
     exit(-1);
     */
 
-
     _lifetime = -1;
     _nbGenomeTransmission = 0;
 
@@ -270,7 +269,7 @@ void EvolvabilityGRNandOdNEATController::step()
         break;
     }
     //if(gWorld->getRobot(_wm->getId())->isCollision())
-    if(coef_obstacle < 0.1) //Collision
+    if(coef_obstacle < 0.05) //Collision
     {
         _g.nbCollisions +=1; //-= 0.001;
     }
@@ -301,7 +300,8 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         if ( ! PhysicalObject::isInstanceOf(objectId) )
         {
             //(*inputs)[inputToUse] = 1.0 - _wm->getDistanceValueFromCameraSensor(i) / _wm->getCameraSensorMaximumDistanceValue(i);
-            inputs.push_back(1.0 - _wm->getDistanceValueFromCameraSensor(i) / _wm->getCameraSensorMaximumDistanceValue(i));
+            inputs.push_back(1.0 -
+                             _wm->getDistanceValueFromCameraSensor(i) / _wm->getCameraSensorMaximumDistanceValue(i));
             inputToUse++;
         }
         else
@@ -348,8 +348,21 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
         }
    }
    //Bias
-   //(*inputs)[inputToUse++] = 1.0;
-    inputs.push_back(1.0);
+   if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+   {
+
+       //inputs = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+       //         0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+       //(*inputs)[inputToUse++] = 1.0;
+   }
+   if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+   {
+      inputs.push_back(1.0);
+      inputToUse++;
+   }
+
+   //
+
 
     // floor sensor
     //(*inputs)[inputToUse++] = (double)_wm->getGroundSensor_redValue()/255.0;
@@ -379,16 +392,13 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
     {
         setInputs(_g.grn,inputs);
-
         _g.grn.step();
-
         outputs = getOutputs(_g.grn);
-
     }
     else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
+        inputs.push_back(1.0);
         //std::cout << "step" << std::endl;
-
         _g.nn->load_sensors (&((inputs)[0]));
         //std::cout << "step2" << std::endl;
 
@@ -419,8 +429,17 @@ void EvolvabilityGRNandOdNEATController::stepBehaviour()
     //std::cout << outputs[0] << ", " << outputs[1] << std::endl;
     if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
     {
+        //TODO sigmoid instead of capping
         lw = outputs[0] * 2 - 1;
+        if(lw < -0.25)
+            lw = -1;
+        if(lw > 0.25)
+            lw = 1;
         rw = outputs[1] * 2 - 1;
+        if(rw < -0.25)
+            rw = -1;
+        if(rw > 0.25)
+            rw = 1;
     }
     else if (EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
     {
@@ -517,7 +536,7 @@ void EvolvabilityGRNandOdNEATController::createController() //GRN()
             //_nbInputs, _nbOutputs
 
 
-            _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "Bias");
+            //_g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "Bias");
             for (int i = 0; i < _wm->_cameraSensorsNb; ++i)
             {
                 _g.grn.addRandomProtein(GRN<RealC>::ProteinType_t::input, "S" + std::to_string(i));
@@ -770,8 +789,16 @@ void EvolvabilityGRNandOdNEATController::resetRobot()
     //Energy
     //_nbInputs += 1;
     //Bias
-    _inputNames.push_back("Bias");
-    _nbInputs += 1;
+    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+    {
+        //_inputNames.push_back("Bias");
+        //_nbInputs += 1;
+    }
+    if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+    {
+        _inputNames.push_back("Bias");
+        _nbInputs += 1;
+    }
 
     _nbOutputs = 2;
 
@@ -1194,6 +1221,7 @@ std::vector<std::vector<double> > EvolvabilityGRNandOdNEATController::computeFun
     for(int i=0; i < EvolvabilityGRNandOdNEATSharedData::gNbInputsBehavior; i++)
     {
         inputs = EvolvabilityGRNandOdNEATSharedData::gInputsBehavior[i];
+
         if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
         {
             setInputs(_g.grn, inputs);

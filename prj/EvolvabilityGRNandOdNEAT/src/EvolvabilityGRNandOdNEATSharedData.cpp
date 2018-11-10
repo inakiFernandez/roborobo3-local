@@ -80,7 +80,14 @@ void EvolvabilityGRNandOdNEATSharedData::initInputsBehavior(int n,int in)
             float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
             inputs.push_back(r);
         }
-        inputs.push_back(1.0);
+        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 0)
+        {
+            //inputs.push_back(1.0);
+        }
+        if(EvolvabilityGRNandOdNEATSharedData::gControllerType == 1)
+        {
+            inputs.push_back(1.0);
+        }
         EvolvabilityGRNandOdNEATSharedData::gInputsBehavior.push_back(inputs);
     }
 }

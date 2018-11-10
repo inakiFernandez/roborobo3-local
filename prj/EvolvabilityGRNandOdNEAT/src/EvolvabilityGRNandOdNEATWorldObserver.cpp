@@ -79,21 +79,22 @@ EvolvabilityGRNandOdNEATWorldObserver::EvolvabilityGRNandOdNEATWorldObserver( Wo
     _generationItCount = -1;
     _generationCount = -1;
     int nbIn = -1;
-    switch (EvolvabilityGRNandOdNEATSharedData::gFitness) {
-    case 0:
-        nbIn = 8;
-        break;
-    case 1:
-        nbIn = 16;
-        break;
-    case 2:
-        nbIn = 16;
-        break;
-    default:
-        std::cerr << "[ERROR] Wrong or non implemented task" << std::endl;
-        exit(-1);
-        break;
-    }
+    switch (EvolvabilityGRNandOdNEATSharedData::gFitness)
+    {
+        case 0:
+            nbIn = 8;
+            break;
+        case 1:
+            nbIn = 16;
+            break;
+        case 2:
+            nbIn = 16;
+            break;
+        default:
+            std::cerr << "[ERROR] Wrong or non implemented task" << std::endl;
+            exit(-1);
+            break;
+        }
 EvolvabilityGRNandOdNEATSharedData::initInputsBehavior(EvolvabilityGRNandOdNEATSharedData::gNbInputsBehavior, nbIn);
 }
 

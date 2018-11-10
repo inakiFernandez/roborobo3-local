@@ -3,6 +3,8 @@
 Created on Mon Apr 10 10:25:48 2017
 
 @author: fernandi
+For evostar19
+
 """
 import matplotlib 
 matplotlib.use('svg')
@@ -18,17 +20,180 @@ import multirunFitness as plotRuns
 import scipy.stats as stats
 from matplotlib import gridspec
 
+def plotMultipleNov18(exp,filetag,numberOfRobots,selectionPressures,controllerTypes):
+    parser = argparse.ArgumentParser(description='To png or not')
+    parser.add_argument('outFolderName', help='Folder name out') 
+    parser.add_argument('--png', action='store_true', help='output to png file?')
+    args = parser.parse_args()
+    isToPng = args.png
+    outfolder = args.outFolderName  
+    dpi = 100
+
+    filesL1Subdiv = {50:{0.0:'R50.T1.S0.5.C0.SP0.0', 
+                         0.25:'R50.T1.S0.5.C0.SP0.25',
+                         0.5:'R50.T1.S0.5.C0.SP0.5', 
+                         0.75:'R50.T1.S0.5.C0.SP0.75', 
+                         1.0:'R50.T1.S0.5.C0.SP1.0'},
+               
+                   100:{0.0:'R100.T1.S0.5.C0.SP0.0', 
+                        0.25:'R100.T1.S0.5.C0.SP0.25', 
+                        0.5:'R100.T1.S0.5.C0.SP0.5',
+                        0.75:'R100.T1.S0.5.C0.SP0.75', 
+                        1.0:'R100.T1.S0.5.C0.SP1.0'}, 
+               
+                   200: {0.0:'R200.T1.S0.5.C0.SP0.0', 
+                         0.25:'R200.T1.S0.5.C0.SP0.25', 
+                         0.5:'R200.T1.S0.5.C0.SP0.5', 
+                         0.75:'R200.T1.S0.5.C0.SP0.75', 
+                         1.0:'R200.T1.S0.5.C0.SP1.0'}
+               }
+
+    filesSelected = [filesL1Subdiv[i][j] for i in numberOfRobots for j in selectionPressures]
+    print(filesSelected)
+    
+    dataFiles = [[[x.split('.')[0][1:],x.split('.')[4][1],
+                      (x.split('.')[5]+'.'+x.split('.')[6])[2:]],                     
+                     x+'/all.log.'+filetag] for x in filesSelected if ".png" not in x]
+    print(dataFiles)
+    labelFontSize = 14
+
+    figAll = plt.figure(1,figsize=[8,6])
+    gs = gridspec.GridSpec(1, 1, width_ratios=[1]) 
+    axisAll = plt.subplot(gs[0]) 
+    
+    dataAll = [] 
+    for i,fname in enumerate(dataFiles):
+        dataAll.append([tuple(fname[0]),plotRuns.read_logfile(outfolder  + fname[1])])
+    #print(fitnessAll)
+    
+    print(len(dataAll))
+    print(sorted(dataAll)) #.keys())
+    print(len(dataAll[0]))    
+    print(len(dataAll[0][0]))
+    bgcolor="white"
+    nColors = len(dataAll[0][1][0])
+    print("NB colors: ",nColors)    
+
+    colorArr = []
+    colorArrShaded = []
+    rawColors = {50:(0.0,0.0,1.0),100:(0.1,0.55,0.18),200:(1.0,0.0,0.0)} # (1.0,0.55,0.18)
+    print(sorted(rawColors.keys()))
+    usedRawColors = [rawColors[k] for k in sorted(rawColors.keys()) if k in numberOfRobots]        
+        
+    for i, nbR in enumerate(numberOfRobots):
+        for j in range(len(selectionPressures)):
+            colorArr += [usedRawColors[i] +tuple([1.0])]
+            colorArrShaded += [usedRawColors[i]+tuple([0.8 * selectionPressures[j] +0.1])]
+    
+    count=0
+    for i,v in enumerate(dataAll):
+        plotRuns.plot_one_curve(v[1], colorArrShaded[count], axisAll, v[0], True)
+        count = (count+ 1) % len(colorArr)
+    
+    axisAll.tick_params(axis='both', which='major', labelsize=labelFontSize-3)
+    legend = axisAll.legend(loc='lower right', shadow=True, #bbox_to_anchor=[0, 1],
+           ncol=5, fancybox=True) #, title="Legend")
+    frame = legend.get_frame()
+    frame.set_facecolor('0.90')
+    
+    
+    for label in legend.get_texts():
+        label.set_fontsize(5)
+    for label in legend.get_lines():
+        label.set_linewidth(0.6)  # the legend line width
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.95)    
+    if isToPng:        
+        print(exp+" saved to ", outfolder)
+        time.sleep(2)
+        figAll.savefig(outfolder+ "/"+ exp + "All"
+                       + "-R" + "-".join([str(x) for x in numberOfRobots]) 
+                       + "-SP" + "-".join([str(x) for x in selectionPressures])
+                       + "-C" + "-".join([str(x) for x in controllerTypes])
+                       + ".png"  , dpi=dpi*3)        
+        plt.close(figAll)
+    
 if __name__ == '__main__':
+    
+    #cheating here
+    listExp = [[[50,100,200],[0,0.25,0.5,0.75,1.0]],
+               [[200],[0,0.25,0.5,0.75,1.0]],
+               [[100],[0,0.25,0.5,0.75,1.0]],
+               [[50],[0,0.25,0.5,0.75,1.0]],
+               [[50],[0,1.0]],
+               [[50],[0,0.25,0.5]],
+               [[50],[0,0.5,1.0]],
+               [[50],[0.25,0.5,0.75]],
+               [[100],[0,1.0]],
+               [[100],[0,0.25,0.5]],
+               [[100],[0,0.5,1.0]],
+               [[100],[0.25,0.5,0.75]],
+               [[200],[0,1.0]],
+               [[200],[0,0.25,0.5]],
+               [[200],[0,0.5,1.0]],
+               [[200],[0.25,0.5,0.75]],              
+               [[50,100,200],[0,1.0]],
+               [[50,100,200],[0,0.25,0.5]],
+               [[50,100,200],[0,0.5,1.0]],
+               [[50,100,200],[0.25,0.5,0.75]],
+               [[100,200],[0,1.0]],
+               [[100,200],[0,0.25,0.5]],
+               [[100,200],[0,0.5,1.0]],
+               [[100,200],[0.25,0.5,0.75]],
+               [[50,100],[0,1.0]],
+               [[50,100],[0,0.25,0.5]],
+               [[50,100],[0,0.5,1.0]],
+               [[50,100],[0.25,0.5,0.75]]]
+    nbOfRobots = [50,
+                  100,
+                  200
+                  ]
+    selPressures = [0,
+                    #0.25,
+                    #0.5,
+                    #0.75,
+                    1.0
+                    ]
+    cTypes = [0,
+              1
+              ]
+    
+    exp = "Fitness" # "Diversity" # "Genomes" # "Collisions" # "Distance" #
+    filetags = {"Fitness": '4', "Diversity" : '3', "Genomes" : 'genomes',  "Collisions": 'collisions'} #, "Distance" : 'distance' }
+    for e in listExp:
+        nbOfRobots = e[0]
+        selPressures = e[1]
+        for k in filetags.keys():      
+            exp = k
+            filetag = filetags[exp]
+            plotMultipleNov18(exp,filetag,nbOfRobots,selPressures,cTypes)
+    
+    
+    exit()    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     parser = argparse.ArgumentParser(description='To png or not')
     
     #parser.add_argument('itemsPerColorFile', help='input filename items per color')
     #parser.add_argument('itemsGatheredAndPossibleFile', help='input filename items gathered and possible')
     #parser.add_argument('numberChangesFile', help='input filename number of changes')
     #parser.add_argument('givenAverageReward', help='input filename average individual reward')
-    parser.add_argument('folderNameBest', help='Folder name (best)')    
-    parser.add_argument('folderNameRandom', help='Folder name (random)')    
-    parser.add_argument('outfileBest', help='output basename for png (best)')
-    parser.add_argument('outfileRandom', help='output basename for png (random)')
+    parser.add_argument('folderName', help='Folder name data') 
+    parser.add_argument('outFolderName', help='Folder name out') 
     #parser.add_argument('nbExp', type=int, help='Number of variants of the experiments')
     
     parser.add_argument('--png', action='store_true', help='output to png file?')
@@ -39,50 +204,248 @@ if __name__ == '__main__':
     isToPng = args.png
     #nbExp =  args.nbExp
         
-    outfileBest = args.outfileBest    
-    outfileRandom= args.outfileRandom    
+    outfolder = args.outFolderName  
+    folderData= args.folderName
+    #cheating here
+    numberOfRobots = [50,
+                      #100,
+                      #200
+                      ]
+    selectionPressures = [0,
+                          #0.25,
+                          #0.5,
+                          #0.75,
+                          1.0
+                          ]
+    controllerTypes = [0,
+                       1
+                       ]
     #runId = args.runId
     dpi = 100
     
-    datapathB = args.folderNameBest #os.path.dirname(os.path.abspath(args.folderNameBest))
-    dirFilesItemsPerColorB = glob.glob(datapathB + "/items-run*.log") # os.listdir(datapath)    
-    
-   
-    labelFontSize = 14
-    #print(dirFilesColorChanges)
-    bgcolor="white"
-    figAll = plt.figure(1,figsize=[8,6])
-    gs = gridspec.GridSpec(1, 2, width_ratios=[8, 1]) 
-    axisAll = plt.subplot(gs[0],facecolor=bgcolor) #plt.subplot2grid((1, 1), (0, 0), facecolor=bgcolor)
-    axisFitCumulAll= plt.subplot(gs[1],facecolor=bgcolor,sharey=axisAll) #plt.subplot2grid((1, 1), (0, 0), facecolor=bgcolor)
-    
-    fitnessAllR = []
-    for i,fname in enumerate(dirFilesFitnessR):
-        fitnessAllR.append(plotRuns.read_logfile(fname))        
-    
-    fitnessAllRPerRun = fitnessAllR
-    fitnessAllR = [list(x) for x in zip(*fitnessAllR)]
-    
-    fitnessCumulatedB = [np.average(fitRun[int(0.8 * len(fitRun)):]) for fitRun in fitnessAllBPerRun]    
-    mannWhitCumulFit = stats.mannwhitneyu(fitnessCumulatedB,fitnessCumulatedR)
-    print("P-val mann whitney U Cumulated Fitness best vs. random" + str(mannWhitCumulFit[1]))
+    #os.path.dirname(os.path.abspath(args.folderNameBest))
+    #dirFilesItemsPerColorB = glob.glob(datapathB + "/items-run*.log") # 
+    filesL1 = os.listdir(outfolder)    
+    filesL1 = [x for x in filesL1 if (".png" not in x) and (".log" not in x)]
+    sortedFilesL1 = sorted(filesL1, key=str.lower)
 
-    plotRuns.plot_one_curve(fitnessAllB, "blue", axisAll, "Best", True)
-    plotRuns.plot_one_curve(fitnessAllR, "orange", axisAll, "Random", True)
+    #cheating    
+    
+    filesL1 = ['R50.T1.S0.5.C0.SP0.0', 
+               #'R50.T1.S0.5.C0.SP0.25',
+               #'R50.T1.S0.5.C0.SP0.5', 
+               #'R50.T1.S0.5.C0.SP0.75', 
+               'R50.T1.S0.5.C0.SP1.0',
+               
+               'R100.T1.S0.5.C0.SP0.0', 
+               #'R100.T1.S0.5.C0.SP0.25', 
+               #'R100.T1.S0.5.C0.SP0.5',
+               #'R100.T1.S0.5.C0.SP0.75', 
+               'R100.T1.S0.5.C0.SP1.0', 
+               'R200.T1.S0.5.C0.SP0.0', 
+               #'R200.T1.S0.5.C0.SP0.25', 
+               #'R200.T1.S0.5.C0.SP0.5', 
+               #'R200.T1.S0.5.C0.SP0.75', 
+               'R200.T1.S0.5.C0.SP1.0'
+               ]
+    filesL1Subdiv = {50:{0.0:'R50.T1.S0.5.C0.SP0.0', 
+                         0.25:'R50.T1.S0.5.C0.SP0.25',
+                         0.5:'R50.T1.S0.5.C0.SP0.5', 
+                         0.75:'R50.T1.S0.5.C0.SP0.75', 
+                         1.0:'R50.T1.S0.5.C0.SP1.0'},
+               
+                   100:{0.0:'R100.T1.S0.5.C0.SP0.0', 
+                        0.25:'R100.T1.S0.5.C0.SP0.25', 
+                        0.5:'R100.T1.S0.5.C0.SP0.5',
+                        0.75:'R100.T1.S0.5.C0.SP0.75', 
+                        1.0:'R100.T1.S0.5.C0.SP1.0'}, 
+               
+                   200: {0.0:'R200.T1.S0.5.C0.SP0.0', 
+                         0.25:'R200.T1.S0.5.C0.SP0.25', 
+                         0.5:'R200.T1.S0.5.C0.SP0.5', 
+                         0.75:'R200.T1.S0.5.C0.SP0.75', 
+                         1.0:'R200.T1.S0.5.C0.SP1.0'}
+               }
+
+    sortedFilesL1= filesL1
+
+    filesL2  = [os.listdir(x) for x in sortedFilesL1 if os.path.isdir(x)]
+
+    filesSelected = [filesL1Subdiv[i][j] for i in numberOfRobots for j in selectionPressures]
+    print(filesSelected)
+    
+    fitnessFiles2 = [[[x.split('.')[0][1:],x.split('.')[4][1],
+                      (x.split('.')[5]+'.'+x.split('.')[6])[2:]],                     
+                     x+'/all.log.1'] for x in filesSelected if ".png" not in x]
+    #print(x.split('.')[0][1:],x.split('.')[4][1],
+    #                  (x.split('.')[5]+'.'+x.split('.')[6])[2:])
+    fitnessFiles = [[[x.split('.')[0][1:],x.split('.')[4][1],
+                      (x.split('.')[5]+'.'+x.split('.')[6])[2:]],                     
+                     x+'/all.log.1'] for x in sortedFilesL1 if ".png" not in x]
+    fitnessFiles = fitnessFiles2
+    diversityFiles = [[[x.split('.')[0][1:],x.split('.')[4][1],
+                      (x.split('.')[5]+'.'+x.split('.')[6])[2:]],                     
+                     x+'/all.log.3'] for x in filesSelected if ".png" not in x]    
+    #print(filesL1)
+    #print(filesL2)
+    #print(fitnessFiles)
+    labelFontSize = 14
+
+    #print(dirFilesColorChanges)
+    figAll = plt.figure(1,figsize=[8,6])
+    #gs = gridspec.GridSpec(1, 2, width_ratios=[8, 1]) 
+    gs = gridspec.GridSpec(1, 1, width_ratios=[1]) 
+    axisAll = plt.subplot(gs[0]) #,facecolor=bgcolor) #plt.subplot2grid((1, 1), (0, 0), facecolor=bgcolor)
+    #axisFitCumulAll= plt.subplot(gs[1], #facecolor=bgcolor,
+    #                             sharey=axisAll) #plt.subplot2grid((1, 1), (0, 0), facecolor=bgcolor)
+    #exit()
+    fitnessAll = [] #{}
+    for i,fname in enumerate(fitnessFiles):
+        #print(fname)
+        fitnessAll.append([tuple(fname[0]),plotRuns.read_logfile(outfolder  + fname[1])])
+    #print(fitnessAll)
+    
+    print(len(fitnessAll))
+    print(sorted(fitnessAll)) #.keys())
+    fitnessAllPerRun = fitnessAll
+    print(len(fitnessAllPerRun[0]))    
+    print(len(fitnessAllPerRun[0][0]))
+    bgcolor="white"
+    nColors = len(fitnessAllPerRun[0][1][0])
+    print("NB colors: ",nColors)    
+    colorArr = []
+    colorArrShaded = []
+    for j in range(nColors):
+        absVal = (256/nColors) * j;
+        colorArr += [(absVal/256.0, (255 - absVal)/256.0, 0)]
+        colorArrShaded += [(absVal/256.0, (255 - absVal)/256.0, 0,0.6)]
+    colorArr = []
+    colorArrShaded = []
+    rawColors = [(0.0,0.0,1.0),(0.1,0.55,0.18),(1.0,0.0,0.0)] # (1.0,0.55,0.18)
+    rawColors = {50:(0.0,0.0,1.0),100:(0.1,0.55,0.18),200:(1.0,0.0,0.0)} # (1.0,0.55,0.18)
+    print(sorted(rawColors.keys()))
+    usedRawColors = [rawColors[k] for k in sorted(rawColors.keys()) if k in numberOfRobots]        
+        
+    for i, nbR in enumerate(numberOfRobots):
+        for j in range(len(selectionPressures)):
+            colorArr += [usedRawColors[i] +tuple([1.0])]
+            colorArrShaded += [usedRawColors[i]+tuple([0.8 * selectionPressures[j] +0.1])]
+    
+    #change colors to rainbow [], .append
+    #colorArr = [(0.0,0.0,1.0),(0.0,145.0/255.0,1.0),(0.0,1.0,218.0/255.0),(0.0,1.0,72.0/255.0),
+    #            (72.0/255.0,1.0,0.0),(218.0/255.0,1.0,0.0),(1.0,145.0/255,0.0),(1.0,0.0,0.0)]
+    #colorArrShaded = [(0.0,0.0,1.0,0.6),(0.0,145.0/255.0,1.0,0.6),(0.0,1.0,218.0/255.0,0.6),(0.0,1.0,72.0/255.0,0.6),
+    #            (72.0/255.0,1.0,0.0,0.6),(218.0/255.0,1.0,0.0,0.6),(1.0,145.0/255,0.0,0.6),(1.0,0.0,0.0,0.6)]
+
+    #exp,fitnessValues
+    #for k,v in fitnessAllPerRun:
+    #    print(k,v)
+    #    fitnessAll[k] = [list(x) for x in zip(*v)]
+    #print(fitnessAll)
+    #print(len(fitnessAll))
+    #print(fitnessAll.keys())
+    #fitnessCumulated = [np.average(fitRun[int(0.8 * len(fitRun)):]) for fitRun in fitnessAllPerRun]    
+    #exit()
+    # to compare here: mannWhitCumulFit = stats.mannwhitneyu(fitnessCumulatedB,fitnessCumulatedR)
+    #print("P-val mann whitney U Cumulated Fitness best vs. random" + str(mannWhitCumulFit[1]))
+    count=0
+    #for k in fitnessAll.keys():
+    for i,v in enumerate(fitnessAll):
+        #print(fitnessAll[tuple(k)])
+        
+        plotRuns.plot_one_curve(v[1], colorArrShaded[count], axisAll, v[0], True)
+        count = (count+ 1) % len(colorArr)
+        #plotRuns.plot_one_curve(fitnessAllR, "orange", axisAll, "Random", True)
+    
+        
     #axisAll.grid(color="#FFFFFF", linestyle='-', linewidth=1)
     
     axisAll.tick_params(axis='both', which='major', labelsize=labelFontSize-3)
-    legend = axisAll.legend(loc='upper left', shadow=True)
+    legend = axisAll.legend(loc='lower right', shadow=True, #bbox_to_anchor=[0, 1],
+           ncol=5, fancybox=True) #, title="Legend")
     frame = legend.get_frame()
     frame.set_facecolor('0.90')
     
+    
     for label in legend.get_texts():
-        label.set_fontsize('large')
+        label.set_fontsize(5)
     for label in legend.get_lines():
-        label.set_linewidth(1.5)  # the legend line width
+        label.set_linewidth(0.6)  # the legend line width
 
     bgcolor="white"
     #figFitCumulAll = plt.figure(152)
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.95)    
+    if isToPng:        
+        print("Fitness saved to ", outfolder)
+        time.sleep(2)
+        figAll.savefig(outfolder+ "/FitnessAll"
+                       + "-R" + "-".join([str(x) for x in numberOfRobots]) 
+                       + "-SP" + "-".join([str(x) for x in selectionPressures])
+                       + "-C" + "-".join([str(x) for x in controllerTypes])
+                       + ".png"  , dpi=dpi*3)        
+        plt.close(figAll)
+    
+    figDiv = plt.figure(1,figsize=[8,6])
+    #gs = gridspec.GridSpec(1, 2, width_ratios=[8, 1]) 
+    gs = gridspec.GridSpec(1, 1, width_ratios=[1]) 
+    axisDiv = plt.subplot(gs[0]) #,facecolor=bgcolor) #plt.subplot2grid((1, 1), (0, 0), facecolor=bgcolor)
+    divAll = [] #{}
+    for i,fname in enumerate(diversityFiles):
+        #print(fname)
+        divAll.append([tuple(fname[0]),plotRuns.read_logfile(outfolder  + fname[1])])
+    #print(fitnessAll)
+    
+    print(len(divAll))
+    print(sorted(divAll)) #.keys())
+    divAllPerRun = divAll
+    print(len(divAllPerRun[0]))    
+    print(len(divAllPerRun[0][0]))
+    bgcolor="white"
+    nColors = len(divAllPerRun[0][1][0])
+    colorArr = []
+    colorArrShaded = []
+    rawColors = {50:(0.0,0.0,1.0),100:(0.1,0.55,0.18),200:(1.0,0.0,0.0)} # (1.0,0.55,0.18)
+    usedRawColors = [rawColors[k] for k in sorted(rawColors.keys()) if k in numberOfRobots]        
+        
+    for i, nbR in enumerate(numberOfRobots):
+        for j in range(len(selectionPressures)):
+            colorArr += [usedRawColors[i] +tuple([1.0])]
+            colorArrShaded += [usedRawColors[i]+tuple([0.8 * selectionPressures[j] +0.1])]
+    
+    count=0
+    for i,v in enumerate(divAll):
+        plotRuns.plot_one_curve(v[1], colorArrShaded[count], axisDiv, v[0], True)
+        count = (count+ 1) % len(colorArr)
+    
+    axisDiv.tick_params(axis='both', which='major', labelsize=labelFontSize-3)
+    legend = axisDiv.legend(loc='upper right', shadow=True, #bbox_to_anchor=[0, 1],
+           ncol=5, fancybox=True) #, title="Legend")
+    frame = legend.get_frame()
+    frame.set_facecolor('0.90')
+    axisDiv.set_xlabel("Diversity")    
+    
+    for label in legend.get_texts():
+        label.set_fontsize(5)
+    for label in legend.get_lines():
+        label.set_linewidth(0.6)  # the legend line width
+
+    bgcolor="white"
+    #figFitCumulAll = plt.figure(152)
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.95)    
+    if isToPng:       
+        outfileName = outfolder + "/diversityAll" + "-R" + "-".join([str(x) for x in numberOfRobots]) + "-SP" + "-".join([str(x) for x in selectionPressures]) + "-C" + "-".join([str(x) for x in controllerTypes]) + ".png"  
+        print("Diversity saved to ", outfileName)
+        time.sleep(2)
+        figDiv.savefig(outfileName, dpi=dpi*3)        
+        plt.close(figDiv)
+
+    exit()    
+    
+        
+    
+    
     
     violin_parts = axisFitCumulAll.violinplot([fitnessCumulatedB,fitnessCumulatedR], positions=[0.5,1.0],
                                               points=len(fitnessCumulatedB), widths=0.25,
