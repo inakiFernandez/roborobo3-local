@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#README AMINE papier ALIFE extended 2019
+#tu me demanderas pour la commande si besoin 
 if [ $# -ne 4 ]; then
     echo "Wrong number of parameters. [progname] template outconfigbasename outlogbasename nbRuns"
     exit
@@ -80,7 +81,11 @@ exit
 
 #parallel -j15 -a $commandFile
 
-
+#logItemName = items.log
+#logItGatheredName = itemsIter.log
+#logColorChangesName = colorChanges.log
+#logGivenRewardName = givenReward.log
+#logRobotsPerItemName = robotsPerItem.log
 
 #./tools/template-launchMultiple.sh config/tColl2/template-medea config/tColl2/medea-colors logs/expColors 30
 

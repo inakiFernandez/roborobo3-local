@@ -20,7 +20,7 @@ import multirunFitness as plotRuns
 import scipy.stats as stats
 from matplotlib import gridspec
 
-def plotMultipleNov18(exp,filetag,numberOfRobots,selectionPressures,controllerTypes):
+def plotMultipleNov18(exp,filetag,numberOfRobots,selectionPressures,controllerTypes,doVariance=True):
     parser = argparse.ArgumentParser(description='To png or not')
     parser.add_argument('outFolderName', help='Folder name out') 
     parser.add_argument('--png', action='store_true', help='output to png file?')
@@ -29,32 +29,38 @@ def plotMultipleNov18(exp,filetag,numberOfRobots,selectionPressures,controllerTy
     outfolder = args.outFolderName  
     dpi = 100
 
-    filesL1Subdiv = {50:{0.0:'R50.S0.5.C0.SP0.0.nbreg0.add0.25.del0.25', 
-                         0.25:'R50.T1.S0.5.C0.SP0.25.nbreg0.add0.25.del0.25',
-                         0.5:'R50.T1.S0.5.C0.SP0.5.nbreg0.add0.25.del0.25', 
-                         0.75:'R50.T1.S0.5.C0.SP0.75.nbreg0.add0.25.del0.25', 
-                         1.0:'R50.T1.S0.5.C0.SP1.0.nbreg0.add0.25.del0.25'},
+    filesL1Subdiv = {25:{0.0:'R25.S0.5.C0.SP0.0.nbreg0.add0.del0.25', 
+                         0.25:'R25.S0.5.C0.SP0.25.nbreg0.add0.del0.25',
+                         0.5:'R25.S0.5.C0.SP0.5.nbreg0.add0.del0.25', 
+                         0.75:'R25.S0.5.C0.SP0.75.nbreg0.add0.del0.25', 
+                         1.0:'R25.S0.5.C0.SP1.0.nbreg0.add0.del0.25'},
+                         
+                   50:{0.0:'R50.S0.5.C0.SP0.0.nbreg0.add0.del0.25', 
+                         0.25:'R50.S0.5.C0.SP0.25.nbreg0.add0.del0.25',
+                         0.5:'R50.S0.5.C0.SP0.5.nbreg0.add0.del0.25', 
+                         0.75:'R50.S0.5.C0.SP0.75.nbreg0.add0.del0.25', 
+                         1.0:'R50.S0.5.C0.SP1.0.nbreg0.add0.del0.25'},      
                
-                   100:{0.0:'R100.T1.S0.5.C0.SP0.0.nbreg0.add0.25.del0.25', 
-                        0.25:'R100.T1.S0.5.C0.SP0.25.nbreg0.add0.25.del0.25', 
-                        0.5:'R100.T1.S0.5.C0.SP0.5.nbreg0.add0.25.del0.25',
-                        0.75:'R100.T1.S0.5.C0.SP0.75.nbreg0.add0.25.del0.25', 
-                        1.0:'R100.T1.S0.5.C0.SP1.0.nbreg0.add0.25.del0.25'}, 
+                   100:{0.0:'R100.S0.5.C0.SP0.0.nbreg0.add0.del0.25', 
+                        0.25:'R100.S0.5.C0.SP0.25.nbreg0.add0.del0.25', 
+                        0.5:'R100.S0.5.C0.SP0.5.nbreg0.add0.del0.25',
+                        0.75:'R100.S0.5.C0.SP0.75.nbreg0.add0.del0.25', 
+                        1.0:'R100.S0.5.C0.SP1.0.nbreg0.add0.del0.25'}, 
                
-                   200: {0.0:'R200.T1.S0.5.C0.SP0.0.nbreg0.add0.25.del0.25', 
-                         0.25:'R200.T1.S0.5.C0.SP0.25.nbreg0.add0.25.del0.25', 
-                         0.5:'R200.T1.S0.5.C0.SP0.5.nbreg0.add0.25.del0.25', 
-                         0.75:'R200.T1.S0.5.C0.SP0.75.nbreg0.add0.25.del0.25', 
-                         1.0:'R200.T1.S0.5.C0.SP1.0.nbreg0.add0.25.del0.25'}
+                   200: {0.0:'R200.S0.5.C0.SP0.0.nbreg0.add0.del0.25', 
+                         0.25:'R200.S0.5.C0.SP0.25.nbreg0.add0.del0.25', 
+                         0.5:'R200.S0.5.C0.SP0.5.nbreg0.add0.del0.25', 
+                         0.75:'R200.S0.5.C0.SP0.75.nbreg0.add0.del0.25', 
+                         1.0:'R200.S0.5.C0.SP1.0.nbreg0.add0.del0.25'}
                }
-
+    #print([str(i) + " " + str(j) for i in numberOfRobots for j in selectionPressures])
     filesSelected = [filesL1Subdiv[i][j] for i in numberOfRobots for j in selectionPressures]
-    print(filesSelected)
+    #print(filesSelected)
     
-    dataFiles = [[[x.split('.')[0][1:],x.split('.')[4][1],
-                      (x.split('.')[5]+'.'+x.split('.')[6])[2:]],                     
+    dataFiles = [[[x.split('.')[0][1:], #x.split('.')[3][1],
+                      (x.split('.')[4]+'.'+x.split('.')[5])[2:]],                     
                      x+'/all.log.'+filetag] for x in filesSelected if ".png" not in x]
-    print(dataFiles)
+    #print(dataFiles)
     labelFontSize = 14
 
     figAll = plt.figure(1,figsize=[8,6])
@@ -64,105 +70,222 @@ def plotMultipleNov18(exp,filetag,numberOfRobots,selectionPressures,controllerTy
     dataAll = [] 
     for i,fname in enumerate(dataFiles):
         dataAll.append([tuple(fname[0]),plotRuns.read_logfile(outfolder  + fname[1])])
-    #print(fitnessAll)
-    
-    print(len(dataAll))
-    print(sorted(dataAll)) #.keys())
-    print(len(dataAll[0]))    
-    print(len(dataAll[0][0]))
-    bgcolor="white"
+ 
     nColors = len(dataAll[0][1][0])
     print("NB colors: ",nColors)    
 
     colorArr = []
     colorArrShaded = []
-    rawColors = {25:(0.2,0.8,0.8),50:(0.0,0.0,1.0),100:(0.1,0.55,0.18),200:(1.0,0.0,0.0)} # (1.0,0.55,0.18)
-    print(sorted(rawColors.keys()))
+    rawColors = {25:(1.0, 0.8, 0.4),50:(0.0,0.0,1.0),100:(0.1,0.55,0.18),200:(1.0,0.0,0.0)} # (1.0,0.55,0.18)
+    #print(sorted(rawColors.keys()))
     usedRawColors = [rawColors[k] for k in sorted(rawColors.keys()) if k in numberOfRobots]        
         
     for i, nbR in enumerate(numberOfRobots):
         for j in range(len(selectionPressures)):
             colorArr += [usedRawColors[i] +tuple([1.0])]
-            colorArrShaded += [usedRawColors[i]+tuple([0.8 * selectionPressures[j] +0.1])]
+            colorArrShaded += [usedRawColors[i]+tuple([0.7 * selectionPressures[j] +0.3])]
     
     count=0
     for i,v in enumerate(dataAll):
-        plotRuns.plot_one_curve(v[1], colorArrShaded[count], axisAll, v[0], True)
+        plotRuns.plot_one_curve(v[1], colorArrShaded[count], axisAll,  r"$|\mathbf{S}|=$" + str(v[0][0]) + ", " + r"$\theta_{\mathrm{sp}=}$" + str(v[0][1]) , doVariance)
         count = (count+ 1) % len(colorArr)
     
     axisAll.tick_params(axis='both', which='major', labelsize=labelFontSize-3)
-    legend = axisAll.legend(loc='lower right', shadow=True, #bbox_to_anchor=[0, 1],
-           ncol=5, fancybox=True) #, title="Legend")
+    legend = axisAll.legend(loc='lower right', #shadow=True, #bbox_to_anchor=[0, 1],
+           ncol=4, fancybox=True) #, title="Legend")
     frame = legend.get_frame()
-    frame.set_facecolor('0.90')
-    
-    
+    frame.set_facecolor((0.8,0.8,0.8,0.025))
+    frame.set_edgecolor('white')
+    plt.xlabel("Generations",fontsize = 20) #,y=-0.06)
+    plt.ylabel(exp,fontsize = 20) #,y=-0.06)
     for label in legend.get_texts():
-        label.set_fontsize(5)
+        label.set_fontsize(6.5)
+        label.set_color('black')
     for label in legend.get_lines():
-        label.set_linewidth(0.6)  # the legend line width
+        label.set_linewidth(4.6)  # the legend line width
 
     plt.tight_layout()
-    plt.subplots_adjust(top=0.95)    
+    plt.subplots_adjust(top=0.95)   
+    strDoVariance = "All"
+    if doVariance:
+        strDoVariance = "MedAll"
     if isToPng:        
         print(exp+" saved to ", outfolder)
-        time.sleep(2)
-        figAll.savefig(outfolder+ "/"+ exp + "All"
+        time.sleep(0.5)
+        figAll.savefig(outfolder+ "/"+ exp + strDoVariance #"MedAll" # "All" #
                        + "-R" + "-".join([str(x) for x in numberOfRobots]) 
                        + "-SP" + "-".join([str(x) for x in selectionPressures])
                        + "-C" + "-".join([str(x) for x in controllerTypes])
                        + ".png"  , dpi=dpi*3)        
         plt.close(figAll)
+       
+    traitIndexes = {"Fitness": 1, 
+                    #"Genomes" : 3,  
+                    #"Collisions": 2
+                    } #, "Distance" : 'distance' }
     
+    if exp not in traitIndexes.keys():
+        return
+    traitIndex = traitIndexes[exp]
+    #print(outfolder + "/run*-logOffspring.txt",files)    
+    allSpearData = {}
+    for i, nbR in enumerate(numberOfRobots):
+        v2={}
+        for j,sp in enumerate(selectionPressures):
+            fname = outfolder + filesL1Subdiv[nbR][sp]
+            #print(fname)
+            files = glob.glob(fname + "/run*-logOffspring.txt") #run*
+            v1 = []
+            for f in files:            
+                v1.append(plotRuns.read_offspringfile(f))
+            v2[sp] = v1
+
+        allSpearData[nbR] = v2
+    #print(allSpearData)
+    #print(len(allSpearData[25][0.0][0]))
+    #print(len(allSpearData[25]))
+    #print(len(allSpearData[25][1.0]))
+                
+    fig = plt.figure(1,figsize=[8,6])
+    gs = gridspec.GridSpec(1, 1, width_ratios=[1]) 
+    ax = plt.subplot(gs[0]) 
+    count = 0
+    for i, nbR in enumerate(numberOfRobots):
+        for j,sp in enumerate(selectionPressures):
+            statAllVal = []             
+            for run in allSpearData[nbR][sp]:
+                #print(run)
+                statVal = []
+                offspring = [[x[0] for x in gen] for gen in run[:-1]] 
+                fitness = [[x[int(traitIndex)] for x in gen] for gen in run[:-1]] 
+                for k,gen in enumerate(offspring):
+                    ranksO = stats.rankdata(offspring[k])
+                    ranksF = stats.rankdata(fitness[k])
+                    #kendall with number of discordances, spearman with deviations
+                    tau = stats.kendalltau(ranksO,ranksF)[0]
+                    statVal.append(tau) #spearmanr
+
+                statAllVal.append(statVal)
+            statistics = [list(x) for x in zip(*statAllVal)]
+            plotRuns.plot_one_curve(statistics, 
+                                    colorArrShaded[count], ax, 
+                                    r"$|\mathbf{S}|=$" + str(nbR) + ", "  + r"$\theta_{\mathrm{sp}=}$" + str(sp) , 
+                                    doVariance) #todo different traits: fit, collisions, genomes, items, distance #later with local diversity?
+            count = (count+ 1) % len(colorArr)
+            #print(statAllVal)            
+    
+    ax.tick_params(axis='both', which='major', labelsize=11)
+    legend = ax.legend(loc='lower right', #shadow=True, #bbox_to_anchor=[0, 1],
+                       ncol=4, fancybox=True) #, title="Legend")
+    frame = legend.get_frame()
+    frame.set_facecolor((0.8,0.8,0.8,0.025))
+    frame.set_edgecolor('white')
+    plt.xlabel("Generations",fontsize = 20) #,y=-0.06)
+    plt.ylabel(r"$P_{\tau}$",fontsize = 20) #,y=-0.06)
+
+    for label in legend.get_texts():
+        label.set_fontsize(6.5)
+        label.set_color('black')
+    for label in legend.get_lines():
+        label.set_linewidth(4.6)  # the legend line width
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.95)    
+    outfname = "/kendalltest"+ exp + strDoVariance \
+               + "-R" + "-".join([str(x) for x in numberOfRobots]) \
+               + "-SP" + "-".join([str(x) for x in selectionPressures]) \
+               + "-C" + "-".join([str(x) for x in controllerTypes]) \
+               + ".png"
+    print("Spear saved to ", outfolder + outfname )
+    #time.sleep(1)
+    fig.savefig(outfolder+ outfname  , dpi=140)        
+    plt.close(fig)
+
 if __name__ == '__main__':
-    
+    parser = argparse.ArgumentParser(description='To png or not')
+    parser.add_argument('outFolderName', help='Folder name out') 
+    parser.add_argument('--png', action='store_true', help='output to png file?')
+    args = parser.parse_args()
+    outfolder = args.outFolderName  
+
+
+    doVariance = [False, 
+                  True]
     #cheating here
-    listExp = [[[50,100,200],[0,0.25,0.5,0.75,1.0]],
-               [[200],[0,0.25,0.5,0.75,1.0]],
-               [[100],[0,0.25,0.5,0.75,1.0]],
-               [[50],[0,0.25,0.5,0.75,1.0]],
-               [[50],[0,1.0]],
-               [[50],[0,0.25,0.5]],
-               [[50],[0,0.5,1.0]],
-               [[50],[0.25,0.5,0.75]],
-               [[100],[0,1.0]],
-               [[100],[0,0.25,0.5]],
-               [[100],[0,0.5,1.0]],
-               [[100],[0.25,0.5,0.75]],
-               [[200],[0,1.0]],
-               [[200],[0,0.25,0.5]],
-               [[200],[0,0.5,1.0]],
-               [[200],[0.25,0.5,0.75]],              
-               [[50,100,200],[0,1.0]],
-               [[50,100,200],[0,0.25,0.5]],
-               [[50,100,200],[0,0.5,1.0]],
-               [[50,100,200],[0.25,0.5,0.75]],
-               [[100,200],[0,1.0]],
-               [[100,200],[0,0.25,0.5]],
-               [[100,200],[0,0.5,1.0]],
-               [[100,200],[0.25,0.5,0.75]],
-               [[50,100],[0,1.0]],
-               [[50,100],[0,0.25,0.5]],
-               [[50,100],[0,0.5,1.0]],
-               [[50,100],[0.25,0.5,0.75]],
-               [[25,50,100,200],[0,0.25,0.5,0.75,1.0]],
-               [[25],[0,0.25,0.5,0.75,1.0]],
-               [[25],[0,1.0]],
-               [[25],[0,0.25,0.5]],
-               [[25],[0,0.5,1.0]],
-               [[25],[0.25,0.5,0.75]],
-               [[25,100,200],[0,1.0]],
-               [[25,100,200],[0,0.25,0.5]],
-               [[25,100,200],[0,0.5,1.0]],
-               [[25,100,200],[0.25,0.5,0.75]],
-               [[25,200],[0,1.0]],
-               [[25,200],[0,0.25,0.5]],
-               [[25,200],[0,0.5,1.0]],
-               [[25,200],[0.25,0.5,0.75]],
-               [[25,100],[0,1.0]],
-               [[25,100],[0,0.25,0.5]],
-               [[25,100],[0,0.5,1.0]],
-               [[25,100],[0.25,0.5,0.75]]]
+    """
+    """
+    listExp = [
+                [[25,50,100,200],[0,1.0]],     
+                #[[25,50,100,200],[0]],
+                #[[25,50,100,200],[1.0]],
+                [[25,200],[0,1.0]],
+                #[[25,200],[0,0.25,0.5]],
+                #[[25,200],[0,0.5,1.0]],
+                #[[25,200],[0.25,0.5,0.75]],
+                #[[25,200],[0]],
+                #[[25,200],[1.0]],
+                #[[50,100,200],[0,0.25,0.5,0.75,1.0]],
+                #[[200],[0,0.25,0.5,0.75,1.0]],
+                #[[100],[0,0.25,0.5,0.75,1.0]],
+                #[[50],[0,0.25,0.5,0.75,1.0]],
+                #[[25],[0,0.25,0.5,0.75,1.0]],
+                #[[25],[0,1.0]],
+                #[[25],[0,0.25,0.5]],
+                #[[25],[0,0.5,1.0]],
+                #[[25],[0.25,0.5,0.75]],                
+                #[[50],[0,1.0]],
+                #[[50],[0,0.25,0.5]],
+                #[[50],[0,0.5,1.0]],
+                #[[50],[0.25,0.5,0.75]],
+                #[[100],[0,1.0]],
+                #[[100],[0,0.25,0.5]],
+                #[[100],[0,0.5,1.0]],
+                #[[100],[0.25,0.5,0.75]],
+                #[[200],[0,1.0]],
+                #[[200],[0,0.25,0.5]],
+                #[[200],[0,0.5,1.0]],
+                #[[200],[0.25,0.5,0.75]],              
+                #[[100,200],[0,1.0]],
+                #[[100,200],[0,0.25,0.5]],
+                #[[100,200],[0,0.5,1.0]],
+                #[[100,200],[0.25,0.5,0.75]],
+                #[[50,200],[0,1.0]],
+                #[[50,200],[0,0.25,0.5]],
+                #[[50,200],[0,0.5,1.0]],
+                #[[50,200],[0.25,0.5,0.75]],
+                #[[50,200],[0,1.0]],
+                #[[50,200],[0,0.25,0.5]],
+                #[[25,50,100,200],[0,0.25,0.5,0.75,1.0]],                
+                #[[50,100],[1.0]],
+                #[[50,100],[0,0.25,0.5]],
+                #[[50,100],[0,0.5,1.0]],
+                #[[50,100],[0.25,0.5,0.75]],
+                #[[25,100,200],[0,1.0]],
+                #[[25,100,200],[0,0.25,0.5]],
+                #[[25,100,200],[0,0.5,1.0]],
+                #[[25,100,200],[0.25,0.5,0.75]],
+                #[[25,200],[0,1.0]],
+                #[[25,200],[0,0.25,0.5]],
+                #[[25,200],[0,0.5,1.0]],
+                #[[25,200],[0.25,0.5,0.75]],
+                #[[25,100],[0,1.0]],
+                #[[25,100],[0,0.25,0.5]],
+                #[[25,100],[0,0.5,1.0]],
+                #[[25,100],[0.25,0.5,0.75]]
+               
+              ]
+
+
+    """
+    
+
+    """
+
+    cTypes = [0,
+              #1
+              ]
+
+    """
     nbOfRobots = [25,
                   50,
                   100,
@@ -175,21 +298,79 @@ if __name__ == '__main__':
                     1.0
                     ]
     addRates = [0,
-                0.25
+                #0.25
                 ]
-    cTypes = [0,
-              1
-              ]
+
+
     
+    filename = "R100.S0.5.C0.SP1.0.nbreg0.add0.del0.25/"
+    filename = "run24-logOffspring.txt"  
+    
+    data = plotRuns.read_offspringfile(outfolder  + filename)
+
+    print(len(data))    
+    print(data)    
+    
+    offspring1 = [y[1] for y in data]    
+    offspring = [[x[0] for x in y] for y in offspring1][:-1]
+
+    fitness1 = [y[1] for y in data]    
+    fitness = [[x[1] for x in y] for y in fitness1][:-1]
+    
+    #print(offspring)
+    #print(len(offspring))
+    #print(fitness)
+    #print(len(fitness))
+    
+    #kendall with number of discordances, spearman with deviations
+    spearmanVal = []
+    for i,o in enumerate(offspring):
+        f = fitness[i]
+        ranksO = stats.rankdata(o)
+        ranksF = stats.rankdata(f)
+        spearmanVal.append(stats.kendalltau(ranksO,ranksF)[0]) #spearmanr
+    
+    
+    fig = plt.figure(1,figsize=[8,6])
+    gs = gridspec.GridSpec(1, 1, width_ratios=[1]) 
+    ax = plt.subplot(gs[0]) 
+    
+    plotRuns.plot_one_curve(spearmanVal, (0.7,0.3,0.4,0.7), ax, "Spearman S.P coeff" , True)
+    ax.tick_params(axis='both', which='major', labelsize=11)
+    legend = ax.legend(loc='lower right', shadow=True, #bbox_to_anchor=[0, 1],
+           ncol=5, fancybox=True) #, title="Legend")
+    frame = legend.get_frame()
+    frame.set_facecolor('0.90')
+    
+    
+    for label in legend.get_texts():
+        label.set_fontsize(5)
+    for label in legend.get_lines():
+        label.set_linewidth(0.6)  # the legend line width
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.95)    
+       
+    print("saved to ", outfolder)
+    time.sleep(2)
+    fig.savefig(outfolder+ "/spearmantest.png"  , dpi=140)        
+    plt.close(fig)
+  
+    print(spearmanVal)
+    exit()
+    """
+
+
     exp = "Fitness" # "Diversity" # "Genomes" # "Collisions" # "Distance" #
     filetags = {"Fitness": '4', "Diversity" : '3', "Genomes" : 'genomes',  "Collisions": 'collisions'} #, "Distance" : 'distance' }
-    for e in listExp:
-        nbOfRobots = e[0]
-        selPressures = e[1]
-        for k in filetags.keys():      
-            exp = k
-            filetag = filetags[exp]
-            plotMultipleNov18(exp,filetag,nbOfRobots,selPressures,cTypes)
+    for b in doVariance:    
+        for e in listExp:
+            nbOfRobots = e[0]
+            selPressures = e[1]
+            for k in filetags.keys():      
+                exp = k
+                filetag = filetags[exp]
+                plotMultipleNov18(exp,filetag,nbOfRobots,selPressures,cTypes,doVariance=b)
     
     
     exit()    

@@ -12,17 +12,48 @@ from pylab import *
 import brewer2mpl
 from operator import itemgetter
 
+def list_length(L):
+    if L:
+        return 1 + list_length(L[1:])
+    return 0
 def read_logfile(fname):
     d = []
     fh = open(fname, 'r')
     for line in fh:
         l = []
-        data = line.split()
+        data = line.split() 
         for o in data:
             l.append(float(o))
         d.append(l)
     fh.close()
     return d
+
+def read_offspringfile(fname):
+    fh = open(fname, 'r')
+    #print(fname)
+    #print(fh)
+    rawData = []
+    for line in fh:
+        rawData.append(line)
+    fh.close()
+    filteredData = []
+    isInGen = False
+    generation = -1
+    l = []
+    for rawDatum in rawData:
+        if "Start" in rawDatum:
+            generation = int(rawDatum.split()[1])
+            isInGen = True         
+            l = []  
+        else:
+            if "End" in rawDatum:
+                filteredData.append(l) #[generation,l])
+            else:                    
+                if not isInGen:
+                    print("Mal")
+                    exit()
+                l.append([float(x) for i,x in enumerate(rawDatum.split(',')) if i != 5])
+    return filteredData
 
 
 def perc(data_l):
@@ -71,7 +102,7 @@ def plot_one_curve(data, color, axis, label, quartiles=False):
         axis.fill_between(np.arange(0, len(med)), perc_25, perc_75,
                           #alpha=0.25, 
                           linewidth=0, color=shadedColor)
-    lineWidth = 0.5
+    lineWidth = 2
     handle = axis.plot(med, lw=lineWidth, label=label,               
               color=color,linestyle="-")
     gridcolor="#FFFFFF"    
